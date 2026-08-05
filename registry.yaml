@@ -1,0 +1,39 @@
+# Project Pulse — Kernel Mailing List Inbox Registry
+# Each entry maps a logical name to its lore.kernel.org inbox metadata.
+# New inboxes are added here; the sync script reads this file.
+#
+# Fields:
+#   name         - logical name (used as local folder name)
+#   lore         - inbox name on lore.kernel.org
+#   description  - human-readable label
+#   latest_epoch - most recent epoch number (updated after sync when epoch bumps)
+#   status       - active | inactive | not-yet-cloned
+#
+# Epochs on lore.kernel.org split by year.
+# When latest_epoch increments, the script clones a new bare repo
+# alongside the old one (old repos are kept but excluded from daily pull).
+
+inbox_list:
+  - name: lkml
+    lore: lkml
+    description: "Linux Kernel Mailing List (vger.kernel.org)"
+    latest_epoch: 19
+    status: active
+
+  - name: git
+    lore: git
+    description: "Git development mailing list (vger.kernel.org)"
+    latest_epoch: 1
+    status: inactive
+
+  - name: llvm
+    lore: llvm
+    description: "LLVM / Clang kernel-building mailing list"
+    latest_epoch: 2
+    status: inactive
+
+  - name: stable
+    lore: stable
+    description: "Linux stable kernel backport discussions"
+    latest_epoch: 1
+    status: inactive
