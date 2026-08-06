@@ -53,7 +53,7 @@ if [ "$ACTION" = "--status" ]; then
     dest="$INBOX_DIR/$name"
     count=""
     newest=""
-    if [ -d "$dest/.git" ]; then
+    if [ -d "$dest/.git" ] || [ -f "$dest/HEAD" ]; then
       count="$(cd "$dest" && git rev-list --all --count 2>/dev/null || echo '?')"
       newest="$(cd "$dest" && git log --format='%ai' -1 2>/dev/null || echo '?')"
     fi
@@ -110,7 +110,7 @@ for name in $TARGETS; do
     continue
   fi
 
-  if [ ! -d "$dest/.git" ]; then
+  if [ ! -d "$dest/.git" ] && [ ! -f "$dest/HEAD" ]; then
     echo "  NOT YET CLONED — run clone manually:"
     echo "  git clone --bare https://lore.kernel.org/$lore/$epoch $dest"
     continue

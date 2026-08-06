@@ -24,11 +24,11 @@ inbox_list:
     lore: git
     description: "Git development mailing list (vger.kernel.org)"
     latest_epoch: 1
-    status: inactive
+    status: active
 
   - name: llvm
     lore: llvm
-    description: "LLVM / Clang kernel-building mailing list"
+    description: "LLVM / Clang kernel-building mailing list (P3 — pending)"
     latest_epoch: 2
     status: inactive
 

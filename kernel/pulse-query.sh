@@ -39,8 +39,14 @@ while [ $# -gt 0 ]; do
   esac
 done
 
+is_git_repo() {
+  # Works for both normal repos (.git/) and bare repos (no .git/)
+  git -C "$1" rev-parse --is-inside-work-tree >/dev/null 2>&1 || \
+    git -C "$1" rev-parse --is-bare-repository >/dev/null 2>&1
+}
+
 REPO="$INBOX_DIR/$INBOX"
-if [ ! -d "$REPO/.git" ]; then
+if ! is_git_repo "$REPO"; then
   echo "ERROR: Inbox '$INBOX' not found at $REPO" >&2
   exit 1
 fi
