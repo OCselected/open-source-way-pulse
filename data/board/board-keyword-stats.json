@@ -1,0 +1,184 @@
+{
+  "years": {
+    "2010": {
+      "retired": 11,
+      "graduated": 12,
+      "incubated": 12,
+      "license-al": 5,
+      "license-gpl": 6,
+      "patent": 4,
+      "ai": 7,
+      "relicensing": 3
+    },
+    "2011": {
+      "retired": 12,
+      "graduated": 12,
+      "incubated": 12,
+      "license-al": 3,
+      "license-gpl": 3,
+      "patent": 2,
+      "ai": 12,
+      "relicensing": 1
+    },
+    "2012": {
+      "retired": 11,
+      "graduated": 13,
+      "incubated": 13,
+      "license-al": 6,
+      "license-gpl": 5,
+      "patent": 1,
+      "ai": 12,
+      "relicensing": 0
+    },
+    "2013": {
+      "retired": 11,
+      "graduated": 12,
+      "incubated": 12,
+      "license-al": 2,
+      "license-gpl": 2,
+      "patent": 2,
+      "ai": 12,
+      "relicensing": 0
+    },
+    "2014": {
+      "retired": 10,
+      "graduated": 12,
+      "incubated": 12,
+      "license-al": 2,
+      "license-gpl": 0,
+      "patent": 0,
+      "ai": 12,
+      "relicensing": 1
+    },
+    "2015": {
+      "retired": 12,
+      "graduated": 12,
+      "incubated": 12,
+      "license-al": 1,
+      "license-gpl": 4,
+      "patent": 1,
+      "ai": 12,
+      "relicensing": 1
+    },
+    "2016": {
+      "retired": 12,
+      "graduated": 12,
+      "incubated": 12,
+      "license-al": 7,
+      "license-gpl": 3,
+      "patent": 1,
+      "ai": 12,
+      "relicensing": 1
+    },
+    "2017": {
+      "retired": 13,
+      "graduated": 13,
+      "incubated": 13,
+      "license-al": 3,
+      "license-gpl": 3,
+      "patent": 1,
+      "ai": 12,
+      "relicensing": 4
+    },
+    "2018": {
+      "retired": 12,
+      "graduated": 12,
+      "incubated": 13,
+      "license-al": 7,
+      "license-gpl": 7,
+      "patent": 1,
+      "ai": 12,
+      "relicensing": 2
+    },
+    "2019": {
+      "retired": 12,
+      "graduated": 12,
+      "incubated": 13,
+      "license-al": 3,
+      "license-gpl": 4,
+      "patent": 2,
+      "ai": 12,
+      "relicensing": 0
+    },
+    "2020": {
+      "retired": 12,
+      "graduated": 12,
+      "incubated": 12,
+      "license-al": 6,
+      "license-gpl": 2,
+      "patent": 3,
+      "ai": 12,
+      "relicensing": 0
+    },
+    "2021": {
+      "retired": 12,
+      "graduated": 10,
+      "incubated": 12,
+      "license-al": 5,
+      "license-gpl": 2,
+      "patent": 0,
+      "ai": 12,
+      "relicensing": 1
+    },
+    "2022": {
+      "retired": 12,
+      "graduated": 12,
+      "incubated": 12,
+      "license-al": 3,
+      "license-gpl": 1,
+      "patent": 1,
+      "ai": 12,
+      "relicensing": 1
+    },
+    "2023": {
+      "retired": 12,
+      "graduated": 12,
+      "incubated": 12,
+      "license-al": 4,
+      "license-gpl": 0,
+      "patent": 0,
+      "ai": 12,
+      "relicensing": 0
+    },
+    "2024": {
+      "retired": 11,
+      "graduated": 10,
+      "incubated": 12,
+      "license-al": 3,
+      "license-gpl": 0,
+      "patent": 1,
+      "ai": 12,
+      "relicensing": 2
+    },
+    "2025": {
+      "retired": 12,
+      "graduated": 12,
+      "incubated": 12,
+      "license-al": 5,
+      "license-gpl": 1,
+      "patent": 0,
+      "ai": 12,
+      "relicensing": 0
+    },
+    "2026": {
+      "retired": 6,
+      "graduated": 6,
+      "incubated": 6,
+      "license-al": 4,
+      "license-gpl": 0,
+      "patent": 1,
+      "ai": 6,
+      "relicensing": 0
+    }
+  },
+  "topics": [
+    "retired",
+    "graduated",
+    "incubated",
+    "license-al",
+    "license-gpl",
+    "patent",
+    "ai",
+    "relicensing"
+  ]
+}
