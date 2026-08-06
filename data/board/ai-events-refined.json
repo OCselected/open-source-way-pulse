@@ -1,0 +1,28 @@
+{
+  "events": [
+    {
+      "date": "2023-02-15",
+      "year": 2023,
+      "match": "AI generated",
+      "context": "ful of LEGAL issues, we are slightly up at 21 outstanding issues compared to 19 last month. A discussion around updating contributor guidance around AI generated code is underway and anybody intereste"
+    },
+    {
+      "date": "2024-02-21",
+      "year": 2024,
+      "match": "Generative AI",
+      "context": "or CFP submissions EU Software Regulations[2]: Dirk-Willem van Gulik wrote blog providing updates; published and promoted Proactive Storytelling Why Generative AI Guidance is Essential to Contributors"
+    },
+    {
+      "date": "2025-01-15",
+      "year": 2025,
+      "match": "AI tooling",
+      "context": "Status: Wasn't in the meeting due to power outage , will get to this today. * Rich: follow up with details regarding AI tooling [ Superset 2024-11-20 ] Status: Done: As I understand it, VP Privacy has"
+    },
+    {
+      "date": "2026-01-21",
+      "year": 2026,
+      "match": "AI policy",
+      "context": "ngagement, resolution and transparent. Called out by PMC chair to celebrate. https://lists.apache.org/thread/f983bj5328zd0cnwtpqqx8vfd0wnpj0o * AI policy discussions - how to use AI appropriately - st"
+    }
+  ]
+}

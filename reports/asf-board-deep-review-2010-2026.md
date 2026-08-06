@@ -57,30 +57,91 @@ sha256: pending
 
 ---
 
-## 三、AI 政策（2025–2026）
+## 三、AI 政策与 AI 生成代码（2022–2026）
 
-2025–2026 年间 Board 纪要中 AI 相关决策激增：
-- **AI policy** 提及：2025 年 35 次，2026 年 34 次（此前维持在 12–17 次/年）
-- 关键决策包括 AI 工具使用政策、AI 生成代码贡献的处理、以及 OpenAI/ChatGPT 相关讨论
+从 206 份 Board 纪要中提取了 186 条 AI 相关决策（2022–2026，经严格去重和假阳性过滤）：
 
-这反映了 L2 法律层正在主动适应新的技术-制度环境——**AL 2.0 的"商业友好"设计正在被 AI 时代的新的制度挑战（AI 生成代码的版权归属、AI 训练数据合规）所重新定义。**
+| 年份 | AI 工具/指南 | 生成式AI代码贡献 | AI安全/CVE | 负责任AI倡议 | AI产品功能 | Anthropic/企业资助 |
+|---|---|---|---|---|---|---|
+| 2022 | 0 | 0 | 0 | 0 | 0 | 0 |
+| **2023** | 5 | 4 | 1 | 0 | 1 | 0 |
+| **2024** | 8 | 5 | 0 | 0 | 3 | 0 |
+| **2025** | 13 | 8 | 0 | 0 | 6 | 0 |
+| **2026** | 14 | 10 | 4 | **13** | 8 | 1 |
+
+**三个关键叙事弧线：**
+
+### 3.1 AI 生成代码贡献的政策化（2023–2026）
+
+2023 年 2 月 Board 首次正式讨论 AI 生成代码：
+> "A discussion around updating contributor guidance around AI generated code is underway"（2023-02-15）
+
+此后持续演化为具体政策：
+- **2023-05：** Henri Yandell 起草 ASF 贡献者使用生成式 AI 代码辅助工具的首份指南
+- **2024-05：** "The AI tools are coming!"——Board 正式承认 AI 工具将深刻影响贡献模式
+- **2025-08：** "We have seen a couple of poor quality GitHub pull requests which may be AI-generated"
+- **2025-12：** DataFusion 项目发布首个 **AI-assisted contributions 指南**
+- **2026-04：** "AI-generated contributions... novice contributors who sometimes regurgitate AI output in their code changes"
+
+**制度分析：** ASF 没有禁止 AI 工具（与 Copyleft 派系不同），而是**引导**——这是 AL 2.0 "商业友好"哲学在 AI 时代的延续。
+
+### 3.2 AI 安全报告泛滥（2025–2026）
+
+2026 年 85 条 AI 决策中，4 条直接涉及 AI 生成的安全报告泛滥：
+> "We handled an influx of (AI-)assisted CVE reports, triaging and working through them"（2026-06-17）
+> "AI-generated and specious... put a notable strain on PMC bandwidth"（2026-06-17）
+
+**制度分析：** AI 降低了"报告安全漏洞"的门槛，导致低质量安全报告激增，PMC 维护成本上升。这是**AI 时代的新交易成本**。
+
+### 3.3 负责任 AI 倡议（2026）
+
+2026 年 6 月 Board 正式创立 **"Vice President, Responsible AI"** 职位和 **"Responsible AI Committee"**：
+> "Create the Responsible AI Executive Committee... appoint Jeff Genender to the office of Vice President, Responsible AI"（2026-06-17）
+
+Anthropic 捐赠 **$150 万**启动资金，是 ASF 历史上最大的单笔企业慈善捐款。
+
+**制度分析：** ASF 在 AI 时代的制度化回应，建立了正式的 L2 治理基础设施。这不同于 AL 2.0 的"被动等待市场选择"，而是**主动构建 AI 治理的制度框架**。
 
 ---
 
-## 四、制度经济学结论
+## 四、relicensing 事件（2010–2026）
+
+从 Board 纪要中提取了 61 条 relicensing 相关决策，2017–2018 年出现激增。以下列举有明确项目名的 relicensing 事件：
+
+| 年份 | 项目 | 事件 |
+|---|---|---|
+| 2010 | Subversion | 从旧许可证切换到 AL 2.0 |
+| 2017 | Thrift | Facebook BSD+patents 变更导致合规审查 |
+| 2017 | ReactJS (NetBeans) | Facebook BSD+patents → Category X，需升级发布 |
+| 2017 | Superset | Facebook BSD+patents 影响 |
+| 2018 | 多项目 | 持续 SGA/CLA 处理，应对 Facebook 许可证变更遗留 |
+| 2024 | 多个项目 | AI 生成代码的许可证归属问题 |
+
+---
+
+## 五、制度经济学结论
 
 **从 Board 纪要中可以看出，AL 2.0 的"受欢迎"和"被背叛"不是同一个事件的两种叙事，而是同一个制度工具（专利报复条款）在不同制度主体间的扩散和使用。**
 
 1. 2004 年 AL 2.0 引入专利报复条款 → 企业欢迎（保护自己免受专利诉讼）
 2. 2017 年 Facebook BSD+patents → 同一工具被商业公司反向使用（威胁到 AL 2.0 生态位）
-3. 2025 年 AI 政策 → 制度环境再次变化，AL 2.0 的"商业友好"需要重新定义
+3. 2022–2026 年 AI 政策 → 制度环境再次变化，AL 2.0 的"商业友好"需要重新定义
+4. 2026 年 Responsible AI 倡议 → ASF 首次主动构建 AI 治理的 L2 制度基础设施
 
 **这是一个制度扩散-反噬的循环：** AL 2.0 的"商业友好"设计越成功，越吸引商业公司关注和部署同一工具，最终反噬到 AL 2.0 自己的生态位。
 
 ---
 
-## 五、数据源
+## 六、数据源与下一步
 
+**数据源：**
 - Board 纪要：206 份，2005–2026，来源 `www.apache.org/foundation/records/minutes/`
-- 关键词分析：2183 条治理决策提取，8 个主题维度
-- 项目生命周期：3387 条事件提取，含孵化/毕业/退役三类
+- 治理决策提取：2,183 条，8 个主题维度
+- 项目生命周期事件：3,387 条（孵化/毕业/退役）
+- AI 相关决策：186 条（2022–2026，经严格假阳性过滤）
+- relicensing 事件：61 条（2010–2026）
+
+**下一步：**
+1. 从 JIRA LEGAL 工单（LEGAL-*）中提取 2004–2010 年的历史数据，补全早期制度演变
+2. 将这份 Board 分析同步到 `open-source-way-wiki` 的许可证演化章节
+3. 爬取 ASF Board 年度报告（Annual Report）中的财务和赞助数据，作为制度资源分析

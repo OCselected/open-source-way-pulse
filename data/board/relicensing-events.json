@@ -1,0 +1,533 @@
+[
+  {
+    "date": "2010-01-20",
+    "context": "d, and the new patch release should be imminent. It should be noted that although this release will be made under the old license (to avoid having to relicense mountains of code on the release branch)",
+    "projects": []
+  },
+  {
+    "date": "2010-02-17",
+    "context": "r organize existing content. The community released Subversion 1.6.9 late last month. The release was made under the old license (to avoid having to relicense mountains of code on the release branch),",
+    "projects": [
+      "Subversion"
+    ]
+  },
+  {
+    "date": "2010-03-17",
+    "context": "ion to update the OODT source code with ASF 2.0 license headers. Chris Mattmann took care of some of the initial work, checking in a README, NOTICE, CHANGES and LICENSE set of files into the OODT sour",
+    "projects": [
+      "Chris",
+      "Mattmann",
+      "README",
+      "NOTICE",
+      "CHANGES"
+    ]
+  },
+  {
+    "date": "2010-08-18",
+    "context": "oss-cloud RESTful abstraction API. The are currently no issues requiring board attention. Recent activity: * Grant of initial code finalized: code relicensed under ASL2.0, iCLA's of all contributor's ",
+    "projects": [
+      "RESTful",
+      "Recent",
+      "Grant"
+    ]
+  },
+  {
+    "date": "2010-08-18",
+    "context": "t has entered incubation on 2010-05-21. Therefore the project is still in ramp up phase. In the past month, * the code drop has been finalized and license has been changed * the website has been creat",
+    "projects": [
+      "Therefore"
+    ]
+  },
+  {
+    "date": "2010-11-17",
+    "context": "cubation on 2010-05-21. The infrastructure is mainly in place and the project is working in direction of a first release. Since August 2010: * The license / copyright change has been performed * Almos",
+    "projects": [
+      "Since",
+      "August",
+      "Almos"
+    ]
+  },
+  {
+    "date": "2011-01-19",
+    "context": "n July 22, 2010. Progress since the last report: * Software grant completed. * Assimilation of KinoSearch codebase completed (import, IP audit, relicensing, namespace migration). * Some dependencies w",
+    "projects": [
+      "Progress",
+      "Software",
+      "Assimilation",
+      "KinoSearch"
+    ]
+  },
+  {
+    "date": "2011-02-16",
+    "context": "resolving many of the remaining issues. 2) Ralph Vetoed a commit that introduced updated Sisu dependencies into Maven core because the license had recently changed to EPL. This caused some heated but ",
+    "projects": [
+      "Ralph",
+      "Vetoed",
+      "Maven"
+    ]
+  },
+  {
+    "date": "2011-07-20",
+    "context": "rnatives for incompatible license dependencies * Started development of the various components, importing, cleaning up the donate code by adding ASV2 license headers, changed package names and applyin",
+    "projects": [
+      "Started"
+    ]
+  },
+  {
+    "date": "2012-02-15",
+    "context": "d to configure the path to JOD library on their installation to enable the importer. This is a temporary solution, the Developers of JOD library will change their license to an APL compatible as soon ",
+    "projects": [
+      "Developers"
+    ]
+  },
+  {
+    "date": "2012-02-15",
+    "context": "developers of Red5 (http://code.google.com/p/red5phone/) how we will handle integration between the two projects in the future. The Red5 project has changed its license to APL (http://code.google.com/",
+    "projects": []
+  },
+  {
+    "date": "2013-10-16",
+    "context": "since the last report? Code has been refactored to get rid of non ASL 2.0 compatible third party library dependencies. Package names have been changed. License files added. Several bugs have been fixe",
+    "projects": [
+      "Package",
+      "License",
+      "Several"
+    ]
+  },
+  {
+    "date": "2014-01-15",
+    "context": "ements to the working of MetaModel. Test suites have been improved to work properly on different locales, operating systems etc. Many minor changes to build configuration, license files etc., as a res",
+    "projects": [
+      "MetaModel"
+    ]
+  },
+  {
+    "date": "2014-08-20",
+    "context": "fficial distribution of Apache software via that vehicle. The second is a relatively recent thread regarding an individual taking ASF code and simply relicensing it, and whether that is legal or not. ",
+    "projects": [
+      "Apache software"
+    ]
+  },
+  {
+    "date": "2014-08-20",
+    "context": "ASF code and simply relicensing it, and whether that is legal or not. It has been explained that as long as the conditions of the ALv2 are followed, relicensing is allowed. ---------------------------",
+    "projects": []
+  },
+  {
+    "date": "2015-01-21",
+    "context": "] Secretary is running well. An issue with submissions of modified license agreements was resolved to everyone’s satisfaction, with no changes to license agreements necessary. In December, 57 iclas, e",
+    "projects": [
+      "Secretary",
+      "December"
+    ]
+  },
+  {
+    "date": "2015-06-17",
+    "context": "C Software License to cover documentation. This new License can be used for material produced by W3C groups, including community groups, and also for relicensing of unfinished specs. This is not the l",
+    "projects": [
+      "Software",
+      "License",
+      "License"
+    ]
+  },
+  {
+    "date": "2016-04-20",
+    "context": "issues to address in the move towards graduation: 1. Resolve LGPL dependency: This is in progress, and hopefully we will have the dependency license changed to a license that is compatible with AL2. 2",
+    "projects": [
+      "Resolve"
+    ]
+  },
+  {
+    "date": "2016-04-20",
+    "context": "to address in the move towards graduation: 1. Resolve LGPL dependency: This is in progress, and hopefully we will have the dependency license changed to a license that is compatible with AL2. 2. Make ",
+    "projects": [
+      "Resolve"
+    ]
+  },
+  {
+    "date": "2016-05-18",
+    "context": "nt issues to address in the move towards graduation: 1. Resolve LGPL dependency: This is in progress, and hopefully we will have the dependency license changed to a license that is compatible with AL2",
+    "projects": [
+      "Resolve"
+    ]
+  },
+  {
+    "date": "2016-05-18",
+    "context": "s to address in the move towards graduation: 1. Resolve LGPL dependency: This is in progress, and hopefully we will have the dependency license changed to a license that is compatible with AL2. 2. Mak",
+    "projects": [
+      "Resolve"
+    ]
+  },
+  {
+    "date": "2016-06-15",
+    "context": "issues to address in the move towards graduation: 1. Resolve LGPL dependency: This is in progress, and hopefully we will have the dependency license changed to a license that is compatible with AL2. 2",
+    "projects": [
+      "Resolve"
+    ]
+  },
+  {
+    "date": "2016-06-15",
+    "context": "to address in the move towards graduation: 1. Resolve LGPL dependency: This is in progress, and hopefully we will have the dependency license changed to a license that is compatible with AL2. 2. Make ",
+    "projects": [
+      "Resolve"
+    ]
+  },
+  {
+    "date": "2016-08-17",
+    "context": "issues to address in the move towards graduation: 1. Resolve LGPL dependency: This is in progress, and hopefully we will have the dependency license changed to a license that is compatible with AL2. 2",
+    "projects": [
+      "Resolve"
+    ]
+  },
+  {
+    "date": "2016-08-17",
+    "context": "to address in the move towards graduation: 1. Resolve LGPL dependency: This is in progress, and hopefully we will have the dependency license changed to a license that is compatible with AL2. 2. Make ",
+    "projects": [
+      "Resolve"
+    ]
+  },
+  {
+    "date": "2016-12-21",
+    "context": "d initial code cleanup analysis https://cwiki.apache.org/confluence/display/NETBEANS/Overview%3A+NetBeans+Structure Oracle has already agreed to relicense the Graal.js parser under the Apache license.",
+    "projects": [
+      "NETBEANS",
+      "Overview",
+      "NetBeans",
+      "Structure",
+      "Oracle"
+    ]
+  },
+  {
+    "date": "2017-03-15",
+    "context": "It is a BSD-style license with extra verbiage describing the ACE project's history; no concerns have been voiced that the extra verbiage materially changes the meaning of the license. An earlier recom",
+    "projects": [
+      "BSD-style"
+    ]
+  },
+  {
+    "date": "2017-07-19",
+    "context": "attention at this time. ## Activity: - we are working on fixing bugs in 2.0.x - there are some small improvements as well - Levigo is thinking about relicensing their JBig2 ImageIO plugin [1], which i",
+    "projects": [
+      "Activity",
+      "Levigo",
+      "JBig2",
+      "ImageIO"
+    ]
+  },
+  {
+    "date": "2017-07-19",
+    "context": "take place to ensure that Apache Thrift is compliant with the recent category-x licensing changes [2] that occurred due to the Facebook BSD+patents license changes. Community --- Latest Additions: * P",
+    "projects": [
+      "Apache Thrift",
+      "Facebook",
+      "Community",
+      "Latest",
+      "Additions"
+    ]
+  },
+  {
+    "date": "2017-08-16",
+    "context": "fied as Category X by Legal Affairs. It would be helpful if VP Legal Affairs and/or the ASF Board reach out to Facebook to help convince them to relicense React.JS, just like they did with RocksDB. ##",
+    "projects": [
+      "Category",
+      "Legal",
+      "Affairs",
+      "Legal",
+      "Affairs"
+    ]
+  },
+  {
+    "date": "2017-08-16",
+    "context": "1]. We have also started auditing our codebase to ensure that recent category-x licensing changes [2] that occurred due to the Facebook BSD+patents license changes do not impact Apache Thrift. Communi",
+    "projects": [
+      "Facebook",
+      "Apache Thrift",
+      "Communi"
+    ]
+  },
+  {
+    "date": "2017-08-16",
+    "context": "Attachment 9: Report from the Apache Legal Affairs Committee [Chris Mattmann] A handful of issues highlight the report this month. First, Facebook changed the license on RocksDB to dual-licensed ALv2 ",
+    "projects": [
+      "Attachment",
+      "Report",
+      "Apache Legal",
+      "Affairs",
+      "Committee"
+    ]
+  },
+  {
+    "date": "2017-08-16",
+    "context": "imited to), CouchDB, Superset (in the Incubator [5]), and other projects. If ReactJS continues under the BSD+patents license, Legal's opinion has not changed, and the license itself is now disallowed ",
+    "projects": [
+      "CouchDB",
+      "Superset",
+      "Incubator",
+      "ReactJS",
+      "Legal"
+    ]
+  },
+  {
+    "date": "2017-10-18",
+    "context": "o had been longtime Legal contributors who requested to opt-in as well. Shortly after the last Board meeting on 9/22/17, Facebook made a decision to relicense the React.js framework to the MIT license",
+    "projects": [
+      "Legal",
+      "Shortly",
+      "Board",
+      "Facebook",
+      "React"
+    ]
+  },
+  {
+    "date": "2017-10-18",
+    "context": "application framework. NetBeans has been incubating since 2016-10-01. Three most important issues to address in the move towards graduation: 1. Relicensing of files to ASF. 2. Completion of NOTICE and",
+    "projects": [
+      "NetBeans",
+      "Three",
+      "Relicensing",
+      "Completion",
+      "NOTICE"
+    ]
+  },
+  {
+    "date": "2017-10-18",
+    "context": ", 2 more being worked on, consisting of around 45,000 files and 4 million LOC. - Mirroring has been set up via GitHub. - Around 29000 files have been relicensed to Apache via a converter tool created ",
+    "projects": [
+      "Mirroring",
+      "GitHub",
+      "Around",
+      "Apache via"
+    ]
+  },
+  {
+    "date": "2017-10-18",
+    "context": "rs. If there are not other indications from Incubator board we’ll call out a vote to keep it for now: https://code.facebook.com/posts/300798627056246/relicensing-react-jest-flow-and-immutable-js/ How ",
+    "projects": [
+      "Incubator"
+    ]
+  },
+  {
+    "date": "2017-10-18",
+    "context": "Comments: IPMC/Shepherd notes: Project is active and moving forward well. They do use ReactJS and will need to upgrade and release as soon as the relicensed version is available. Dave Fisher ---------",
+    "projects": [
+      "Comments",
+      "Shepherd",
+      "Project",
+      "ReactJS",
+      "Fisher"
+    ]
+  },
+  {
+    "date": "2017-12-20",
+    "context": "e is very close to submission. Once that is in, we believe all necessary SGA's and CLA's will have been submitted and we can begin the process of relicensing the Daffodil codebase to Apache v2 and swi",
+    "projects": [
+      "Daffodil",
+      "Apache"
+    ]
+  },
+  {
+    "date": "2017-12-20",
+    "context": "t incubator inception Signed-off-by: [X](daffodil) John D. Ament Comments: Solid on list communication. Waiting on SGAs to be processed to relicense the code. Podling executed a non-ASF release in the",
+    "projects": [
+      "Signed-off-by",
+      "Ament",
+      "Comments",
+      "Solid",
+      "Waiting"
+    ]
+  },
+  {
+    "date": "2018-02-21",
+    "context": "developed since the last report? - The initial code drop has been performed - The project was voted to switch to Commit-to-Review while we work on license compliance and lots of small changes are anti",
+    "projects": [
+      "Commit-to-Review"
+    ]
+  },
+  {
+    "date": "2018-03-21",
+    "context": "capabilities/usage How has the project developed since the last report? - All SGA/CLAs have been submitted (from Tresys, IBM, and NCSA), all code relicensed to ASF, and package namespace switched to o",
+    "projects": [
+      "Tresys"
+    ]
+  },
+  {
+    "date": "2018-03-21",
+    "context": "release managers to follow - Automation tested with signing/hashing as per Apache requirements - still working on assuring all Apache license/legal/notice/change files are present (perhaps automated a",
+    "projects": [
+      "Automation",
+      "Apache requirements",
+      "Apache license"
+    ]
+  },
+  {
+    "date": "2018-03-21",
+    "context": "pabilities/usage How has the project developed since the last report? - All SGA/CLAs have been submitted (from Tresys, IBM, and NCSA), all code relicensed to ASF, and package namespace switched to org",
+    "projects": [
+      "Tresys"
+    ]
+  },
+  {
+    "date": "2018-05-16",
+    "context": "information in GitHub through our GitBox tooling. Legal saw no issue with this. A discussion surrounding examples of components that have undergone relicensing from GPL to ALv2 was run to ground with ",
+    "projects": [
+      "GitHub",
+      "GitBox",
+      "Legal"
+    ]
+  },
+  {
+    "date": "2021-04-21",
+    "context": "We have made significant steps toward license clearing, needed for graduation: In this quarter, thousands of files have been cleared and changed to the Apache 2.0 License through the large effort of o",
+    "projects": [
+      "Apache",
+      "License"
+    ]
+  },
+  {
+    "date": "2021-04-21",
+    "context": "anged to the Apache 2.0 License through the large effort of our volunteers. Since joining the Incubator, more than 10,000 files have been changed to the Apache 2.0 License with the permission of more ",
+    "projects": [
+      "Apache",
+      "License",
+      "Since",
+      "Incubator",
+      "Apache"
+    ]
+  },
+  {
+    "date": "2021-04-21",
+    "context": "ream is making slow and steady progress on their path along The Apache Way. They are currently in the process of connecting with copyright holders to change to the Apache License v2. Since the BuildSt",
+    "projects": [
+      "Apache Way",
+      "Since",
+      "BuildSt"
+    ]
+  },
+  {
+    "date": "2021-05-19",
+    "context": "this is a common dependency and will impact several TLPs, including Apache Airflow. The community is working out the best way to get this dependency relicensed (which seems unlikely), replaced with so",
+    "projects": [
+      "Apache Airflow"
+    ]
+  },
+  {
+    "date": "2021-08-18",
+    "context": "ontinue to make significant steps toward license clearing, needed for graduation. This quarter, efforts have continued to clear files and change their license to the Apache 2.0 License through the lar",
+    "projects": [
+      "Apache",
+      "License"
+    ]
+  },
+  {
+    "date": "2021-08-18",
+    "context": "ense to the Apache 2.0 License through the large effort of our volunteers. Since joining the Incubator, more than 10,000 files have been changed to the Apache 2.0 License with the permission of more t",
+    "projects": [
+      "Apache",
+      "License",
+      "Since",
+      "Incubator",
+      "Apache"
+    ]
+  },
+  {
+    "date": "2021-11-17",
+    "context": "e to the Apache 2.0 License through the large effort of our volunteers. Since joining the Incubator, tens of thousands of files have been changed to the Apache 2.0 License with the permission of more ",
+    "projects": [
+      "Apache",
+      "License",
+      "Since",
+      "Incubator",
+      "Apache"
+    ]
+  },
+  {
+    "date": "2022-02-16",
+    "context": "ne work was done. ----------------------------------------- Attachment 9: Report from the VP of W3C Relations [Andy Seaborne] W3C are considering relicensing many W3C Recommendations using the W3C Sof",
+    "projects": [
+      "Attachment",
+      "Report",
+      "Relations",
+      "Seaborne",
+      "Recommendations"
+    ]
+  },
+  {
+    "date": "2022-09-21",
+    "context": "rson Flink Forward conference happened in San Francisco in early August, with a good mix of use-case and deep-dive talks. - Lightbend's decision to change the license of Akka has triggered a discussio",
+    "projects": [
+      "Flink",
+      "Forward",
+      "Francisco",
+      "August",
+      "Lightbend"
+    ]
+  },
+  {
+    "date": "2022-10-19",
+    "context": "everal new project proposals were discussed: Baremaps and Celeborn (previously Datark) and Pekko. Pekko is a fork of the Akka project just before its license changed from Apache 2 to the non open sour",
+    "projects": [
+      "Baremaps",
+      "Celeborn",
+      "Datark",
+      "Pekko",
+      "Pekko"
+    ]
+  },
+  {
+    "date": "2022-10-19",
+    "context": "ard approved the TLP resolution for our first and only culture - BuildStream at the last board meeting. The significant change for that project was a license change from GPL to the ALv2 along with mov",
+    "projects": [
+      "BuildStream"
+    ]
+  },
+  {
+    "date": "2023-11-15",
+    "context": "project driven by bug reports and subsequent fixes to the scheduler. Progress was made towards upgrading our Akka dependencies to their last Apache licensed versions in preparation for switching to Ap",
+    "projects": [
+      "Progress",
+      "Apache licensed"
+    ]
+  },
+  {
+    "date": "2024-11-20",
+    "context": "we become Digital Operational Resilience Act (DORA) compliant by January 17, 2025. We pointed out that their request was misdirected. Sublicense vs. Relicense language was discussed and we're working ",
+    "projects": [
+      "Digital",
+      "Operational",
+      "Resilience",
+      "January",
+      "Sublicense"
+    ]
+  },
+  {
+    "date": "2024-12-18",
+    "context": "on below for a bit more color. Sadly, given the amount of time spent on two subpoenas, I ran out of time on adding the explanation of Sublicense vs. Relicense language to our LEGAL FAQ (see LEGAL-687 ",
+    "projects": [
+      "Sadly",
+      "Sublicense",
+      "Relicense",
+      "LEGAL",
+      "LEGAL-687"
+    ]
+  },
+  {
+    "date": "2025-09-24",
+    "context": "ulnerability checks. We will use some third party tools for some of this functionality. These checks will help the Release Manager learn if there are license changes or vulnerabilities in their depend",
+    "projects": [
+      "These",
+      "Release",
+      "Manager"
+    ]
+  },
+  {
+    "date": "2026-05-20",
+    "context": "s reported. The procedure began 2 April. Other News ---------- Atlassian Cloud migration testing continues. There have been some hurdles to cross, license renewal issues on the Cloud side and changes ",
+    "projects": [
+      "April",
+      "Other",
+      "Atlassian",
+      "Cloud",
+      "There"
+    ]
+  }
+]

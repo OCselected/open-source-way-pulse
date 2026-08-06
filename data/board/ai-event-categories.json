@@ -1,0 +1,28 @@
+{
+  "2022": {},
+  "2023": {
+    "AI tooling/guidance": 5,
+    "Generative AI code contribution": 4,
+    "AI in project features": 1,
+    "AI security/CVE": 1
+  },
+  "2024": {
+    "Kapa.ai": 3,
+    "AI in project features": 3,
+    "Generative AI code contribution": 5,
+    "AI tooling/guidance": 8
+  },
+  "2025": {
+    "AI tooling/guidance": 13,
+    "Generative AI code contribution": 8,
+    "AI in project features": 6
+  },
+  "2026": {
+    "AI tooling/guidance": 14,
+    "Generative AI code contribution": 10,
+    "AI in project features": 8,
+    "AI security/CVE": 4,
+    "AI initiatives (Responsible AI)": 13,
+    "Anthropic/corporate funding": 1
+  }
+}

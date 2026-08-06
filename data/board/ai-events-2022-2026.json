@@ -1,0 +1,756 @@
+{
+  "2022": [
+    {
+      "date": "2022-05-18",
+      "sentence": "## Table of Contents [AGE](#age) [Annotator](#annotator) [brpc](#brpc) [Crail](#crail) [DataLab](#datalab) [Doris](#doris) [EventMesh](#eventmesh) [Flagon](#flagon) [Heron](#heron) [HugeGraph](#hugegr"
+    },
+    {
+      "date": "2022-05-18",
+      "sentence": "### Signed-off-by: - [ ] (linkis) Duo Zhang Comments: - [X] (linkis) Lidong Dai Comments: - [ ] (linkis) Shaofeng Shi Comments: - [ ] (linkis) Saisai Shao Comments: - [ ] (linkis) Junping Du Comments:"
+    },
+    {
+      "date": "2022-09-21",
+      "sentence": "## Community ### New IPMC members: - Zhongyi Tan ### People who left the IPMC: - None ## New Podlings - StreamPark ## Podlings that failed to report, expected next month - Livy - Marvin-AI - PonyMail "
+    },
+    {
+      "date": "2022-10-19",
+      "sentence": "## Community ### New IPMC members: - None ### People who left the IPMC: - None ## New Podlings - None ## Podlings that failed to report, expected next month - Livy - Marvin-AI - Milagro - Spot - Teacl"
+    },
+    {
+      "date": "2022-12-21",
+      "sentence": "## Community ### New IPMC members: - Gang Li ### People who left the IPMC: - None ## New Podlings ## Podlings that failed to report, expected next month - Spot - Uniffle - Marvin-AI ## Graduations - N"
+    }
+  ],
+  "2023": [
+    {
+      "date": "2023-01-18",
+      "sentence": "## Community ### New IPMC members: - None ### People who left the IPMC: - None ## New Podlings - None ## Podlings that failed to report, expected next month - Annoator - Marvin-AI - PonyMail ## Gradua"
+    },
+    {
+      "date": "2023-02-15",
+      "sentence": "A discussion around updating contributor guidance around AI generated code is underway and anybody interested in participating is encouraged to comment on LEGAL-631 -----------------------------------"
+    },
+    {
+      "date": "2023-02-15",
+      "sentence": "## Community ### New IPMC members: - Brian Proffitt ### People who left the IPMC: - None ## New Podlings - KIE ## Podlings that failed to report, expected next month - Marvin-AI - NLPCraft - PageSpeed"
+    },
+    {
+      "date": "2023-05-17",
+      "sentence": "Henri Yandell and I are working on providing some amount of formal guidance for ASF contributors on using generative AI code assist tools (e.g."
+    },
+    {
+      "date": "2023-05-17",
+      "sentence": "I got invited to the Open Source Congress in Geneva on July 27 to discuss, among other things, questions surrounding AI code assist tools and upcoming EU legislation."
+    },
+    {
+      "date": "2023-06-21",
+      "sentence": "Henri Yandell prepared the first draft of formal guidance for ASF contributors on using generative AI code assist tools (e.g."
+    },
+    {
+      "date": "2023-06-21",
+      "sentence": "Supporting the community in the age of generative AI: with the arrival of generative AI, such as stable diffusion and language models, the community's interest also start to arise in these new domains"
+    },
+    {
+      "date": "2023-07-19",
+      "sentence": "Henri Yandell's draft of formal guidance for ASF contributors on using generative AI code assist tools (e.g."
+    },
+    {
+      "date": "2023-08-16",
+      "sentence": "**Social Engagement Stats (Twitter + LinkedIn)** * Total engagement: 5,847 (down 23% from June) * Total clicks: 2,716 (down 23% from June) * Click to engagement ratio: 46% (down 1% from June) * New fo"
+    },
+    {
+      "date": "2023-09-20",
+      "sentence": "* Drafted Generative AI byline for Roman."
+    },
+    {
+      "date": "2023-09-20",
+      "sentence": "- ML conveniences continue to be added to Beam Python, such as: - hugging face model handler - Vertex AI model handler - new \"MLTransform\" for pre/postprocessing, complementing RunInference - prebuild"
+    },
+    {
+      "date": "2023-10-18",
+      "sentence": "* Pitched Generative AI byline to New Tech Forum **Branding Project** * Drafted public-facing post for ASF blog, holding for members announcement from Sander * Developed messaging framework * Sent a s"
+    },
+    {
+      "date": "2023-11-15",
+      "sentence": "**Foundation Comms** * ASF Private Wiki: added M&P content for private wiki + added fundraising support page * Published Fundraising Blog[1] **Rapid Response** * CVE / HTTP2: Prepared statement writte"
+    },
+    {
+      "date": "2023-11-15",
+      "sentence": "### Subprojects Ecosystem is evolving and going well; as discussed above we're moving to raise committers for existing sub-projects and should be able to do the same for the Java Driver this quarter #"
+    },
+    {
+      "date": "2023-11-15",
+      "sentence": "The author of the jvector library our project took a dependency on was very clear about their usage of generative AI during authorship of the work and some PMC members were concerned that might have i"
+    },
+    {
+      "date": "2023-12-20",
+      "sentence": "Various other acts, including the AI act, got through as well - but these by and large contain the right sort of foundation/component exceptions that work for communities such as the ASF that want to "
+    }
+  ],
+  "2024": [
+    {
+      "date": "2024-01-17",
+      "sentence": "The community introduced GTP-based AI assistance(kapa.ai) to help user to locate correct documents/blogs/books and discussed issues/pull requests since Dec."
+    },
+    {
+      "date": "2024-02-21",
+      "sentence": "----------------------------------------- Attachment 3: Report from the VP of Marketing and Publicity [Brian Proffitt] Foundation Comms Community Over Code EU[1]: last call for CFP submissions EU Soft"
+    },
+    {
+      "date": "2024-02-21",
+      "sentence": "Social Highlights (X + LinkedIn) * Total Audience: 135,642 * New Followers in January: 470 * Total Impressions: 87,562 (11.4% increase MoM) * Total Engagements: 2,147 (-4.3%) * Post Link Clicks: 1,048"
+    },
+    {
+      "date": "2024-02-21",
+      "sentence": "- MuYang Ye was added as committer on 2023-11-29 ## Project Activity: - New Release: 2023-11-28 (v0.93.0) - Refactoring Data Explorer (Migrated visualizations to Apache Echarts) - Working towards impr"
+    },
+    {
+      "date": "2024-03-20",
+      "sentence": "* We accepted contributions of a few providers - which we are usually quite reluctant about - from well respected entities (Teradata, Qdrant - popular vector database) which puts Airflow squarely in t"
+    },
+    {
+      "date": "2024-03-20",
+      "sentence": "It is really difficult to find contributors who are interesting in working on non-volatile technology, however, we are expecting the non-volatile memory related project may bring some benefit to AI ec"
+    },
+    {
+      "date": "2024-04-17",
+      "sentence": "- David is working Spark integration upgrade as per dev mailing discussion : https://lists.apache.org/thread/bskfdyqfhsdk9jb56otc2rc3l3y8781c - hulk optimized documents - Bo xu is working some example"
+    },
+    {
+      "date": "2024-04-17",
+      "sentence": "Unified different versions & introduce a new Graph Dashboard & LLM/AI system 3."
+    },
+    {
+      "date": "2024-04-17",
+      "sentence": "Introduce a new repository: hugegraph-ai (About KG/Graph RAG/LLM related system) 3."
+    },
+    {
+      "date": "2024-04-17",
+      "sentence": "We anticipate a release for that soon as there are major improvements to the stability of the much anticipated first class integration with Python components which has been highly valuable to NiFi's e"
+    },
+    {
+      "date": "2024-05-15",
+      "sentence": "Some projects are using ScanOSS to check for 3rd party code or AI-generated code in the releases."
+    },
+    {
+      "date": "2024-05-15",
+      "sentence": "* The AI tools are coming!"
+    },
+    {
+      "date": "2024-05-15",
+      "sentence": "We'd *like* to add Kapa.ai to our docs site as well (as other ASF projects have), but they don't have a DPA and their JS bundle is hosted on a 3rd party server, so we're not sure if there's a complian"
+    },
+    {
+      "date": "2024-05-15",
+      "sentence": "The number of unique contributors is currently ramping up again, and we look forward to starting the committer discussion for new candidates ## Project Status: - We released Apache SystemDS 3.2.0 in M"
+    },
+    {
+      "date": "2024-06-19",
+      "sentence": "As the field of machine learning and related user community shifts to generative AI workloads, the community also starts to adapt to the latest set of interests and keep up with the changes in the ove"
+    },
+    {
+      "date": "2024-07-17",
+      "sentence": "This includes tools such as Kapa AI embedded in our websites."
+    },
+    {
+      "date": "2024-07-17",
+      "sentence": "If there is an urgent necessity to use Kapa AI, website maintainers must obtain user consent before loading the tool."
+    },
+    {
+      "date": "2024-07-17",
+      "sentence": "For example, Spice AI has made an initial contribution of TableProviders to datafusion-contrib [4] for PostgreSQL, MySQL, DuckDB, and SQLite, enabling these data sources to be easily queried through D"
+    },
+    {
+      "date": "2024-08-21",
+      "sentence": "# Open tasks - Provide guidelines for advertising user mailing lists - Create a list of WordPress sites - Create a list of domains that are allowed to connect because a DPA is covering it (improved Wh"
+    },
+    {
+      "date": "2024-09-18",
+      "sentence": "# Open tasks - Discuss Kapa.ai - Provide guidelines for advertising user mailing lists - Create a list of WordPress sites - Create a list of domains that are allowed to connect because a DPA is coveri"
+    },
+    {
+      "date": "2024-09-18",
+      "sentence": "- Naijie Liu was added as committer on 2024-08-28 - Bingye Chen was added as committer on 2024-06-26 ## Project Activity: We released the release 2.3.6 on 2024-08-02 We released the bug fix release 2."
+    },
+    {
+      "date": "2024-09-18",
+      "sentence": "## Community Health: The activity of projects has increased this quarter, with more contributors participating, which may be due to SeaTunnel's breakthrough in the AI field."
+    },
+    {
+      "date": "2024-09-18",
+      "sentence": "Major contributions centers around documentations to transition to the new generative AI focused topic."
+    },
+    {
+      "date": "2024-10-16",
+      "sentence": "Unified different modules version & introduce a new Graph Dashboard & LLM/AI system (GraphRAG/Agent) 3."
+    },
+    {
+      "date": "2024-10-16",
+      "sentence": "## Community Health: The mailing list(s) activity has decreased over the vecation period and also in general, based on the obvervations due to the usage of AI tools, which is also observable on other "
+    },
+    {
+      "date": "2024-11-20",
+      "sentence": "Apache Superset Project [Maxime Beauchemin / Craig] See Attachment BQ @Rich: follow up with details regarding AI tooling BR."
+    },
+    {
+      "date": "2024-12-18",
+      "sentence": "* Kanchana: pursue a roll call for Mnemonic [ Mnemonic 2024-11-20 ] Status: * Rich: follow up with details regarding AI tooling [ Superset 2024-11-20 ] Status: Have not had time to follow up on this s"
+    },
+    {
+      "date": "2024-12-18",
+      "sentence": "## Responsibility for the Matomo VM Currently asked in: https://issues.apache.org/jira/browse/INFRA-26365 ## Kapa.AI Kapa changes were applied, and the service is now usable."
+    },
+    {
+      "date": "2024-12-18",
+      "sentence": "We still see interesting needs on areas like LLM inference and generative AI models."
+    },
+    {
+      "date": "2024-12-18",
+      "sentence": "The overall developments starts to shift to stablizing and maintainace, with also mindful effort on bringing new momentums on the latest generative AI fronts."
+    }
+  ],
+  "2025": [
+    {
+      "date": "2025-01-15",
+      "sentence": "* Rich: follow up with details regarding AI tooling [ Superset 2024-11-20 ] Status: Done: As I understand it, VP Privacy has resolved this conversation with Superset, and it's no longer a Board issue."
+    },
+    {
+      "date": "2025-01-15",
+      "sentence": "There is some talk about the software liability v.s AI liability directive; with the move to the right of the parliament possibly narrowing scope down further."
+    },
+    {
+      "date": "2025-03-19",
+      "sentence": "The Apache OpenServerless and AI course - currently in Italian - is underway: it has involved many people and is a model to be proposed also in English with respect to a larger community."
+    },
+    {
+      "date": "2025-03-19",
+      "sentence": "## Community Health: Generally, we see more interest in new models and generative AI workloads."
+    },
+    {
+      "date": "2025-04-16",
+      "sentence": "The Apereo Foundation reached out with interest in our Generative Tooling Guidance as they start to work on their own approach to AI-generated contributions, and I've connected them with Roman for fur"
+    },
+    {
+      "date": "2025-04-16",
+      "sentence": "Additionally, the rise of generative AI has shifted focus toward production-ready, turnkey solutions, reducing the incentive for many users to contribute directly to StormCrawler."
+    },
+    {
+      "date": "2025-05-21",
+      "sentence": "Establish the Apache Gravitino Project WHEREAS, the Board of Directors deems it to be in the best interests of the Foundation and consistent with the Foundation's purpose to establish a Project Manage"
+    },
+    {
+      "date": "2025-05-21",
+      "sentence": "NOW, THEREFORE, BE IT RESOLVED, that a Project Management Committee (PMC), to be known as the \"Apache Gravitino Project\", be and hereby is established pursuant to Bylaws of the Foundation; and be it f"
+    },
+    {
+      "date": "2025-05-21",
+      "sentence": "The group has been engaging in discussions around AI-related topics, particularly the integration of Model Context Protocol (MCP) into open-source ecosystems."
+    },
+    {
+      "date": "2025-05-21",
+      "sentence": "Community changes, past quarter: - Peter Rozsa was added to the PMC on 2025-03-21 - Noémi Pap-Takács was added as committer on 2025-03-12 ## Project Activity: - Improvements to the Iceberg integration"
+    },
+    {
+      "date": "2025-05-21",
+      "sentence": "Release a stable Graph LLM/AI system 3."
+    },
+    {
+      "date": "2025-06-18",
+      "sentence": "Additionally, we are considering the development of a new external module that leverages generative AI for text extraction —offering an alternative to the current rule-based and XPath-based approaches"
+    },
+    {
+      "date": "2025-06-18",
+      "sentence": "As we are in the age of generative AI, we start to see growing interest in new models like supporting LLMs as well as integrating with existing ecosystems like FlashInfer kernel library, as well as do"
+    },
+    {
+      "date": "2025-07-16",
+      "sentence": "to the adjacent streams (interop, AI, Product strict liability, etc) EU - 1025 update (standardisation regulation) As a USA organisation - we are not directly submitting an opinion at this time - but "
+    },
+    {
+      "date": "2025-07-16",
+      "sentence": "The latest release 3.13 introduces new AI-related capabilities, enabling engineers using Apache APISIX to handle not only traditional API traffic but also AI and LLM (Large Language Model) traffic."
+    },
+    {
+      "date": "2025-07-16",
+      "sentence": "### Tooling/LLMs We’ve seen strong uptake of the Kapa.ai documentation assistant (~850 queries/month), which is helping users discover relevant docs and resolve common questions without needing to ope"
+    },
+    {
+      "date": "2025-07-16",
+      "sentence": "----------------------------------------- Attachment AE: Report from the Apache Geronimo Project [Jean-Louis Monteiro] ----------------------------------------- Attachment AF: Report from the Apache G"
+    },
+    {
+      "date": "2025-07-16",
+      "sentence": "We have also implemented a new external module that leverages generative AI for text extraction — offering a modern alternative to the existing rule-based and XPath-based approaches."
+    },
+    {
+      "date": "2025-08-20",
+      "sentence": "Foundation Comms * Issued July edition of Plus One newsletter promoting Community Over Code Asia, new content on Apache.org, and Plus One podcast * Coordinated fundraising awareness campaign with Fund"
+    },
+    {
+      "date": "2025-08-20",
+      "sentence": "I have presented in the Apereo MicroConference on the Generative AI Tool guidance that was developed at the ASF."
+    },
+    {
+      "date": "2025-08-20",
+      "sentence": "- Last added (non-PMC): Siegfried Goeschl on 2020-01-07 ## Releases: - 2.3.34 was released on 2024-12-22 ----------------------------------------- Attachment Y: Report from the Apache Geode Project [M"
+    },
+    {
+      "date": "2025-08-20",
+      "sentence": "We have seen a couple of poor quality GitHub pull requests which may be AI-generated, but it is hard to be certain."
+    },
+    {
+      "date": "2025-08-20",
+      "sentence": "- New Committers: - May 21, 2025 - Wenchao Zhang (zhangwenchao-123) - July 9, 2025 - Xun Gong (gongxun0928) - Events: - Community Over Code Asia 2025: six presentations on Cloudberry at this conferenc"
+    },
+    {
+      "date": "2025-08-20",
+      "sentence": "There were many talks about Apache Solr (or partially referring to it with interesting ideas): * Performance Tuning Apache Solr for Dense Vectors, Kevin Liang *AI-Powered Search Results Navigation wit"
+    },
+    {
+      "date": "2025-09-24",
+      "sentence": "## Project state: Ongoing, with moderate activity ## Health report: Now that our community is stabilized by adding two new committers this year to the PMC and after an exhausting Axis2/Java 2.0.0 rele"
+    },
+    {
+      "date": "2025-09-24",
+      "sentence": "We've released Flink 2.1 early August with features around supporting AI models in Flink SQL, process table functions in Flink SQL as a really flexible user-defined functions model, and SQL runtime op"
+    },
+    {
+      "date": "2025-09-24",
+      "sentence": "----------------------------------------- Attachment AD: Report from the Apache Gravitino Project [Jerry Shao] ## Description: The mission of Apache Gravitino is the creation and maintenance of softwa"
+    },
+    {
+      "date": "2025-09-24",
+      "sentence": "Regarding the dev community: * We had 46 Pull Requests from 13 new contributors * Community meetings happened on 2025-06-12, 2025-06-26, 2025-07-24, 2025-08-28, all recorded and shared publicly (on th"
+    },
+    {
+      "date": "2025-09-24",
+      "sentence": "- Continuous Ozone document improvements, with the popular AI tools' help, new/existing documents are added and improved."
+    },
+    {
+      "date": "2025-09-24",
+      "sentence": "The PMC received an offer for a free \"AI Support Engineer\" from RunLLM."
+    },
+    {
+      "date": "2025-09-24",
+      "sentence": "We have begun to receive what look like AI-generated vulnerability reports."
+    },
+    {
+      "date": "2025-10-15",
+      "sentence": "The number of non-committer (contributor) commits per month: +------+-------+---------------------+ | year | month | contributor_commits | +------+-------+---------------------+ | 2025 | 7 | 16 | | 20"
+    },
+    {
+      "date": "2025-10-15",
+      "sentence": "Vectorization requirements: Modern AI models (such as large language models) convert all data into vector embeddings."
+    },
+    {
+      "date": "2025-10-15",
+      "sentence": "## Health Report: - Commit activity: - 9 commits in the past quarter - 4 code contributors in the past quarter ## Releases: * currently , community is discussing new direction : AI-native data storage"
+    },
+    {
+      "date": "2025-10-15",
+      "sentence": "- The new version 1.7.3 has been released and the next release is 1.8.0 - The new AI agent and logs function code have been merged ## Community Health: - New contributor +2 - In the past month, 30 aut"
+    },
+    {
+      "date": "2025-10-15",
+      "sentence": "A notable community contribution is gremlin-mcp [5], the first AI tooling integration for TinkerPop."
+    },
+    {
+      "date": "2025-10-15",
+      "sentence": "This quarter featured three well-attended live events on Twitch [6]: a TinkerPop Wide session showcasing Graph Explorer's new query editing capabilities, a Contributorcast reviewing the 3.7.4 release,"
+    },
+    {
+      "date": "2025-10-15",
+      "sentence": "All recordings can be found on our YouTube channel [7]: * TinkerPop Wide: Bringing manual queries to Graph Explorer [8] Presenter: Arthur Bigeard from G.V(), Kris McGinnes from Graph Explorer * Contri"
+    },
+    {
+      "date": "2025-10-15",
+      "sentence": "In addition, the community has held exploratory discussions about experimenting with AI-generated starter decks to support future content development."
+    },
+    {
+      "date": "2025-11-19",
+      "sentence": "The next release 5.1 is slightly shifted towards the integration with AI tools, by supporting MCP etc."
+    },
+    {
+      "date": "2025-12-17",
+      "sentence": "The discussion around Generative AI tools is going on on members@ and VP Legal has provided a purely legal take on the concerns."
+    },
+    {
+      "date": "2025-12-17",
+      "sentence": "We continue engaging our community with “proper” AI-driven contributions, we do not complain, do not plan to ban AI contributions, we rather embrace them by engaging the community into discussion on h"
+    },
+    {
+      "date": "2025-12-17",
+      "sentence": "The full disclosure of the work this last quarter is that it marks the rapid rise in AI tools such as Claude code in our day jobs that generously pay for our time and want it to be productive, while t"
+    },
+    {
+      "date": "2025-12-17",
+      "sentence": "The model for AI development that has been chosen for Axis for starters relies heavily on markdown files that may not record every request but they can record development state and decisions that argu"
+    },
+    {
+      "date": "2025-12-17",
+      "sentence": "The intent of these docs is not just to teach AI tools about Axis, but verify this is not the typical copy and paste code off of the internet but to show that experienced developers can get the most o"
+    },
+    {
+      "date": "2025-12-17",
+      "sentence": "The rise of AI powered coding assistants has made this bottleneck more acute as it makes it easier to create large PRs."
+    },
+    {
+      "date": "2025-12-17",
+      "sentence": "The community has written up [guidelines] for AI assisted contributions which seems to have improved the overall PR quality."
+    },
+    {
+      "date": "2025-12-17",
+      "sentence": "[guidelines]: https://datafusion.apache.org/ contributor-guide/index.html#ai-assisted-contributions ### Sub project: DataFusion Python https://github.com/apache/datafusion-python - DATAFUSION-PYTHON-5"
+    },
+    {
+      "date": "2025-12-17",
+      "sentence": "dev@grails.apache.org had a 31% increase in traffic in the past quarter (342 emails compared to 261) ----------------------------------------- Attachment AF: Report from the Apache Gravitino Project ["
+    },
+    {
+      "date": "2025-12-17",
+      "sentence": "Powered by AI, this tool can search for commits related to error-causing issues, enabling the copying of such commits to the branch of the previous official release (ahead of IoTDB’s next official rel"
+    }
+  ],
+  "2026": [
+    {
+      "date": "2026-01-21",
+      "sentence": "- AI initiative — Began design work to introduce AI-powered capabilities (proposal/RFCs in progress), targeting assistive moderation, content quality, and developer ergonomics in the 1.8.x cycle."
+    },
+    {
+      "date": "2026-01-21",
+      "sentence": "https://lists.apache.org/thread/f983bj5328zd0cnwtpqqx8vfd0wnpj0o * AI policy discussions - how to use AI appropriately - started discussion."
+    },
+    {
+      "date": "2026-01-21",
+      "sentence": "The guides were created by reviewing and analysing real Incubator mailing list discussions from the past five years, documenting governance in action and how the Incubator has handled recurring issues"
+    },
+    {
+      "date": "2026-01-21",
+      "sentence": "This quarter featured three live events on Twitch [5]: TinkerPop Wide sessions exploring graph-enhanced AI memory and NetworkX cloud analytics with Amazon Neptune, and two-part Contributorcast session"
+    },
+    {
+      "date": "2026-01-21",
+      "sentence": "All recordings are available on our YouTube channel [6]: * TinkerPop Wide: Graph-Enhanced AI Memory and NetworkX Cloud Analytics with Amazon Neptune [7] Presenters: Andy Kwok, Andrew Carbonetto * Cont"
+    },
+    {
+      "date": "2026-02-18",
+      "sentence": "Since there has been recent discussion of handling security response to AI-generated reports for high profile open source projects, I though it worth noting that so far we have rejected a small number"
+    },
+    {
+      "date": "2026-02-18",
+      "sentence": "These updates reflect ongoing progress in graph-related functionality expansion, code quality improvements, and Graph+AI capabilities."
+    },
+    {
+      "date": "2026-02-18",
+      "sentence": "### Log4cxx (activity: moderate) - Releases: - 1.6.0 on December 14th, 2025 - 1.6.1 on January 9th, 2026 ### Log4j (activity: low) - Public activity has stalled due to more than 40 low-quality AI-gene"
+    },
+    {
+      "date": "2026-02-18",
+      "sentence": "- Event: A \"Next-generation storage for the modern Data Lakehouse and AI\" meetup is held on November 20 in Santa Clara."
+    },
+    {
+      "date": "2026-02-18",
+      "sentence": "- Books: 'How Large Language Models Can Help Your Search Project' by Alessandro Benedetti has been published, it contains a dedicated Apache Solr chapter on AI features of Solr, one about Apache Lucen"
+    },
+    {
+      "date": "2026-03-18",
+      "sentence": "We are also heavily investing in AI / LLM case integration."
+    },
+    {
+      "date": "2026-03-18",
+      "sentence": "According to Airflow Survey 2025, Airflow is already heavily used to handle AI and LLM related data pipelines, but we are continuing adding new capabilities such as Human-In-The-Loop capability and re"
+    },
+    {
+      "date": "2026-03-18",
+      "sentence": "The numbers of PRs and Issues created in the Airflow project rapidly increased last quarter, similarly the number of security issues raised to Airflow with a lot of those PRs and issues being low-qual"
+    },
+    {
+      "date": "2026-03-18",
+      "sentence": "* We are experimenting with tooling that will allow us to automatically triage incoming PRs (including AI / LLM assessment ) - but we do it in the way where Human-In-The-Loop and maintainer <-> contri"
+    },
+    {
+      "date": "2026-03-18",
+      "sentence": "Modern AI tools via Claude commits and then a Google Gemini code review helped quite a bit, with the dev model being lots of markdown files explaining what it is doing."
+    },
+    {
+      "date": "2026-03-18",
+      "sentence": "You can see a list here: https://datafusion.apache.org/user-guide/ concepts-readings-events.html#community-events The overall number of PRs in need of review has been growing, likely due to increasing"
+    },
+    {
+      "date": "2026-03-18",
+      "sentence": "The community [guidelines] for AI assisted contributions seem to be working well and we haven’t seen as many “AI Dumps” [guidelines]: https://datafusion.apache.org/contributor-guide/ index.html#ai-ass"
+    },
+    {
+      "date": "2026-03-18",
+      "sentence": "These updates demonstrate continued advancement in Graph+AI functionality, codebase health, project branding alignment, and community-driven evolution."
+    },
+    {
+      "date": "2026-03-18",
+      "sentence": "- dev@iotdb.apache.org had a 235% increase in traffic in the past quarter (238 emails compared to 71) - There has been a lot of discussion within the community recently regarding AI-assisted programmi"
+    },
+    {
+      "date": "2026-03-18",
+      "sentence": "The mailing lists have hosted constructive discussions and coordination around several areas, including improvements to documentation, deployment of official demos hosted by ASF Infra, ongoing framewo"
+    },
+    {
+      "date": "2026-03-18",
+      "sentence": "- Blog & Roadmap: The project launched several technical blogs in early 2026, including guides on policy-driven table maintenance and AI-native storage integration with LanceDB."
+    },
+    {
+      "date": "2026-04-15",
+      "sentence": "With the announcement of our Responsible AI initiative I am looking forward to seeing us lead in times of uncertainty, just like the ASF was able to do its early years."
+    },
+    {
+      "date": "2026-04-15",
+      "sentence": "President [Ruth Suehle] First of all, congratulations to all and thanks so much to everyone who came together to make the Responsible AI Initiative and related donations happen this month."
+    },
+    {
+      "date": "2026-04-15",
+      "sentence": "One thing (that I mentioned in my email) is also relevant here -- the Anthropic contribution of $1.5m (to the Responsible AI Initiative) has been invoiced, but not yet received."
+    },
+    {
+      "date": "2026-04-15",
+      "sentence": "- The funding from last week's announcement related to the new Responsible AI Initiative is not yet included anywhere here."
+    },
+    {
+      "date": "2026-04-15",
+      "sentence": "Responsible AI Initiative 9."
+    },
+    {
+      "date": "2026-04-15",
+      "sentence": "----------------------------------------- Attachment 5: Report from the VP of Tooling [Dave Fisher] ## Tooling ### Apache Trusted Releases (ATR) Our AI driven ASVS L1 and L2 security audit was complet"
+    },
+    {
+      "date": "2026-04-15",
+      "sentence": "This is a landmark release transforming the platform into an AI-augmented knowledge base, introducing four key capabilities: AI Assistant, MCP Server, API Keys for programmatic access, and editor plug"
+    },
+    {
+      "date": "2026-04-15",
+      "sentence": "## Community Health: - 6 new external contributors submitted pull requests this quarter, with MakiWinster72 standing out as the most active new contributor (5 PRs spanning DeepSeek integration, dark m"
+    },
+    {
+      "date": "2026-04-15",
+      "sentence": "### AI-Generated Contributions We have devised a [policy around AI-generated code contributions] (https://arrow.apache.org/docs/dev/developers/overview.html#ai-generated-code)."
+    },
+    {
+      "date": "2026-04-15",
+      "sentence": "The most obvious use of AI seems to come from novice contributors who sometimes regurgitate AI output in their code changes, pull request descriptions and/or comments."
+    },
+    {
+      "date": "2026-04-15",
+      "sentence": "A more annoying category of AI-generated contributions has come under the form of ill-informed or low quality security reports."
+    },
+    {
+      "date": "2026-04-15",
+      "sentence": "Sporadically, we also get mailing-list messages, obviously AI-generated, that pretend to offer an informed opinion on a topic under discussion but with little to no added value."
+    },
+    {
+      "date": "2026-04-15",
+      "sentence": "## Project Activity: Last release: 2.4.0 on 2023-09-29 PR Activities: - Dropped conan 1 support, now only supporting conan2 - Refactored for deprecated header removal - Removed bundle packaging suppor"
+    },
+    {
+      "date": "2026-04-15",
+      "sentence": "The flood of interest may be entirely related to AI generated or to GSOC program."
+    },
+    {
+      "date": "2026-04-15",
+      "sentence": "[1] https://www.mail-archive.com/announce@apache.org/msg10807.html ----------------------------------------- Attachment AG: Report from the Apache Gravitino Project [Jerry Shao] ## Description: The mi"
+    },
+    {
+      "date": "2026-04-15",
+      "sentence": "We saw more AI coding powered contributions coming."
+    },
+    {
+      "date": "2026-04-15",
+      "sentence": "The community has also started exploring AI-assisted development workflows as a means to modernize legacy code more efficiently."
+    },
+    {
+      "date": "2026-05-20",
+      "sentence": "This raises an accounting-related question related to the Responsible AI Initiative: do we intend to track specific expenditures against that to Responsible AI Initiative accounts?"
+    },
+    {
+      "date": "2026-05-20",
+      "sentence": "Paying for Documentation (PMC Members) 3) Sponsor Relations: we facilitated the ASF’s largest corporate charitable contribution, and used those funds to seed the ASF’s new Responsible AI Initiative."
+    },
+    {
+      "date": "2026-05-20",
+      "sentence": "https://news.apache.org/foundation/entry/the-apache-software-foundation-launches-10m-responsible-ai-initiative-with-initial-1-75m-donation 4) Event Sponsorship: we continue to process sponsorships for"
+    },
+    {
+      "date": "2026-05-20",
+      "sentence": "Foundation Comms * Produced and issued April issue of Plus One newsletter * Subscriber list now totals 3,644 (537 new subscribers in March) * Total sent: 3,100 | Unique opens: 337 | Open rate: 11% * P"
+    },
+    {
+      "date": "2026-05-20",
+      "sentence": "Karwasz to highlight the CRA Monday’s webinar he hosted to illustrate what the Apache Logging team has done post-Log4Shell to be CRA-ready * Coordinated with Priya Sharma to develop GSoc Blog * Coordi"
+    },
+    {
+      "date": "2026-05-20",
+      "sentence": "On the community side, the project also continues to invest in contributor experience — adding fast incremental FE compilation tooling, a docker-based regression-test skill, AI-assisted code review ho"
+    },
+    {
+      "date": "2026-05-20",
+      "sentence": "We're experimenting with using AI/LLM-based agent tools to handle incoming reports, and there is some streamlining we can do to the workflow."
+    },
+    {
+      "date": "2026-05-20",
+      "sentence": "- Governance and community process: - Started discussion on an AI conduct policy to guide responsible use of LLM tools while following ASF copyright and attribution expectations."
+    },
+    {
+      "date": "2026-05-20",
+      "sentence": "Furthermore, multiple community contributors are actively participating in CoC Asia 26, which will be held in Beijing, China, and have prepared multiple proposals for the associated Incubator, Streami"
+    },
+    {
+      "date": "2026-05-20",
+      "sentence": "These updates demonstrate continued advancement in codebase health, project infrastructure stability, and the expansion of Graph+AI features."
+    },
+    {
+      "date": "2026-05-20",
+      "sentence": "It enables human analysts to construct, execute, and refine data analysis tasks through an intuitive GUI, assisted by AI agents that understand natural-language instructions."
+    },
+    {
+      "date": "2026-05-20",
+      "sentence": "We had major updates: - Fix many security issues reported by internal contributors and public users - Create a new service named \"Result Service\" to give fine grained access to computing units instead"
+    },
+    {
+      "date": "2026-05-20",
+      "sentence": "Sustained drag from low-quality security reports: as detailed in the Project Activity section above, the volunteer cost of AI-generated reports is the dominant non-release pressure on the project, and"
+    },
+    {
+      "date": "2026-05-20",
+      "sentence": "We are leaning heavily into AI to help automate most of the analysis and some of the code development tasks, and it is paying off in that we are moving at a much better pace."
+    },
+    {
+      "date": "2026-05-20",
+      "sentence": "It improves the compatibility with AI coding tools and automated contribution workflows."
+    },
+    {
+      "date": "2026-05-20",
+      "sentence": "This reflects a broader trend across the ASF projects to address AI tooling in the development workflow."
+    },
+    {
+      "date": "2026-05-20",
+      "sentence": "Getting more fly-by contributions (for better and worse) than ever (thanks, AI)."
+    },
+    {
+      "date": "2026-05-20",
+      "sentence": "Planned topics include the state of the project, the ATS 11 roadmap, AI-assisted code review and development workflows, CI and testing improvements, and documentation and onboarding."
+    },
+    {
+      "date": "2026-05-20",
+      "sentence": "More topics on the ASF level like trusted releases and responsible AI absorb attention, although without current impact on the project."
+    },
+    {
+      "date": "2026-06-17",
+      "sentence": "Apache OpenDAL Project [Hao Ding / Jean-Baptiste Onofré] See Attachment AY @Christopher Schultz: follow up about AI code usage AZ."
+    },
+    {
+      "date": "2026-06-17",
+      "sentence": "Create the Responsible AI Executive Committee WHEREAS, the Board of Directors deems it to be in the best interests of the Foundation and consistent with the Foundation's purpose to appoint an officer "
+    },
+    {
+      "date": "2026-06-17",
+      "sentence": "NOW, THEREFORE, BE IT RESOLVED that the office of \"Vice President, Responsible AI\" be and hereby is created, the person holding such office to serve at the direction of the Board of Directors, and to "
+    },
+    {
+      "date": "2026-06-17",
+      "sentence": "BE IT FURTHER RESOLVED, that Jeff Genender be and hereby is appointed to the office of Vice President, Responsible AI, to serve in accordance with and subject to the direction of the Board of Director"
+    },
+    {
+      "date": "2026-06-17",
+      "sentence": "BE IT FURTHER RESOLVED that the \"Responsible AI Committee\" be and hereby is created, the members of which to serve at the direction of the Board of Directors, and to have responsibility for providing "
+    },
+    {
+      "date": "2026-06-17",
+      "sentence": "RESOLVED, that the persons listed immediately below be and hereby are appointed to serve as the initial members of the Responsible AI Committee: * Danny Angus <danny@apache.org> * Zili Chen <tison@apa"
+    },
+    {
+      "date": "2026-06-17",
+      "sentence": "----------------------------------------- Attachment 2: Report from the VP of Fundraising [Bob Paulin] ----------------------------------------- Attachment 3: Report from the VP of Marketing and Publi"
+    },
+    {
+      "date": "2026-06-17",
+      "sentence": "* We're continuing to work with projects to make sure they're well-prepared to have their codebases scanned by AI security tools."
+    },
+    {
+      "date": "2026-06-17",
+      "sentence": "First, highlighting major events: - Beam College took place in late april - Beam Summit will take place in a week A theme of CDC work taking place in a few ways: - Iceberg CDC support improved - BigQu"
+    },
+    {
+      "date": "2026-06-17",
+      "sentence": "There's been a lot of AI code and AI reviews which tend to move quickly and generate noise."
+    },
+    {
+      "date": "2026-06-17",
+      "sentence": "- We introduced the Camel MCP Server, a Model Context Protocol server that exposes the Apache Camel Catalog and specialized tools to AI coding assistants."
+    },
+    {
+      "date": "2026-06-17",
+      "sentence": "More releases are forthcoming, driven by many AI generated reports, as well as regular pull requests on GitHub, and Jira tickets."
+    },
+    {
+      "date": "2026-06-17",
+      "sentence": "We've had a successful interaction with a user to merge a large batch of fixes based AI generated reports and code to the Common Lang project."
+    },
+    {
+      "date": "2026-06-17",
+      "sentence": "See a list here: https://datafusion.apache.org/user-guide/concepts-readings-events.html#community-events The overall number of PRs in need of review has been growing, likely due to increasing use of A"
+    },
+    {
+      "date": "2026-06-17",
+      "sentence": "- Community and project activity Two new committers were voted in this period: - Tomoya Kawaguchi - Eldrick Wega Significant engineering activity has been observed in: - AI Integration & Q-Dev Dashboa"
+    },
+    {
+      "date": "2026-06-17",
+      "sentence": "----------------------------------------- Attachment AC: Report from the Apache Gravitino Project [Jerry Shao] ## Description: The mission of Apache Gravitino is the creation and maintenance of softwa"
+    },
+    {
+      "date": "2026-06-17",
+      "sentence": "The majority were AI-generated and specious."
+    },
+    {
+      "date": "2026-06-17",
+      "sentence": "This put a notable strain on PMC bandwidth, despite updating our procedure to streamline evaluating AI-generated reports."
+    },
+    {
+      "date": "2026-06-17",
+      "sentence": "By enabling forecasting models to leverage both historical observations and external variables, IoTDB continues its evolution toward a comprehensive platform for intelligent time-series management and"
+    },
+    {
+      "date": "2026-06-17",
+      "sentence": "The event provided a platform for users and contributors to exchange experiences, showcase practical deployments, and discuss the future of AI-powered time-series data management."
+    },
+    {
+      "date": "2026-06-17",
+      "sentence": "Part of this is due to the impact of AI, making it easier for people to contribute."
+    },
+    {
+      "date": "2026-06-17",
+      "sentence": "Unfortunately, however, most of these contributions cannot be merged because the contributors themselves lack the relevant knowledge and rely solely on AI, making communication between them and the co"
+    },
+    {
+      "date": "2026-06-17",
+      "sentence": "AI assisted development has also provided useful work in improving vector search."
+    },
+    {
+      "date": "2026-06-17",
+      "sentence": "This seems largely driven by AI assisted development."
+    },
+    {
+      "date": "2026-06-17",
+      "sentence": "Showing consistent health [0]https://github.com/apache/lucene/pull/15990 [1]https://research.google/blog/turboquant-redefining-ai-efficiency-with-extreme-compression/ [2]https://github.com/apache/luce"
+    },
+    {
+      "date": "2026-06-17",
+      "sentence": "PMC members would also benefit from access to token quota for state-of-the-art AI models."
+    },
+    {
+      "date": "2026-06-17",
+      "sentence": "We handled an influx of (AI-)assisted CVE reports, triaging and working through them."
+    },
+    {
+      "date": "2026-06-17",
+      "sentence": "- Prepared a cross-repository security model (trust boundaries / TCB) across the TrustZone SDK, SGX SDK, crates, and main Teaclave repos, laying groundwork for AI-assisted security scanning."
+    }
+  ]
+}
