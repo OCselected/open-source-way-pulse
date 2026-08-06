@@ -1,0 +1,107 @@
+# Project Pulse — Apache Software Foundation Mailing List Registry
+#
+# ASF lists are served via lists.apache.org JSON API (PonyMail).
+# Unlike kernel lists (git/mbox on lore.kernel.org), these are
+# publicly queryable via HTTP — no PoW, no git protocol needed.
+#
+# Data source:
+#   https://lists.apache.org/api/stats.lua?list=<list>&domain=<domain>&d=YYYY-M
+# Returns: emails[], thread_struct[], participants[], active_months{}
+#
+# Fields:
+#   name         - logical name (used as local data folder)
+#   list         - list name on lists.apache.org
+#   domain       - domain on lists.apache.org
+#   description  - human-readable label
+#   category     - governance tier:
+#                  "top-level"  = foundation-wide governance
+#                  "project"    = individual project dev list
+#                  "announce"   = project release announcements
+#   watch_level  - high | normal | low
+#                  high  = every thread analyzed
+#                  normal = summary only
+#                  low   = trend data only (participants/active_months)
+#   status       - active | inactive | not-yet-synced
+
+list_list:
+  # --- Foundation-wide governance ---
+  - name: announce
+    list: announce
+    domain: apache.org
+    description: "Apache Foundation announcement list (releases + security)"
+    category: announce
+    watch_level: high
+    status: active
+
+  - name: foundation
+    list: foundation
+    domain: apache.org
+    description: "Apache Foundation operational matters"
+    category: top-level
+    watch_level: high
+    status: inactive  # may not be publicly archived on lists.apache.org
+
+  - name: board
+    list: board
+    domain: apache.org
+    description: "Apache Board resolutions and governance"
+    category: top-level
+    watch_level: high
+    status: inactive  # board list appears restricted/private
+
+  - name: security
+    list: security
+    domain: apache.org
+    description: "Apache Security team discussions"
+    category: top-level
+    watch_level: high
+    status: inactive
+
+  # --- Project dev lists (high-signal, governance-heavy) ---
+  - name: incubator
+    list: general
+    domain: incubator.apache.org
+    description: "ASF Incubator Podling general discussions (new projects)"
+    category: top-level
+    watch_level: high
+    status: active
+
+  - name: httpd
+    list: dev
+    domain: httpd.apache.org
+    description: "Apache HTTP Server dev list"
+    category: project
+    watch_level: normal
+    status: active
+
+  - name: kafka
+    list: dev
+    domain: kafka.apache.org
+    description: "Apache Kafka dev list"
+    category: project
+    watch_level: normal
+    status: active
+
+  - name: hadoop
+    list: dev
+    domain: hadoop.apache.org
+    description: "Apache Hadoop dev list"
+    category: project
+    watch_level: normal
+    status: active
+
+  - name: spark
+    list: dev
+    domain: spark.apache.org
+    description: "Apache Spark dev list"
+    category: project
+    watch_level: normal
+    status: inactive
+
+  - name: hadoop-common
+    list: dev
+    domain: hadoop.apache.org
+    description: "Apache Hadoop Common dev list"
+    category: project
+    watch_level: low
+    status: inactive
