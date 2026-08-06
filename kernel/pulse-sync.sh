@@ -18,8 +18,8 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-PULSE_DIR="$SCRIPT_DIR"
-REGISTRY="$PULSE_DIR/registry.yaml"
+PULSE_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+REGISTRY="$PULSE_DIR/kernel/registry.yaml"
 INBOX_DIR="$PULSE_DIR/repos/inboxes"
 
 ACTION="${1:-sync}"

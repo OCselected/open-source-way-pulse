@@ -21,8 +21,9 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-DATA_DIR="${SCRIPT_DIR}/data/asf"
-REGISTRY="${SCRIPT_DIR}/asf-registry.yaml"
+PULSE_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+DATA_DIR="${PULSE_DIR}/data/asf"
+REGISTRY="${PULSE_DIR}/asf/asf-registry.yaml"
 CURRENT="${1:-}"
 
 [[ ! -d "$DATA_DIR" ]] && { echo "No ASF cache data. Run asf-sync.sh --sync first."; exit 1; }

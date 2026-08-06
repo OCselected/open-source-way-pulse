@@ -25,8 +25,9 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REGISTRY="${SCRIPT_DIR}/asf-registry.yaml"
-DATA_DIR="${SCRIPT_DIR}/data/asf"
+PULSE_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+REGISTRY="${PULSE_DIR}/asf/asf-registry.yaml"
+DATA_DIR="${PULSE_DIR}/data/asf"
 API_BASE="https://lists.apache.org/api"
 TIMEOUT=20
 

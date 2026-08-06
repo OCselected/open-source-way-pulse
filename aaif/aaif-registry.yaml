@@ -1,0 +1,46 @@
+# Project Pulse — AAIF (Agentic AI Foundation) Project Registry
+# AAIF is a Linux Foundation sub-foundation (aaif.io)
+# Data source: GitHub REST API (unauthenticated, 60 req/h — sufficient for 4 projects)
+#              + aaif.io homepage (curl + regex extraction)
+#
+# Fields:
+#   name         - logical name (used as local data folder)
+#   repo         - GitHub "owner/repo" or "website" for aaif.io sections
+#   description  - human-readable label
+#   category     - "runtime" | "protocol" | "standard" | "connector" | "website"
+#   watch_level  - high | normal | low
+#   status       - active | inactive
+
+project_list:
+  - name: mcp
+    repo: "modelcontextprotocol"
+    repo_type: org
+    description: "Model Context Protocol — agent-data integration protocol (LF org)"
+    category: protocol
+    watch_level: high
+    status: active
+
+  - name: goose
+    repo: "block/goose"
+    description: "goose — open-source AI agent runtime"
+    category: runtime
+    watch_level: high
+    status: active
+
+  - name: agents-md
+    repo: "agentsmd/agents.md"
+    description: "AGENTS.md — open format for guiding coding agents"
+    category: standard
+    watch_level: normal
+    status: active
+
+  - name: agentgateway
+    repo: "agentgateway/agentgateway"
+    description: "agentgateway — cross-ecosystem agent connector"
+    category: connector
+    watch_level: normal
+    status: active
+
+# AAIF website sections to scrape (no repo field):
+#   - aaif.io/        → Daily Briefing
+#   - aaif.io/projects → project list

@@ -23,7 +23,7 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-PULSE_DIR="$SCRIPT_DIR"
+PULSE_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 INBOX_DIR="$PULSE_DIR/repos/inboxes"
 
 INBOX="${1:-lkml}"
