@@ -1,0 +1,10 @@
+# Project Pulse - vLLM Registry
+# Data source: GitHub REST API (vllm-project/vllm)
+
+repo_list:
+  - name: vllm
+    repo: "vllm-project/vllm"
+    description: "vLLM - high-throughput LLM inference engine"
+    category: inference
+    watch_level: normal
+    status: active

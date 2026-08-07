@@ -1,0 +1,18 @@
+# Project Pulse - Kubernetes Registry
+# Data source: GitHub REST API (kubernetes/kubernetes)
+# KEP (Kubernetes Enhancement Proposal) tracking via github.com/kubernetes/enhancements
+
+repo_list:
+  - name: kubernetes
+    repo: "kubernetes/kubernetes"
+    description: "Kubernetes - cloud-native container orchestration platform"
+    category: platform
+    watch_level: high
+    status: active
+
+  - name: enhancements
+    repo: "kubernetes/enhancements"
+    description: "KEP (Kubernetes Enhancement Proposal) - governance RFC process"
+    category: governance
+    watch_level: high
+    status: active

@@ -1,0 +1,10 @@
+# Project Pulse - PyTorch Registry
+# Data source: GitHub REST API (pytorch/pytorch)
+
+repo_list:
+  - name: pytorch
+    repo: "pytorch/pytorch"
+    description: "PyTorch - deep learning framework"
+    category: framework
+    watch_level: high
+    status: active
