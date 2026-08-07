@@ -1,0 +1,7 @@
+source: debian
+provider: web-scrape
+cache_dir: data/debian
+rate_limit: none
+endpoints:
+  - "stable-release"
+  - "announcement-archive"

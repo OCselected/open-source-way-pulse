@@ -1,0 +1,10 @@
+source: github
+provider: github-rest
+cache_dir: data/github-python
+rate_limit: 60/min
+repos:
+  - repo: "python/cpython"
+    endpoints:
+      - "releases"
+      - "commits?per_page=3"
+      - "contributors?per_page=1"

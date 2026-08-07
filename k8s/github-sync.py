@@ -40,6 +40,16 @@ PROJECTS = {
         "data": os.path.join(PULSE_DIR, "data", "github-vllm"),
         "api_root": "https://api.github.com/repos",
     },
+    "python": {
+        "reg": os.path.join(PULSE_DIR, "python", "registry.yaml"),
+        "data": os.path.join(PULSE_DIR, "data", "github-python"),
+        "api_root": "https://api.github.com/repos",
+    },
+    "llvm": {
+        "reg": os.path.join(PULSE_DIR, "llvm", "registry.yaml"),
+        "data": os.path.join(PULSE_DIR, "data", "github-llvm"),
+        "api_root": "https://api.github.com/repos",
+    },
 }
 
 USER_AGENT = "Hermes-Pulse/1.0"
@@ -54,13 +64,17 @@ def parse_registry(path):
         in_entry = False
         for line in f:
             s = line.strip()
-            if s.startswith("- name:"):
+            if s.startswith("- name:") or s.startswith("- repo:"):
                 in_entry = True
             if in_entry and (s.startswith("repo:") or s.startswith("- repo:")):
                 val = s.split(":", 1)[1].strip()
                 val = val.strip('"').strip()
                 if val and "http" not in val:
                     repos.append(val)
+            # Exit entry on next top-level key or blank after entry
+            if in_entry and s and not s.startswith("  ") and ":" in s and not s.startswith("#"):
+                if not s.startswith("-"):
+                    in_entry = False
     return repos
 
 
