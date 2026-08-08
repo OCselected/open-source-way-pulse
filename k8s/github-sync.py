@@ -50,6 +50,11 @@ PROJECTS = {
         "data": os.path.join(PULSE_DIR, "data", "github-llvm"),
         "api_root": "https://api.github.com/repos",
     },
+    "sglang": {
+        "reg": os.path.join(PULSE_DIR, "sglang", "registry.yaml"),
+        "data": os.path.join(PULSE_DIR, "data", "github-sglang"),
+        "api_root": "https://api.github.com/repos",
+    },
 }
 
 USER_AGENT = "Hermes-Pulse/1.0"

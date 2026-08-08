@@ -1,0 +1,9 @@
+source: github
+provider: github-rest
+cache_dir: data/github-sglang
+repos:
+  - repo: "sgl-project/sglang"
+    endpoints:
+      - "releases"
+      - "commits?per_page=3"
+      - "contributors?per_page=1"
