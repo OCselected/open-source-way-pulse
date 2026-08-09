@@ -10,6 +10,7 @@ Usage:
 """
 
 import json
+import time
 import os
 import sys
 import urllib.error
@@ -83,11 +84,37 @@ def parse_registry(path):
     return repos
 
 
-def github_api(path, max_time=15):
+def github_api(path, max_time=15, retries=3):
     url = "https://api.github.com" + path if path.startswith("/") else "https://api.github.com" + path
-    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": "application/vnd.github.v3+json"})
-    with urllib.request.urlopen(req, timeout=max_time) as r:
-        return json.loads(r.read().decode())
+    import subprocess as _sp
+    _gh_token = ""
+    try:
+        _gh_token = _sp.run(["gh", "auth", "token"], capture_output=True, text=True, timeout=5).stdout.strip()
+    except Exception:
+        _gh_token = ""
+    _gh_headers = {"User-Agent": USER_AGENT, "Accept": "application/vnd.github.v3+json"}
+    if _gh_token:
+        _gh_headers["Authorization"] = f"Bearer {_gh_token}"
+    for attempt in range(retries):
+        req = urllib.request.Request(url, headers=_gh_headers)
+        try:
+            with urllib.request.urlopen(req, timeout=max_time) as r:
+                return json.loads(r.read().decode())
+        except urllib.error.HTTPError as e:
+            if e.code == 403:
+                # Rate limited — honor Retry-After header or exponential backoff
+                retry_after = int(e.headers.get("Retry-After", 2 ** attempt))
+                time.sleep(retry_after)
+                continue
+            elif e.code in (429, 500, 502, 503):
+                time.sleep(2 ** attempt)
+                continue
+            else:
+                raise
+        except (urllib.error.URLError, TimeoutError):
+            time.sleep(2 ** attempt)
+            continue
+    return None
 
 
 def fetch_repo(repo_slug, data_dir):
