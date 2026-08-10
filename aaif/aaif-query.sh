@@ -295,3 +295,143 @@ echo ""
 echo "============================================"
 echo " AAIF query complete."
 echo "============================================"
+
+# ---- L4: MCP 治理演化信号 ----
+
+section_l4() {
+    local f
+    f=$(find_latest "mcp-governance") || true
+    if [[ -z "$f" || ! -f "$f" ]]; then
+        echo ""
+        echo "### L4 — MCP 治理演化"
+        echo ""
+        echo "**MCP 治理信号**：未缓存。运行 \`mcp-governance-fetch.py sync\`。"
+        echo ""
+        return
+    fi
+
+    echo ""
+    echo "### L4 — MCP 治理演化"
+    echo ""
+
+    # 基础表格
+    echo "| 指标 | 当前值 | 说明 |"
+    echo "|------|--------|------|"
+    local spec_ver servers publishers compliance_hits org_repos
+    spec_ver=$(python3 -c "import json; d=json.load(open('$f')); print(d['spec_versions']['current'] or '?')" 2>/dev/null)
+    servers=$(python3 -c "import json; d=json.load(open('$f')); s=d['mcp_directory'].get('stats',{}); print(s.get('servers','?'))" 2>/dev/null)
+    publishers=$(python3 -c "import json; d=json.load(open('$f')); s=d['mcp_directory'].get('stats',{}); print(s.get('publishers','?'))" 2>/dev/null)
+    compliance_hits=$(python3 -c "import json; d=json.load(open('$f')); print(d['compliance_scan'].get('total_hits',0))" 2>/dev/null)
+    org_repos=$(python3 -c "import json; d=json.load(open('$f')); print(d['mcp_org'].get('repos_count',0))" 2>/dev/null)
+
+    echo "| MCP spec 版本 | ${spec_ver} | 当前最新协议版本 |"
+    echo "| MCP.org 仓库数 | ${org_repos} | GitHub 组织下 public repos |"
+    echo "| mcp.directory Server 数 | ${servers} | 第三方目录，代表生态规模 |"
+    echo "| mcp.directory Publisher 数 | ${publishers} | 第三方目录，代表生态参与度 |"
+    echo "| 合规关键词命中 | ${compliance_hits}/10 页 | license/compliance/sbom 等 |"
+
+    echo ""
+
+    # Publisher 分布 — 剩余控制权信号
+    echo "**Publisher 分布（剩余控制权信号）：**"
+    echo ""
+    python3 -c "
+import json
+d = json.load(open('$f'))
+md = d['mcp_directory']
+top = md['top_publishers'][:10]
+print('| Publisher | Server 数 | 归属 |')
+print('|-----------|----------|------|')
+china = {p['slug'] for p in md.get('china_publishers',[])}
+enterprise = {p['slug'] for p in md.get('enterprise_publishers',[])}
+for p in top:
+    slug = p['slug']
+    if slug in china:
+        tag = '🇨🇳 中国'
+    elif slug in enterprise:
+        tag = '🏢 企业'
+    else:
+        tag = '👤 社区/个人'
+    print(f\"| {p['name']} | {p['server_count']} | {tag} |\")
+" 2>/dev/null
+
+    echo ""
+
+    # 合规关键词详情
+    hits=$(python3 -c "
+import json
+d = json.load(open('$f'))
+kws = d['compliance_scan'].get('unique_keywords', [])
+if kws:
+    print(', '.join(kws))
+else:
+    print('无')
+" 2>/dev/null)
+
+    if [[ "$hits" != "无" ]]; then
+        echo "**合规关键词命中详情**：$hits"
+        echo ""
+        python3 -c "
+import json
+d = json.load(open('$f'))
+for h in d['compliance_scan'].get('hits_detail', []):
+    print(f\"  - {h['keyword']}: {h['count']} 次（在 {h['page']}）\")
+" 2>/dev/null
+        echo ""
+    fi
+
+    # 剩余控制权信号判定
+    echo "**剩余控制权信号判定**："
+    echo ""
+    python3 -c "
+import json
+d = json.load(open('$f'))
+top = d['mcp_directory']['top_publishers'][:30]
+china = d['mcp_directory']['china_publishers']
+enterprise = d['mcp_directory']['enterprise_publishers']
+
+# 判定逻辑：
+# 1. 企业 publisher 是否占比过大
+ent_total = sum(p['server_count'] for p in enterprise)
+all_total = sum(p['server_count'] for p in top) if top else 1
+ent_ratio = ent_total / all_total
+
+# 2. 合规关键词是否出现（制度扩张信号）
+hits = d['compliance_scan'].get('total_hits', 0)
+kws = d['compliance_scan'].get('unique_keywords', [])
+
+# 3. 中国区信号
+china_names = ', '.join(p['name'] for p in china) if china else '无'
+ent_names = ', '.join(f\"{p['name']}({p['server_count']})\" for p in enterprise[:5])
+
+print(f'- 企业 Publisher 生态占比: {ent_ratio:.0%}（{ent_names}）')
+print(f'- 中国区 Publisher: {china_names}')
+print(f'- 合规关键词: {len(kws)} 种（{len(kws)} = 制度扩张信号）')
+
+if ent_ratio > 0.6:
+    print()
+    print('**信号判定：🟡 需关注** — 企业 Publisher 占比过高，剩余控制权可能向企业倾斜。')
+elif ent_ratio > 0.4:
+    print()
+    print('**信号判定：🟢 稳定** — 企业 Publisher 占比正常，生态分布健康。')
+else:
+    print()
+    print('**信号判定：🟢 社区主导** — 企业占比低，社区/个人驱动。')
+
+if hits > 3:
+    print()
+    print('**制度扩张信号：⚠️ 合规关键词显著增加** — MCP spec 正在向合规层扩张。')
+elif hits > 0:
+    print()
+    print(f'**制度扩张信号：ℹ️ 合规关键词微量出现（{len(kws)} 种）** — 尚处于早期讨论。')
+else:
+    print()
+    print('**制度扩张信号：✅ 协议层暂无合规概念** — \"协议不管合规\"的分层设计稳定。')
+" 2>/dev/null
+
+    echo ""
+}
+
+if [[ "$SECTION" == "all" || "$SECTION" == "L4" ]]; then
+    section_l4
+fi

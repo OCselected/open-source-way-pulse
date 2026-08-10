@@ -41,6 +41,14 @@ project_list:
     watch_level: normal
     status: active
 
+  - name: mcp-directory
+    repo: "https://mcp.directory"
+    repo_type: website
+    description: "MCP.directory — third-party MCP server directory (ecosystem signal)"
+    category: directory
+    watch_level: high
+    status: active
+
 # AAIF website sections to scrape (no repo field):
 #   - aaif.io/        → Daily Briefing
 #   - aaif.io/projects → project list
