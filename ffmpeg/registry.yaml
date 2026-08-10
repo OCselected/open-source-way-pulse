@@ -1,0 +1,13 @@
+# Project Pulse v2 — FFmpeg Institutional Registry
+# FFmpeg: "pure community governance" — no foundation, no corporate controller
+# Governance by habit and seniority (Hume/Burke informal rules)
+mailing_list:
+  - name: ffmpeg-devel
+    source: "https://lore.kernel.org/ffmpeg-devel/"
+    sync_method: git-clone-bare
+    git_url: "https://lore.kernel.org/ffmpeg-devel.git"
+    frequency: daily
+    category: governance
+    description: "FFmpeg development mailing list (pure community decision forum)"
+    watch_level: high
+    status: not-yet-cloned

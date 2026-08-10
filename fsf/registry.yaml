@@ -1,0 +1,27 @@
+# Project Pulse v2 — FSF/GNU Mailing List Registry
+# FSF (1985) / GNU (1983): oldest institutional infrastructure in open source
+# Signal: ideology-driven governance, institutional decay, legitimacy crisis
+mailing_lists:
+  - name: gnu-devel
+    source: "https://lists.gnu.org/archive/html/gnu-devel/"
+    frequency: daily
+    category: governance
+    description: "GNU project development — core technical governance"
+    watch_level: high
+    status: active
+
+  - name: gnu-philosophy
+    source: "https://lists.gnu.org/archive/html/gnu-philosophy/"
+    frequency: weekly
+    category: governance
+    description: "GNU philosophy discussions — ideological debates (high NIE value)"
+    watch_level: high
+    status: active
+
+  - name: fsf-users
+    source: "https://lists.gnu.org/archive/html/fsf-users/"
+    frequency: weekly
+    category: governance
+    description: "FSF community discussions — legitimacy and community signal"
+    watch_level: normal
+    status: active

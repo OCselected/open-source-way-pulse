@@ -1,0 +1,12 @@
+# Project Pulse v2 — Homebrew Discussions Registry
+# Homebrew: governance crisis and institutional reconstruction (2021 brew.guide incident)
+# Signal: GitHub Discussions for community voting and policy proposals
+discussions:
+  - name: homebrew-discussions
+    source: "https://github.com/Homebrew/discussions"
+    api_endpoint: "https://api.github.com/search/issues?q=repo:Homebrew/discussions+type:issue"
+    frequency: daily
+    category: governance
+    description: "Homebrew community discussions (voting, policy, governance proposals)"
+    watch_level: high
+    status: active

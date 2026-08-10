@@ -1,0 +1,29 @@
+# Project Pulse v2 — PSF Institutional Registry
+# Python Software Foundation: the "embedded foundation" model
+# (foundation manages money/trademark, community manages code)
+pep_stream:
+  - name: pep-index
+    source: "https://peps.python.org/"
+    frequency: daily
+    category: governance
+    description: "PEP index — formal proposal registry (constitutional amendment process)"
+    watch_level: high
+    status: active
+
+steering_council:
+  - name: steering-council-repo
+    source: "https://github.com/python/steering-council"
+    frequency: weekly
+    category: governance
+    description: "PSF Steering Council meetings + decisions (institutional decision log)"
+    watch_level: high
+    status: active
+
+financial_reports:
+  - name: psf-annual-report
+    source: "https://www.python.org/psf-records/annual-reports/"
+    frequency: yearly
+    category: financial
+    description: "PSF annual financial report (sustainability signal)"
+    watch_level: normal
+    status: not-yet-synced
