@@ -1,27 +1,56 @@
 # Project Pulse v2 — FSF/GNU Mailing List Registry
 # FSF (1985) / GNU (1983): oldest institutional infrastructure in open source
 # Signal: ideology-driven governance, institutional decay, legitimacy crisis
+#
+# Validated lists (2026-08-10): most gnu-* lists return 404 for 2026-08
+# (low activity = itself a decay signal). Only gnu-misc-discuss + gsrc-commit
+# have active 2026-08 archives.
+#
+# Historical note: FSF institutional analysis also draws from:
+#   - lists.gnu.org/archive/mbox/ (mbox download for gnu-misc-discuss)
+#   - www.gnu.org/email/ (index of all GNU lists)
+#   - LWN.net (journalistic coverage of FSF governance events)
 mailing_lists:
-  - name: gnu-devel
-    source: "https://lists.gnu.org/archive/html/gnu-devel/"
+  - name: gnu-misc-discuss
+    source: "https://lists.gnu.org/archive/html/gnu-misc-discuss/"
+    mbox: "https://lists.gnu.org/archive/mbox/gnu-misc-discuss/"
+    frequency: weekly
+    category: governance
+    description: "GNU misc discussions — primary community governance signal for GNU"
+    watch_level: high
+    status: active
+
+  - name: gsrc-commit
+    source: "https://lists.gnu.org/archive/html/gsrc-commit/"
     frequency: daily
-    category: governance
-    description: "GNU project development — core technical governance"
-    watch_level: high
-    status: active
-
-  - name: gnu-philosophy
-    source: "https://lists.gnu.org/archive/html/gnu-philosophy/"
-    frequency: weekly
-    category: governance
-    description: "GNU philosophy discussions — ideological debates (high NIE value)"
-    watch_level: high
-    status: active
-
-  - name: fsf-users
-    source: "https://lists.gnu.org/archive/html/fsf-users/"
-    frequency: weekly
-    category: governance
-    description: "FSF community discussions — legitimacy and community signal"
+    category: lifecycle
+    description: "GNU source repository commits — institutional activity signal"
     watch_level: normal
     status: active
+
+  - name: emacs-bug-tracker
+    source: "https://lists.gnu.org/archive/html/emacs-bug-tracker/"
+    frequency: daily
+    category: participation
+    description: "Emacs bug tracker — largest GNU project participation signal"
+    watch_level: normal
+    status: active
+
+  - name: gnu-emacs-sources
+    source: "https://lists.gnu.org/archive/html/gnu-emacs-sources/"
+    frequency: daily
+    category: lifecycle
+    description: "Emacs source commit notifications — institutional maintenance signal"
+    watch_level: low
+    status: active
+
+# Decay signal: these lists existed but have stalled archives
+decayed_lists:
+  - name: fsf-users
+    last_known_archive: "unknown (likely pre-2020)"
+    status: decayed
+    description: "FSF Users list — archive appears decommissioned (institutional decay)"
+  - name: gnu-philosophy
+    last_known_archive: "unknown"
+    status: decayed
+    description: "GNU Philosophy list — archive appears decommissioned"

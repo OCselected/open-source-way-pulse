@@ -40,7 +40,7 @@ do_sync_index() {
     else
         log "Fetching PEP index..."
         curl -sL --max-time "$TIMEOUT" -A 'Mozilla/5.0' "$PEP_BASE/" -o "$out" \
-            && log "  Saved (${SIZE} bytes)" || log "  FAILED"
+            && log "  Saved ($(wc -c < "$out") bytes)" || log "  FAILED"
     fi
     ln -sf "index-${TODAY}.html" "${DATA_DIR}/latest-index.html"
 }
@@ -63,14 +63,15 @@ do_status() {
     echo "=== PSF PEP Stream Cache ==="
     echo ""
     local total
-    total=$(ls -1 "${DATA_DIR}/"*.md "${DATA_DIR}/"*.html 2>/dev/null | wc -l)
+    total=$(find "${DATA_DIR}" -maxdepth 1 -type f -o -type l 2>/dev/null | wc -l)
     echo "  Total cached: ${total}"
     echo ""
-    ls -1t "${DATA_DIR}/"*.html "${DATA_DIR}/"*.md 2>/dev/null | head -10 | while read -r f; do
-        local fname=$(basename "$f")
-        local size=$(wc -c < "$f")
-        printf "  %-45s %8d bytes\n" "$fname" "$size"
-    done
+    find "${DATA_DIR}" -maxdepth 1 \( -name "*.html" -o -name "*.md" -o -name "*.json" -o -name "*.xml" -o -name "*.txt.gz" \) -printf "%T@ %f\n" 2>/dev/null \
+        | sort -rn | head -10 \
+        | while read -r _ts fname; do
+            local size=$(wc -c < "${DATA_DIR}/${fname}")
+            printf "  %-45s %8d bytes\n" "$fname" "$size"
+        done
     echo ""
 }
 

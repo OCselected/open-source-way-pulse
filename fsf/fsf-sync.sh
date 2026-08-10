@@ -38,9 +38,10 @@ log() { echo "[$(date +%H:%M:%S)] $*"; }
 
 # GNU mailing lists to monitor (institutional signal value)
 LISTS=(
-    "gnu-devel"
-    "gnu-philosophy"
-    "fsf-users"
+    "gnu-misc-discuss"
+    "gsrc-commit"
+    "emacs-bug-tracker"
+    "gnu-emacs-sources"
 )
 
 do_sync_list() {

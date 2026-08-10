@@ -47,7 +47,7 @@ do_sync() {
     log "Fetching Homebrew discussions (latest 30)..."
     # Use search API for recency (discussions are issues under the hood)
     retry "curl -sL --max-time $TIMEOUT -A 'Mozilla/5.0' \
-        'https://api.github.com/search/issues?q=repo:Homebrew/discussions+type:issue&sort:created&order:desc&per_page=30' \
+        'https://api.github.com/search/issues?q=repo:Homebrew/brew+label:discussion&sort:created&order:desc&per_page=30' \
         -o '$out'" \
         && log "  Saved" || log "  FAILED"
 }
