@@ -1,0 +1,62 @@
+# Project Pulse — Mirror Site Registry
+# Tracks latest article GUIDs per mirror site for incremental diffing.
+# Updated after each cron run.
+
+mirror_sites:
+  - name: tuna
+    host: mirrors.tuna.tsinghua.edu.cn
+    feed: https://mirrors.tuna.tsinghua.edu.cn/feed.xml
+    description: "清华大学开源软件镜像站"
+    status: active
+    last_sync: null
+    known_guids: []
+
+  - name: sjtu
+    host: mirror.sjtu.edu.cn
+    feed: https://mirror.sjtu.edu.cn/blog/feed.xml
+    description: "上海交通大学开源镜像站"
+    status: active
+    last_sync: null
+    known_guids: []
+
+  - name: ustc
+    host: mirrors.ustc.edu.cn
+    feed: https://mirrors.ustc.edu.cn/blog/feed.xml
+    description: "中国科学技术大学开源镜像站"
+    status: active
+    last_sync: null
+    known_guids: []
+
+  - name: zju
+    host: mirrors.zju.edu.cn
+    feed: https://mirrors.zju.edu.cn/blog/feed.xml
+    description: "浙江大学开源软件镜像站"
+    status: active
+    last_sync: null
+    known_guids: []
+
+  - name: aliyun
+    host: mirrors.aliyun.com
+    feed: null
+    description: "阿里云开源镜像站"
+    status: inactive
+    last_sync: null
+    known_guids: []
+
+  - name: huawei
+    host: mirrors.huaweicloud.com
+    feed: null
+    description: "华为云开源镜像站"
+    status: inactive
+    last_sync: null
+    known_guids: []
+
+# Historical events (curated list of notable mirror removals)
+historical_events:
+  - date: 2026-08-09
+    site: tuna
+    action: removed
+    projects: [Anaconda, OpenWrt, Flutter, GitLab EE]
+    reason: "存储资源严重受限"
+    redirect_to: "https://mirrors.cernet.edu.cn/ 或上游"
+    source: "https://mirrors.tuna.tsinghua.edu.cn/news/remove-multiple-mirrors/"
