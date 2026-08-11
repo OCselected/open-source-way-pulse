@@ -1,0 +1,47 @@
+# Project Pulse v2 — OpenSSF Institutional Registry
+# OpenSSF = enterprise alliance foundation (Google/MS/Amazon/IBM/Tenable)
+# Williamson 混合治理: Scorecard = 第三方安全认证降低交易成本
+#
+scorecard:
+  - name: scorecard-api
+    source: "https://api.scorecard.dev/projects/github.com/{owner}/{repo}"
+    frequency: weekly
+    category: governance
+    description: "Scorecard API — quantified security governance metrics (Williamson comparison tool)"
+    watch_level: high
+    status: active
+    target_projects:
+      - kubernetes/kubernetes
+      - pytorch/pytorch
+      - llvm/llvm-project
+      - Homebrew/brew
+      - FFmpeg/FFmpeg
+      - vllm-project/vllm
+      - sgl-project/sglang
+
+blog:
+  - name: openssf-rss
+    source: "https://openssf.org/feed/"
+    frequency: daily
+    category: policy
+    description: "OpenSSF blog/newsletter — policy initiatives (North institutional change)"
+    watch_level: normal
+    status: active
+
+charter:
+  - name: openssf-charter
+    source: "https://raw.githubusercontent.com/ossf/community/main/CHARTER.md"
+    frequency: monthly
+    category: governance
+    description: "OpenSSF Technical Charter — governance rules (Williamson formal constraints)"
+    watch_level: normal
+    status: active
+
+github_org:
+  - name: ossf-events
+    source: "https://api.github.com/orgs/ossf/events"
+    frequency: daily
+    category: lifecycle
+    description: "OpenSSF GitHub org events — Scorecard rule evolution"
+    watch_level: low
+    status: active
