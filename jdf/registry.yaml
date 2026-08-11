@@ -1,0 +1,123 @@
+# Project Pulse v2 — JDF Institutional Registry
+# Joint Development Foundation (jointdevelopment.org)
+# Status: METADATA ONLY — 2026-08-11
+# 制度层注册，数据源待 2027 年补齐（JDF 页面 JS 渲染，当前不可自动化）
+#
+# ---
+# 制度定位
+# JDF 是 Linux Foundation 家族的一种新型托管制度形态：
+#   法人实体 = Joint Development Foundation Projects, LLC（商业有限责任公司）
+#   托管模型 = 每个项目 = 一个 "Series"（类有限合伙的多基金架构）
+#   首个落地 = Appia Foundation（APPIA Series，2026-06）
+#
+# NIE 分析轴：Coase（企业边界）/ Williamson（混合治理）/ North（制度变迁）/ A&R（包容性）
+
+---
+institution:
+  name: "Joint Development Foundation (JDF)"
+  domain: "jointdevelopment.org"
+  legal_form: "Joint Development Foundation Projects, LLC"
+  founded: "2025"
+  hosted_by: "Linux Foundation"
+  model: "Multi-series LLC — each project is a separate 'Series'"
+  first_project: "Appia Foundation (APPIA Series, 2026-06)"
+
+# 制度分析
+nie_axes:
+  coase:
+    score: 5
+    signal: "为什么 AI 标准化要走 LLC 而非 501(c)(3)？→ 交易成本：系列结构让每个项目独立承担法律风险，共享 LF 基础设施"
+    analysis: >
+      JDF 是 Coase 企业边界问题的一次实证回答。
+      传统开源基金会（ASF/PSF）是非营利 501(c)(3)，治理成本高、法律风险由整个实体承担。
+      JDF 用 LLC 的 Series 结构，让每个项目独立承担法律风险——
+      这是把"企业边界"从公司层级转移到项目层级的制度创新。
+
+  williamson:
+    score: 4
+    signal: "LLC + LF 背书 = 市场治理与科层治理的混合形态"
+    analysis: >
+      JDF 本身是 LF 基础设施的一部分，但用商业实体托管。
+      Appia 的"证据传递"（evidence pass-through）机制是 Williamson
+      交易成本理论的直接应用：不重复评估，只传递证据，降低价值链上的
+      重复交易成本。
+
+  north:
+    score: 3
+    signal: "LF 推出 JDF = LF 自身治理模型的制度变迁"
+    analysis: >
+      LF 从"直接托管开源项目"转向"提供法人基础设施给行业联盟"，
+      这是 LF 从开源基础设施提供商向标准化基础设施提供商的战略漂移。
+      这是 North 意义上的制度变迁——一个既有的制度框架（LF）为了适应
+      新环境（AI 治理需求）而进行的结构调整。
+
+  acemoglu:
+    score: 3
+    signal: "成员 100% 企业，无社区、无学术、无独立开发者"
+    analysis: >
+      是否包容性取决于标准化是否开放且免费。
+      Appia 标准公开、规范透明 → 制度是包容性的。
+      但如果认证和评估变成付费排他 → 制度滑向汲取性。
+      当前阶段是包容性，但存在向汲取性漂移的风险。
+
+# 成员分析（2026-08 快照）
+members:
+  founding:
+    - "Arm"
+    - "Armilla AI"
+    - "Ericsson"
+    - "Google"
+    - "Mastercard"
+    - "Microsoft"
+    - "Mitsubishi Electric"
+    - "Naaia"
+    - "Nemko"
+    - "Omron"
+    - "OpenAI"
+    - "Schneider Electric"
+    - "Siemens"
+  categories:
+    chip_manufacturers: ["Arm", "Omron"]
+    cloud_infrastructure: ["Google", "Microsoft", "OpenAI"]
+    telecom: ["Ericsson"]
+    insurance: ["Armilla AI"]
+    financial: ["Mastercard"]
+    industrial_automation: ["Mitsubishi Electric", "Schneider Electric", "Nemko", "Siemens"]
+    ai_infrastructure: ["Naaia"]
+  missing:
+    community_representatives: "NONE — no individual contributors, academics, or non-corporate organizations"
+
+# 数据源（当前）
+data_sources:
+  lf_press_release:
+    url: "https://www.linuxfoundation.org/press/linux-foundation-launches-appia-foundation-to-establish-standardized-conformity-specifications-across-the-ai-value-chain"
+    status: "available"
+    note: "JDF 首次公开披露的完整制度描述"
+  appia_page:
+    url: "https://appiafoundation.org/"
+    status: "javascript_only"
+    note: "页面 JS 渲染，当前无法自动抓取；内容需依赖快照或人工录入"
+  jdf_site:
+    url: "https://jointdevelopment.org/"
+    status: "javascript_only"
+    note: "WordPress + JS 渲染，同 Appia"
+  github_repos:
+    url: "https://github.com/orgs/jdfoundation/repositories"
+    status: "zero_results"
+    note: "截至 2026-08，JDF GitHub org 无公开 repo"
+  mailing_list:
+    status: "not_found"
+    note: "JDF/Appia 均无公开邮件列表归档"
+
+# 待监控信号
+signals_to_monitor:
+  - "JDF 下第二个项目出现（目前仅 Appia）"
+  - "Appia 标准化文档发布（白皮书/规范 PR）"
+  - "JDF 页面出现可抓取的静态内容"
+  - "JDF GitHub org 出现 repo"
+  - "Appia 邮件列表或 RFC 流程建立"
+  - "Appia 标准是否付费/排他（A&R 漂移信号）"
+
+# 优先级
+priority: "P1"
+rationale: "制度框架已明确（LLC + Series + LF 背书），但制度实践尚无数据。建元数据层，等 6 个月后补齐自动化管线。"
