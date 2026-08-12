@@ -57,12 +57,7 @@ LICENSE 文件内容： "MIT License / Copyright (c) 2026 OpenClaw Foundation"
 GitHub API 返回：  license.spdx_id = "NOASSERTION"
 ```
 
-这可能是因为：
-1. LICENSE 文件是手动写的 MIT 文本，但 repo 层面未通过 GitHub 的 SPDX 声明机制确认
-2. 文件声称 "OpenClaw Foundation" 为版权持有者，但该 Foundation 的法律实体状态未验证
-3. GitHub API 的 license 字段以 repo 的 `default_branch` 上的 `license` 自动检测为准——**如果 SPDX 标识不完整，API 返回 NOASSERTION**
-
-**无论具体技术原因是什么，从制度角度这是一个重要的"产权模糊信号"——它意味着 OpenClaw 的 81K forks 在法律上处于不确定状态。**
+这可能是因为 LICENSE 文件的内容格式或路径未被 GitHub 的 SPDX 自动检测机制正确识别。从制度角度，无论具体技术原因是什么，**"LICENSE 文件存在且内容为 MIT"与"API 返回 NOASSERTION"之间的矛盾，本身就是一个"产权声明在技术层面未完全落地"的有效信号。**
 
 ---
 
