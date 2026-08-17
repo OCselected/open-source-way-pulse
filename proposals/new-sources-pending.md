@@ -100,3 +100,241 @@ Pulse v2 现有 10 个项目均为产权清晰（MIT/BSD/Apache/GPL），OpenCla
 **核心对照：** 同样量级、同样集中度的两个 AI Agent 项目，产权结构截然不同——MIT（包容性）vs NOASSERTION（产权真空）。这是大分流 2.0 在 AI Agent 生态层面的微观体现。
 
 **Scorecard 共同缺失：** 两个项目均未被 OpenSSF Scorecard 缓存，说明安全认证体系尚未覆盖新兴 AI Agent 生态——这本身就是一个制度信号。
+
+---
+
+## 2026-08-18 — 新来源评估（信号甄别管线产出，2026-08-13 ~ 2026-08-16 队列）
+
+> **评估来源：** 信号甄别与深度审查（`fd423d85a206`）每日追加的磁盘消息队列
+> **评估时间：** 2026-08-18
+> **评估者：** 窄廊（cron job `新来源评估与注册`）
+
+---
+
+### 来源 1：Linux Foundation Open Secure AI Alliance (OSAA)
+
+| 项 | 内容 |
+|---|------|
+| 来源名称 | Open Secure AI Alliance (OSAA) |
+| 类型 | 联盟/基金会（LF 子基金会） |
+| 来源 URL | https://www.linuxfoundation.org/blog |
+| 推荐理由 | 2026-06 成立，37 家成员（NVIDIA/Microsoft/GitHub/Google/Amazon/Anthropic 等），发布 SAFE 工作组 RFC——AI 安全事件自愿披露框架 |
+| 推荐日期 | 2026-08-13 |
+
+**NIE 四轴评估：**
+
+| 轴 | 评分 | 判断 |
+|----|------|------|
+| Coase（企业边界） | ⭐⭐⭐ 3/3 | 37 家企业共建新联盟 = 企业边界的制度性扩展，SAFE 工作组将 AI 安全事件从企业内控转为联盟互认 |
+| Williamson（混合治理） | ⭐⭐⭐ 3/3 | 37 成员涵盖云/芯片/监管/安全——混合治理结构，非市场非科层 |
+| North（制度变迁） | ⭐⭐⭐ 3/3 | LF 2026 下半年密集推出 OSAA + Tokenomics = LF 自身从"开源基础设施托管"向"AI 治理基础设施"的战略漂移 |
+| Ostrom（公共池塘） | ⭐⭐⭐ 3/3 | AI 安全信息披露 = 数字公地治理问题；自愿披露框架 = 自组织制度尝试 |
+| A&R（包容性 vs 汲取性） | ⭐⭐ 2/3 | 37 家企业成员 vs 无社区/个人代表——包容性边界取决于标准化是否开放 |
+
+**综合评级：P1**（≥3 轴典型性，但非独立数据源——OSAA 无独立网站，门户页面 JS 渲染 404，需通过 LF 博客 RSS 追踪）
+
+**数据源状态：**
+- ❌ `https://www.linuxfoundation.org/press/open-secure-ai-alliance/` → HTTP 404（HubSpot JS 渲染页面）
+- ❌ `osaa.io` / `opensourcealliance.org` → 均不存在/不可访问
+- ✅ LF 博客 RSS 可获取（`https://www.linuxfoundation.org/blog/rss.xml`）→ 覆盖 LF 旗下所有子基金会动态
+- ✅ LF GitHub 组织：62 个公开仓库，可追踪事件
+
+**建议触发条件（升级为 P0）：**
+1. OSAA 独立网站上线（静态可抓取）
+2. OSAA 首个 GitHub 组织仓库创建
+3. SAFE 工作组 RFC 进入标准化流程
+
+**独特价值：**
+LF 2026 下半年双基金会（OSAA + Tokenomics）的密集推出，本身就是 North 意义上的制度变迁信号——LF 正在从"项目托管"向"治理基础设施输出"演化。但当前不宜建独立监控管线，信号强度通过 LF 博客 RSS 即可覆盖。
+
+---
+
+### 来源 2：Linux Foundation Tokenomics Foundation
+
+| 项 | 内容 |
+|---|------|
+| 来源名称 | Tokenomics Foundation |
+| 类型 | 基金会/标准组织（LF 子基金会） |
+| 来源 URL | https://www.linuxfoundation.org/projects/tokenomics-foundation |
+| 推荐理由 | 2026-08-04 成立，29→30 家创始成员（含 JPMorgan/IBM/Accenture/PointFive/Yarken），AI token 计量标准化，金融机构主导的开源治理标准新样本 |
+| 推荐日期 | 2026-08-13 |
+
+**NIE 四轴评估：**
+
+| 轴 | 评分 | 判断 |
+|----|------|------|
+| Coase（企业边界） | ⭐⭐⭐ 3/3 | AI token 计量标准化 = 交易成本边界重新划定——谁定义计量单位，谁定义交易成本 |
+| Williamson（混合治理） | ⭐⭐⭐ 3/3 | 金融机构（JPMorgan/Accenture）主导开源标准=市场治理与科层治理的新混合形态 |
+| North（制度变迁） | ⭐⭐⭐ 3/3 | 开源基金会设立"token 计量标准" = 制度变迁的典型案例——开源从代码协作进入经济计量域 |
+| Ostrom（公共池塘） | ⭐⭐ 2/3 | 标准化作为公共品，但金融机构主导可能引入排他性 |
+| A&R（包容性 vs 汲取性） | ⭐⭐ 2/3 | 标准化是否付费/免费 = 包容性 vs 汲取性的分水岭 |
+
+**综合评级：P1**（≥3 轴典型性，但同 OSAA——非独立数据源，需通过 LF 博客 RSS 追踪）
+
+**数据源状态：**
+- ❌ 门户页面 JS 渲染 404
+- ✅ LF 博客 RSS 可覆盖（`https://www.linuxfoundation.org/blog/rss.xml`）
+- ✅ LF GitHub 组织事件可追踪
+
+**建议触发条件（升级为 P0）：**
+1. Tokenomics Foundation 独立网站/规范文档上线
+2. 首个标准化草案发布（GitHub repo 或 RFC）
+3. 标准化认证/收费模式明确（A&R 漂移判断）
+
+**独特价值：**
+AI token 计量标准化的本质是"谁定义 AI 的使用成本"——这是开源从"免费协作"向"计价协作"的制度跃迁。与 OSAA 构成 LF 2026 双基金会信号。
+
+---
+
+### 来源 3：TAIONE Open Source Foundation（台湾开源基金会）
+
+| 项 | 内容 |
+|---|------|
+| 来源名称 | TAIONE Open Source Foundation |
+| 类型 | 基金会（区域性开源基金会） |
+| 来源 URL | https://taione.org/（*注：队列文件中的 `taiwane.org` 为 DNS 不存在的域名，经搜索确认为 `taione.org`） |
+| 推荐理由 | 2026-07-30 成立，$9.3M 启动资金，台湾 50 指数硬件集团资助，以 vLLM 生态建设为核心，嵌入式 LLM 合作 |
+| 推荐日期 | 2026-08-15 |
+
+**NIE 四轴评估：**
+
+| 轴 | 评分 | 判断 |
+|----|------|------|
+| Coase（企业边界） | ⭐⭐ 2/3 | 台湾硬件集团跨企业共建开源基金会 = 企业边界向区域公地延伸 |
+| Williamson（混合治理） | ⭐⭐ 2/3 | 企业资助 + 社区运营的混合形态，但治理细节尚不透明 |
+| North（制度变迁） | ⭐⭐⭐ 3/3 | 台湾首个以 vLLM 为核心的开源推理基金会 = 区域性开源治理的制度创新 |
+| Ostrom（公共池塘） | ⭐⭐ 2/3 | 开源推理基础设施作为区域性公共品 |
+| A&R（包容性 vs 汲取性） | ⭐⭐⭐ 3/3 | 区域性开源治理新信号——硬件巨头从"制造芯片"转向"建设开源基础设施" |
+
+**综合评级：P1**（2-3 轴典型性，数据源可获取，区域性制度信号独特）
+
+**数据源状态：**
+- ✅ `https://taione.org/` → HTTP 200（SPA，JS 渲染首页）
+- ⚠️ 首页为 Vue/React SPA，curl 仅获取模板骨架
+- ⚠️ RSS 未发现
+- ✅ 新闻覆盖（TechTimes、Manila Times 等均有报道）
+
+**建议触发条件（升级为 P0）：**
+1. TAIONE 发布静态内容（博客/新闻/活动页面）
+2. GitHub 组织创建并公开仓库
+3. vLLM 台湾社区活动常态化（每月 1 次以上）
+
+**独特价值：**
+TAIONE 是"大分流 2.0"在东亚的微观体现——硬件制造巨头（非软件公司）主导建设开源基金会，路径与西方（软件公司/基金会主导）截然不同。这是大分流 2.0 的"本土化选择"信号的实证案例。
+
+---
+
+### 来源 4：news.apache.org（ASF 官方新闻）
+
+| 项 | 内容 |
+|---|------|
+| 来源名称 | news.apache.org — The ASF Blog |
+| 类型 | 基金会新闻（WordPress） |
+| 来源 URL | https://news.apache.org |
+| 推荐理由 | 比 GlobeNewswire 转载更准确，适合监控 TLP 晋升与 ASF 治理动态 |
+| 推荐日期 | 2026-08-16 |
+
+**NIE 四轴评估：**
+
+| 轴 | 评分 | 判断 |
+|----|------|------|
+| Coase（企业边界） | ⭐ 1/3 | 新闻源，不直接涉及企业边界 |
+| Williamson（混合治理） | ⭐⭐ 2/3 | 官方新闻发布治理动态（TLP 晋升、Board 决议） |
+| North（制度变迁） | ⭐⭐⭐ 3/3 | TLP 晋升、Project 毕业 = 制度变迁的直接记录 |
+| Ostrom（公共池塘） | ⭐ 1/3 | 新闻本身不构成公共池塘资源 |
+| A&R（包容性 vs 汲取性） | ⭐⭐ 2/3 | 新闻发布本身透明 = 包容性制度信号 |
+
+**综合评级：P1**（2 轴典型 + 与现有 ASF 邮件列表监控互补，数据源可自动化获取）
+
+**数据源状态：**
+- ✅ `https://news.apache.org/` → HTTP 200（WordPress 站点）
+- ✅ `https://news.apache.org/wp-json/wp/v2/posts` → WP REST API 200
+- ⚠️ `https://news.apache.org/feed/` → HTTP 429（rate limit）
+- ✅ WP REST API 可作为替代数据源
+
+**建议触发条件（升级为 P0）：**
+1. 与现有 ASF 邮件列表监控整合为统一 ASF 监控模块
+2. 定制 WP REST API 增量同步脚本稳定运行 2 周
+
+**独特价值：**
+填补 ASF 监控的"官方叙事"空白——现有 ASF 监控覆盖邮件列表（治理过程）和 GitHub（代码），缺官方新闻（治理结果公告）。TLP 晋升、Board 变更等制度变迁事件通过官方新闻确认比邮件列表推测更可靠。
+
+---
+
+### 来源 5-8：P2 来源（记录备案）
+
+> 以下来源在 NIE 四轴上典型性 ≤ 2 轴，或/且数据源不适合自动化监控，仅记录备案。
+
+#### 来源 5：The Jamestown Foundation
+
+| 项 | 内容 |
+|---|------|
+| 来源名称 | The Jamestown Foundation |
+| 类型 | 智库/研究 |
+| 来源 URL | https://jamestown.org |
+| 推荐理由 | 专注中美 AI 地缘政治与开源政策分析 |
+| 评级 | **P2** |
+| NIE 典型性 | 1-2 轴（North 2 / A&R 2）——地缘政治分析间接反映制度环境变迁，但非直接开源治理信号 |
+| 数据源状态 | 未测试（已有监测池已有足够 AI 政策源） |
+| 建议触发条件 | 当 Jamestown 产出专门针对开源制度的分析文章时，可升级为 P1 |
+
+#### 来源 6：Centre for International Governance Innovation (CIGI)
+
+| 项 | 内容 |
+|---|------|
+| 来源名称 | Centre for International Governance Innovation (CIGI) |
+| 类型 | 智库 |
+| 来源 URL | https://cigionline.org |
+| 推荐理由 | 专注 AI 治理与国际制度设计 |
+| 评级 | **P2** |
+| NIE 典型性 | 1-2 轴（North 2 / A&R 2）——AI 治理制度设计间接相关，但非开源治理专门 |
+| 数据源状态 | 未测试 |
+| 建议触发条件 | 当 CIGI 产出专门针对开源或公地治理的出版物时 |
+
+#### 来源 7：Lawfare
+
+| 项 | 内容 |
+|---|------|
+| 来源名称 | Lawfare |
+| 类型 | 智库/媒体 |
+| 来源 URL | https://lawfaremedia.org |
+| 推荐理由 | "Knives Are Out for Open-Weight AI Models" 一文直接讨论开源定义权 |
+| 评级 | **P2** |
+| NIE 典型性 | 1-2 轴（A&R 3）——开源定义权讨论为 A&R 包容性/汲取性提供制度分析素材，但来源本身非持续开源治理源 |
+| 数据源状态 | 未测试 |
+| 建议触发条件 | 当 Lawfare 开设开源治理专栏或持续产出相关文章时 |
+
+#### 来源 8：ICML Technical AI Governance Research Workshop
+
+| 项 | 内容 |
+|---|------|
+| 来源名称 | ICML Technical AI Governance Research Workshop |
+| 类型 | 学术会议 |
+| 来源 URL | ICML 2026 (AI Governance Workshop track) |
+| 推荐理由 | AI 治理研究的前沿会议，多篇论文引用（如 Sidhu 2026 AI Incident Governance） |
+| 评级 | **P2** |
+| NIE 典型性 | 1-2 轴（North 2 / Ostrom 2）——学术会议产出制度研究，但非持续数据源，年度会议节奏 |
+| 数据源状态 | 年度会议，非数据管线 |
+| 建议触发条件 | 下一届 ICML 2027 CFP 发布时，手动评估是否纳入论文监控管线 |
+
+---
+
+### 排除来源
+
+| 来源 | 原因 |
+|------|------|
+| OpenSSF (openssf.org) | ✅ 已在监测池中（`openssf/registry.yaml`，含 RSS + Scorecard API + Charter + GitHub 事件） |
+| OpenChain (openchainproject.org) | ⏸️ 上游标注"待人工确认"，未正式加入队列，跳过 |
+| 2026-08-17 队列 | ⏭️ "无新来源发现" |
+| 2026-08-18 队列 | ⏭️ "无新来源发现" |
+
+---
+
+### 值得追踪的制度信号（非数据源，关联至 LF 博客 RSS）
+
+OSAA 和 Tokenomics Foundation 虽未独立建管线，但以下信号值得通过 LF 博客 RSS 持续追踪：
+
+1. **LF 2026 下半年双基金会密集推出**——LF 从"项目托管"向"治理基础设施输出"的战略漂移（North 制度变迁）
+2. **AI token 计量标准化**——开源从"免费协作"向"计价协作"跃迁（Coase 交易成本边界）
+3. **SAFE 工作组 RFC 落地**——AI 安全事件披露从自愿→强制→制度化的路径（Ostrom 公共池治理）
+4. **TAIONE 的东亚路径**——硬件制造巨头主导的基金会 vs 西方软件公司主导（大分流 2.0 实证）
