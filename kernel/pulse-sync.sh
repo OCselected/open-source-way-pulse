@@ -117,10 +117,11 @@ for name in $TARGETS; do
   fi
 
   echo "  Syncing (epoch $epoch)..."
-  before="$(cd "$dest" && git rev-list --all --count 2>/dev/null || echo 0)"
-  # Bare repos: fetch instead of pull (pull requires a work tree)
+  before="$(cd "$dest" && git rev-list HEAD --count 2>/dev/null || echo 0)"
+  # Bare repos: fetch then update HEAD (fetch alone only updates FETCH_HEAD)
   (cd "$dest" && git fetch origin 2>&1 | tail -1) || true
-  after="$(cd "$dest" && git rev-list --all --count 2>/dev/null || echo 0)"
+  (cd "$dest" && git update-ref HEAD FETCH_HEAD 2>/dev/null) || true
+  after="$(cd "$dest" && git rev-list HEAD --count 2>/dev/null || echo 0)"
   new=$((after - before))
   newest="$(cd "$dest" && git log --format='%ai %s' -1 2>/dev/null)"
   echo "  +$new emails | total: $after | latest: $newest"
