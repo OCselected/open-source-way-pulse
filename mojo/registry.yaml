@@ -1,0 +1,47 @@
+# Project Pulse v2 — Mojo/Modular Institutional Registry
+# 2026-08-18 Mojo 开源（Apache 2.0 + LLVM exceptions，暂不接受外部贡献）
+# 制度定位：大分流 2.0「特许工程代码 → FLOSS」过渡态的第一手样本
+# 核心概念：「产权释放」与「治理开放」的制度分层实验（发布权开放、合并权保留）
+#
+# NIE 分析轴：Coase / Williamson / North / Ostrom / A&R
+
+institution:
+  name: "Modular (Mojo)"
+  domain: "modular.com"
+  repo: "modular/modular"          # GitHub API 名称（原 modular/mojo，2026-08 重命名）
+  legal_form: "私有公司（2026-08 被 Qualcomm 收购）"
+  key_event: "2026-08-18 Mojo 开源：Apache-2.0 WITH LLVM-exception（GitHub API 无法识别该组合许可，返回 NOASSERTION——License 识别边界本身即产权信号）"
+  governance: "半开源——发布权开放、合并权保留，暂不接受外部贡献"
+
+nie_axes:
+  coase:
+    score: 5
+    signal: "产权释放 vs 治理开放 的制度分层：许可开放（Apache 2.0）与合并权保留并行，企业在开源边界上的条件性让渡——Coasian 企业边界重画"
+  williamson:
+    score: 4
+    signal: "半开源 = 市场-科层-混合治理的新实验形态：源代码进入公地，变更权留在企业内部"
+  north:
+    score: 5
+    signal: "2026-08-18 开源事件为制度变迁实况记录（Qualcomm 收购之后才开源——产权时机本身即信号）；官方博客为首发渠道"
+  ostrom:
+    score: 3
+    signal: "源代码进入公共池塘，但'合并权保留'意味着公地边界规则由单方定义"
+  ar:
+    score: 5
+    signal: "包容性半程——许可开放是包容性的必要条件而非充分条件；'发布权开放、合并权保留'是包容 vs 汲取的中间态样本"
+
+data_sources:
+  blog_rss:
+    source: "https://www.modular.com/blog/rss.xml"
+    frequency: daily
+    category: governance
+    description: "Modular 官方博客 RSS（Webflow）——Mojo 治理/许可/路线图公告第一手，2026-08-24 验证 200"
+    watch_level: high
+    status: active
+  github_repo:
+    source: "https://api.github.com/repos/modular/modular"
+    frequency: daily
+    category: lifecycle
+    description: "仓库元数据（29K stars / 2026-08-24 pushed）——许可字段 NOASSERTION 需人工核对 LICENSE 文件，例行走查项目"
+    watch_level: high
+    status: active

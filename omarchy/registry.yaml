@@ -1,0 +1,52 @@
+# Project Pulse v2 — Omarchy/Omacom Foundation Institutional Registry
+# 2026-08-21 Omacom Foundation 成立（慈善基金会形式，初始 $800 万；3 天内追加至 $1000 万）
+# 制度定位：「魅力权威基金会化」的完整实验样本——DHH 个人品牌 OS → 基金会制度
+# 大分流 2.0 判断轴：落入「赛博庄园」（DHH veto 权保留）还是「基金会制度化」（meritocracy 落地）
+#
+# NIE 分析轴：Coase / Williamson / North / Ostrom / A&R
+
+institution:
+  name: "Omarchy / Omacom Foundation"
+  domain: "omarchy.org"
+  repo: "basecamp/omarchy"          # 代码托管在 basecamp 组织下（omarchy/omarchy 仅为 profile 占位仓库）
+  legal_form: "Omacom Foundation（慈善基金会，2026-08 成立）"
+  founder: "DHH（Basecamp/37signals）"
+  key_events:
+    - "2026-08-19: The Omarchy Core Team 公布——治理团队结构开始成型"
+    - "2026-08-21: Omacom Foundation launches with $8 million"
+    - "2026-08-21: 成为 Hyprland 独家赞助（基金会化集体行动的第一笔公共品资助决策）"
+    - "2026-08-24: Omacom Foundation funding hits $10m（3 天内追加 $2M）"
+    - "2026-08-24: 成为 Quickshell 首席赞助"
+
+nie_axes:
+  coase:
+    score: 5
+    signal: "个人品牌 OS → 基金会的产权跃迁：从 DHH 个人所有到法人实体持有，产权归属的制度性转移完整记录"
+  williamson:
+    score: 4
+    signal: "基金会化 = 从魅力权威（个人意志）到程序化治理（maintainer 通道/voting）的混合治理过渡"
+  north:
+    score: 5
+    signal: "2026-08-19 至 08-24 密集事件序列：Core Team → 基金会成立 → 赞助决策 → 资金追加，制度变迁实时档案"
+  ostrom:
+    score: 5
+    signal: "maintainer 晋升机制、插件市场、赞助公共品（Hyprland/Quickshell）= 公共池塘治理规则的成形过程"
+  ar:
+    score: 5
+    signal: "包容 vs 汲取判别样本：'赛博庄园（个人 veto 保留）'与'基金会制度化（治理权下放）'的竞争结果将直接给出 A&R 判据"
+
+data_sources:
+  news_index:
+    source: "https://omarchy.org/news/"
+    frequency: daily
+    category: governance
+    description: "官网新闻索引（静态 HTML，/news/YYYY/MM/slug 日期路由）——基金会治理公告第一手，2026-08-25 验证 200"
+    watch_level: high
+    status: active
+  github_repo:
+    source: "https://api.github.com/repos/basecamp/omarchy"
+    frequency: daily
+    category: lifecycle
+    description: "代码仓库元数据（basecamp 组织托管）——stars/releases/推送节奏"
+    watch_level: high
+    status: active
