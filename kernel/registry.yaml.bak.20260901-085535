@@ -17,7 +17,7 @@ inbox_list:
   - name: lkml
     lore: lkml
     description: "Linux Kernel Mailing List (vger.kernel.org)"
-    latest_epoch: 20
+    latest_epoch: 19
     status: active
 
   - name: git

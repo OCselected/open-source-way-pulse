@@ -1,7 +1,46 @@
+# Project Pulse — Debian Registry
+#
+# Data sources:
+#   1. Micronews RSS (primary): micronews.debian.org/feeds/feed.rss
+#      → data/debian/micronews-latest.json
+#   2. Stable Release page: debian.org/releases/stable/
+#      → data/debian/release-latest.json
+#   3. debian-announce archive (fallback, often 404):
+#      → data/debian/announce-latest.json
+#
+# Sync: debian/debian-sync.sh --sync
+# Query: debian/debian-query.sh
+# =============================================================================
+
 source: debian
-provider: web-scrape
+provider: web-rss+html
 cache_dir: data/debian
-rate_limit: none
-endpoints:
-  - "stable-release"
-  - "announcement-archive"
+sync_script: debian-sync.sh
+query_script: debian-query.sh
+data_sources:
+  - name: micronews
+    type: rss
+    url: "https://micronews.debian.org/feeds/feed.rss"
+    cache_file: "micronews-latest.json"
+    refresh: daily
+    status: active
+
+  - name: stable-release
+    type: html-scrape
+    url: "https://www.debian.org/releases/stable/"
+    cache_file: "release-latest.json"
+    refresh: monthly
+    status: active
+
+  - name: announce-archive
+    type: html-scrape
+    url: "https://lists.debian.org/debian-announce-YYYY/threads.html"
+    cache_file: "announce-latest.json"
+    refresh: daily
+    status: inactive
+    note: "lists.debian.org returns 404 for recent years; Micronews is primary"
+
+governance_structure:
+  dpl: "Debian Project Leader — biennial democratic election"
+  technical_committee: "Technical Committee — resolves maintainer disputes"
+  maintainers: "Package-level meritocracy: contribution → responsibility → rights"
