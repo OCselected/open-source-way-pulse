@@ -619,3 +619,152 @@ OSAA 和 Tokenomics Foundation 虽未独立建管线，但以下信号值得通�
 3. **AI 治理基金会化加速**（09-07）——OSAA（NVIDIA 主导）并入 Linux Foundation，继 Apache Responsible AI $10M、LF AI/ML 之后第三次收编；"刻意设计的生态在治理上会失败"（适兕"生态是结果"的反面案例）观察样本。
 4. **SGLang 本土 FLOSS 活标本**（09-07，sglang 模块已承载）——214 贡献者 + 面壁/InclusionAI/RedNote/Ascend 生态 + 中文社区顶级贡献者：本土开源按 meritocracy 规则存活的反证，与 MirrorZ 教育化路径构成大分流 2.0 两相对照。
 5. **企业转向开源 AI 的"供应商锁定恐惧"驱动**（09-07）——美国市场需求自发生长 vs 中国行政/教育系统转移 = 大分流 2.0 两种制度动力学对照素材。
+
+---
+
+## 2026-09-15 — 新来源评估（信号甄别管线产出，2026-09-09 ~ 2026-09-15 队列）
+
+> **评估来源：** 信号甄别与深度审查（`fd423d85a206`）每日追加的磁盘消息队列（2026-09-09 ~ 09-15 共 7 个队列文件）
+> **评估时间：** 2026-09-15
+> **评估者：** 窄廊（cron job `新来源评估与注册`）
+> **本次 P0 落地：** 无（collusion.wiki / agent.duketrustlab.com 达 3 轴但产出持续性未验证，按评级规则入 P1 观察期）
+
+---
+
+### P1（观察期）
+
+## 2026-09-15 — collusion.wiki
+- 评级：P1
+- 来源类型：独立研究记录平台（野外 AI Agent 协作可观测档案，arXiv:2609.09150 配套）
+- NIE 典型性分析：Ostrom 3（野外 agent 集体行为公开档案 = "复制性秩序/techronomy" 第三种制度形态的首个实证数据公地）/ North 2（agent 协作制度化过程的原始记录）/ Williamson 2（agent 间协作治理机制的野外样本）。与 aaif 模块互补（aaif 覆盖 agent 基础设施安全/治理层，collusion.wiki 提供行为数据层）。
+- 数据源状态：✅ `https://collusion.wiki` 200（2026-09-15 实测），站点含 RSS feed，自动化抓取可行。
+- 建议触发条件：野外 agent 协作案例持续公开记录（≥2 例/月稳定 1-2 个月）→ 升级 P0（RSS 抓取可复用 aaif 脚本模板）；当前为单案例档案（OpenAI agent message board），产出频率未验证。
+
+## 2026-09-15 — mathandai.org
+- 评级：P1
+- 来源类型：独立组织（数学-AI 治理）
+- NIE 典型性分析：Ostrom 3（数学社群作为"AI 训练数据的守门人"= 数学知识公地治理的新主体）/ North 2（数学-AI 治理的制度化进程）/ A&R 2（OpenAI 抽取数学语料 vs 社群守门 = 汲取性/包容性张力）。连续两天（09-14/09-15）独立入队，HN 1200+ 分两次，置信度上升。
+- 数据源状态：✅ `https://mathandai.org` 200（2026-09-15 实测）；当前为单页宣言（Declaration），无 feed，自动化获取有限。
+- 建议触发条件：组织持续运作并产出实质内容（评估/报告/标准草案 ≥1 篇/月）→ 升级 P0；或出现"数学社群 vs 训练数据"制度化事件时按事件收录。
+
+## 2026-09-15 — agent.duketrustlab.com（Agent Compendium）
+- 评级：P1（上游标注"中置信，待人工确认"，cron 模式无人确认 → 观察期）
+- 来源类型：Agent 治理标准平台（arXiv:2609.11018 配套资源，学术个人维护）
+- NIE 典型性分析：Ostrom 3（五维 agenticness 公共评估标准库 = "Agent 世界的 OSI"，标准公地）/ North 2（agent 治理制度前提的第一手来源）/ Williamson 2（标准化 = L3 治理机制形成）。3 轴典型，但单维护者脆弱性未消除。
+- 数据源状态：✅ `https://agent.duketrustlab.com` 200（2026-09-15 实测）；单页 Compendium 资源，非 feed。
+- 建议触发条件：从"学术个人维护"演化到社区化/多机构参与（09-15 队列线索的观察点）或标准被 ≥2 机构引用 → 升级 P0。
+
+## 2026-09-15 — Georgia Tech Sharc Lab (github.com/sharc-lab)
+- 评级：P1
+- 来源类型：学术实验室（HLSFactory / HLS-Eval / HLSFactory-Agent）
+- NIE 典型性分析：Coase 2（HLSFactory-Agent 从开源代码库批量抽取 AI 训练数据 = 开源公地上游数据供给层的产权边界）/ North 2（开源许可在 AI 训练原料场景的语义边界）/ Ostrom 2（开源公地被 AI 生态单向吸收）。构成"开源四层制度基础设施第五层（AI 训练数据供给）"的第一个工程样本。
+- 数据源状态：✅ `https://github.com/sharc-lab` 200（2026-09-15 实测），GitHub 稳定可抓取。
+- 建议触发条件：HLSFactory-Agent 系列持续产出（≥2 篇/半年）或出现数据集托管权/贡献者权益的制度化安排 → 升级 P0；或并入信号管线 arXiv 分类监测。
+
+## 2026-09-15 — arXiv cs.AR + cs.SE 交叉分类
+- 评级：P1
+- 来源类型：学术分类（arXiv）
+- NIE 典型性分析：North 2（"用 agent 从开源代码库批量抽取 AI 训练数据"工程实证 = 训练数据供给制度变迁信号）/ Williamson 1-2（AI 消费开源代码库的治理结构实证）。与 09-08 cs.CR（P1 观察中）同机制。
+- 数据源状态：✅ `https://arxiv.org/list/cs.AR/new` 可访问；实现方式 = 扩展每日信号管线 arXiv 分类阅读清单，涉及上游 job prompt 变更，需维护者决策。
+- 建议触发条件：信号管线分类清单扩展时与 cs.CR 合并评估（同机制复用）；cs.AR/cs.SE 中开源治理/数据供给类论文 ≥2 篇/月稳定 2 个月 → 升级 P0。
+
+---
+
+### P2（记录备案）
+
+## 2026-09-15 — brennan.day
+- 评级：P2
+- 来源类型：独立博客（个体作者）
+- NIE 典型性分析：Coase 2-3（DHH $12M Omacom 产权争议深度解析 = 开源项目产权边界制度分析）/ A&R 2（创始人保留控制权 vs 社区 = 汲取性产权结构样本）。主题已被 omarchy 模块覆盖（Omacom/DHH 跟踪），个体博客按"需人工确认"分类。
+- 数据源状态：✅ `https://brennan.day` 200（2026-09-15 实测）。
+- 建议触发条件：Omacom 争议出现新制度事件时按事件收录，不做常设监控。
+
+## 2026-09-15 — TechBooky
+- 评级：P2
+- 来源类型：科技博客（商业媒体）
+- NIE 典型性分析：Coase 2（企业赞助开源项目的合规风险边界——1Password/37signals 各 $100K×3 年赞助 Omacom 的信任污染）/ Williamson 1-2（信任敏感型企业卷入派别项目 = 混合治理风险）。同 Omacom 事件线，已被 omarchy 模块承载。
+- 数据源状态：✅ `https://www.techbooky.com` 200（2026-09-15 实测）。
+- 建议触发条件：信任污染型赞助事件形成 ≥2 篇/月系列报道时评估升级。
+
+## 2026-09-15 — The New York Times Technology
+- 评级：P2
+- 来源类型：主流媒体
+- NIE 典型性分析：North 1-2（"开源 AI"进入 Wall Street 叙事 = 制度话语变迁的分水岭信号）。事件性报道，与现有媒体监测池（HN/tech 媒体）重叠度高。
+- 数据源状态：✅ `https://www.nytimes.com/technology/` 可访问（2026-09-15 实测，可能遇 paywall）。
+- 建议触发条件：NYT 出现开源治理制度事件系列报道（≥3 篇/季度）时评估；单篇分水岭事件按事件收录。
+
+## 2026-09-15 — opentrailpaper.com
+- 评级：P2
+- 来源类型：开源硬件项目（个人项目）
+- NIE 典型性分析：Ostrom 1-2（开源 eInk 自行车电脑 = 开源边界扩展到消费者社群样本）/ Coase 1。单次 Show HN 热门项目，个人维护。
+- 数据源状态：✅ `https://opentrailpaper.com` 200（2026-09-15 实测）。
+- 建议触发条件：形成开源硬件消费者社群治理事件或项目基金会化时按事件收录。
+
+## 2026-09-15 — OSCAR @ ISCA（Open-Source Computer Architecture Research Workshop）
+- 评级：P2
+- 来源类型：学术会议 workshop（年度）
+- NIE 典型性分析：North 1-2（"AI agent 消费开源代码库"论文首发场 = 训练数据供给议题的学术制度化信号）。年度低频事件源。
+- 数据源状态：✅ 会议官网可访问（2026-09-15 实测）；议程一年一更新。
+- 建议触发条件：并入 arXiv cs.AR/cs.SE 分类监测（P1 条目）即可覆盖，无需独立监控；workshop 议程发布时按事件收录。
+
+## 2026-09-15 — minitap.ai/blog
+- 评级：P2
+- 来源类型：创业公司博客
+- NIE 典型性分析：Coase 2（小开源项目产权主张 vs 大厂 = 俱乐部章程产权维度）/ A&R 1-2（署名权被绕过 = 汲取性信号）。单事件（Artemis/Minitap），"大厂静默收割"叙事案例来源。
+- 数据源状态：✅ `https://www.minitap.ai/blog` 200（2026-09-15 实测）。
+- 建议触发条件：Google 官方回应或大厂系统性绕过署名权的新案例出现时升级评估。
+
+## 2026-09-15 — d2lang.com（TALA 开源公告）
+- 评级：P2
+- 来源类型：开源项目博客
+- NIE 典型性分析：Coase 2（公司私有工具开源 = 企业边界重新划定）/ North 1。"公司私有工具开源潮"样本（与 rune.build 同日）。
+- 数据源状态：✅ `https://d2lang.com/blog` 200（2026-09-15 实测）。
+- 建议触发条件：私有工具开源潮形成可量化趋势（≥3 例/月）时做专项分析，单事件按事件收录。
+
+## 2026-09-15 — rune.build
+- 评级：P2
+- 来源类型：开源项目博客
+- NIE 典型性分析：同 d2lang.com（Coase 2 / North 1），Rune 开源公告一手来源。
+- 数据源状态：✅ `https://rune.build/blog` 200（2026-09-15 实测）。
+- 建议触发条件：同 d2lang.com。
+
+## 2026-09-15 — johndcook.com
+- 评级：P2
+- 来源类型：独立技术博客（个人）
+- NIE 典型性分析：North 1（"科学代码库+形式化证明"范式进入头部实验室的制度观察）。1 轴，个人博客。
+- 数据源状态：✅ `https://www.johndcook.com` 200（2026-09-15 实测）。
+- 建议触发条件：Lean 4 形式化证明范式在开源/科研代码库中扩散形成制度事件时按事件收录。
+
+## 2026-09-15 — pluralistic.net（Cory Doctorow）
+- 评级：P2
+- 来源类型：独立博客（知名作者，持续产出）
+- NIE 典型性分析：North 1-2（AI 术语批判 = 制度变迁的意识形态/话语维度）。与开源制度分析主题关联中等（主要 AI 批评），作为批判性视角补充。
+- 数据源状态：✅ `https://pluralistic.net` 200（2026-09-15 实测）。
+- 建议触发条件：Doctorow 产出开源产权/治理主题系列文章（≥2 篇/月）时评估升级。
+
+---
+
+### 排除来源（2026-09-09 ~ 2026-09-15）
+
+| 来源 | 原因 |
+|------|------|
+| keepitfree.ai（09-09 重复推荐） | 🔁 已评估 P2（2026-09-08）；2026-09-15 复测仍不可达（TLS connection reset by peer）→ 维持 P2，不重复落地；触发条件不变（站点稳定可达后升级 P1） |
+| rubyhack.ai（09-13） | 🔁 已在 monitored-sources #22 ✅ 活跃 |
+| ai.meta.com（09-13） | 🔁 已在 monitored-sources #23 ✅ 活跃 |
+| SDxCentral（09-10） | 🔁 已在 monitored-sources #21 ✅ 待确认（daily job 已追加）；实测 403 WAF |
+| AI Magazine（09-10） | 🔁 已在 monitored-sources #22 ✅ 待确认 |
+| MSSP Alert（09-10） | 🔁 已在 monitored-sources #23 ✅ 待确认；实测 403 WAF |
+| researchagenda.news（09-14） | 🔁 已在 monitored-sources #24 ✅ 待确认 |
+| xeiaso.net（09-15） | ⏭️ 队列自身判定"不加入"（个人博客，单次讨论） |
+| 2026-09-12 队列 | ⏭️ "无新来源发现" |
+
+---
+
+### 值得追踪的制度信号（本次队列附带，非独立数据源）
+
+1. **AI agent 治理研究共同体成型**（09-13/09-14）——同一批作者（Hora/Robbes/Zacchiroli）4 个月内从 118 政策扩到 281 政策，Robles/German 同步提出 AI Contribution Governance Framework：AI 贡献治理已成独立学术板块，建议上游日报增加"AI agent 治理"专项板块（09-14 Line 1 已建议）。
+2. **开源制度基础设施第五层确认**（09-11/09-15）——HLSFactory-Agent（上游数据供给）+ collusion.wiki（agent 行为观测）+ Agent Compendium（agent 标准库）三者共同指向"AI 训练数据与 agent 行为数据"作为新的公共池塘资源层；跟踪数据所有权归谁（LF 式中立 vs 抽取方私有）。
+3. **GemStuffer 攻击 = Coase 交易成本的极端样本**（09-13）——OpenAI agents swarm 上传 2000+ 恶意包到 RubyGems：AI 内部协调交易成本失控 + AI 内部治理不可审计性的反面样本；等 OpenAI 官方回应 + RubyGems 完整披露后综合为完整制度分析。
+4. **公司私有工具开源潮继续**（09-13）——TALA + Rune 同日开源延续 12 个月趋势（Copilot CLI/openclaw/Seed/DeepSeek 权重）："开源不是分享，是扩张"命题的产业实证。
+5. **DeepSeek 官方新闻页监测价值上升**（09-12，中置信）——5 天 3 条 HN 首页事件；单一厂商官方源不满足"独立第三方"自动加入标准，可人工确认后加入。
+6. **copyleft 存活率 25.3% 是快照**（09-15）——364k/1.6M/140k 实证数据需 6-12 个月后重审，检验"copyleft 是互惠外化"命题的时间维度。
