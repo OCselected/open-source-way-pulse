@@ -801,3 +801,45 @@ OSAA 和 Tokenomics Foundation 虽未独立建管线，但以下信号值得通�
 4. **GitHub PR 限制方案讨论**（09-22）——InfoWorld 2026-09-18 / community discussions #185387：AI 冲击开源 review 信任模型；30 天观察 GitHub/GitLab 是否推出可配置 PR 权限、LF 是否要求成员项目采纳 PR 权限标准。
 5. **"合规审计制度供给 < 制度需求"多源实证群**（09-19/09-22，已第七份样本）——若第八份样本出现（"贡献者健康合规"或"AI 生成贡献合规"），合成跨源综合报告；新增观察维度：**日报元数据准确性**（09-20 核验发现论文作者列数与元数据缺口 = 该命题在元数据维度的新样本）。
 6. **治理文本 vs 治理机制测量缺口**（09-20）——#164 Noori 测的是 GOVERNANCE.md 文本演化，机制实际运作在文本之外；与 Nixpkgs core team 10 个月解散事件构成"治理文本越长越健康"的反例候选。A&R 框架下一个迭代方向 = 测量"权威再分配的对象分布"，以区分"包容性解读"（权威分散到不同背景主体）与"汲取性存续解读"（权威换载体但仍在同源主体）。
+
+---
+
+## 2026-09-23 ~ 2026-09-29 批次评估（队列 7 文件：09-23 / 09-24 / 09-25 / 09-26 / 09-27 / 09-28 / 09-29）
+
+### P1（观察期）
+
+## 2026-09-29 — Athena Coalition（Chainguard 牵头的开源供应链安全联盟）
+- 评级：P1
+- 来源类型：开源供应链安全联盟（厂商联合体，2026-06 成立，24+ 成员：BNY/Cisco/Cloudflare/Docker/JPMC/PwC 等）
+- NIE 典型性分析：Coase 3（安全责任边界从组件级 SBOM 升级到产品级联盟化 = 企业边界重组；私有加固版本（Chainguard Libraries）+ 联盟清关所（clearinghouse）把漏洞处置从单一厂商边界外移到联盟边界）/ Williamson 3（pre-embargo remediation + embargo 时间线协调 = 交易成本治理机制设计；与 LF 合作 SIRT + maintainer of last resort 计划 = 厂商联盟 × 基金会标准的混合治理）/ North 2（制度变迁——"coordinated disclosure was built for a world where finding flaws took weeks... that world is gone"：AI 机器速度漏洞发现改变制度环境，驱动协调披露制度再造；20,000+ findings / 2,000+ patches / 500+ 项目 = 新制度形态成型）/ Ostrom 2（开源软件作为公共池塘资源，volunteer maintainers 被 scanner noise 淹没 = 公地治理困境；"maintainer of last resort" = 公地补充治理机制）/ A&R 2（提交者自控 embargo 时间线 = 包容性设计；但 pre-embargo 修复仅成员可得 = 开源公地的俱乐部化风险）。4 轴典型，但联盟制度 3 个月龄 + 首次协调披露未落地 + 数据源为营销页/新闻稿（无 API/feed）→ 观察期。
+- 数据源状态：✅ `https://www.chainguard.dev/athena` 200（2026-09-29 实测，页面含完整联盟机制文本）；❌ 队列所给 `https://www.athena-alliance.io/` DNS 无解析 HTTP 000（2026-09-29 实测）——**域名错误，正确域名已核验为 chainguard.dev/athena**；✅ Business Wire 成员公告（Manifest 加入，2026-09-28）。
+- 建议触发条件：① 首次协调披露落地（页面称"a month"内）+ LF SIRT 合作正式化 → 升级 P0（联盟治理文本 + 披露事件流自动化，参考 openssf 管线）；② 出现独立域名/新闻页 → 转标准监测；③ 治理章程文档发布或成员 > 50 → 评估 JDF 式 registry.yaml 元数据层。
+
+---
+
+### 排除来源（2026-09-23 ~ 2026-09-29）
+
+| 来源 | 原因 |
+|------|------|
+| seldo.com（09-24） | 🔁 已在 monitored-sources #26 ✅ 待确认（上游 cron 已追加）；记录不落地。NIE 备忘：Williamson 2 / North 1-2（registry 层强制收费 = 开源资助范式变迁提案，30 年自愿资助失败史） |
+| pirateface.co（09-24） | 🔁 已在 monitored-sources #27 ✅ 待确认；记录不落地。NIE 备忘：Ostrom 2 / Coase 1（HF 模型 torrent 化 = 抗删除公地基础设施，与 MirrorZ 教育化 / AtomGit 本地化构成第三条基础设施路径） |
+| alignment.openai.com/misalignment-reports（09-24） | 🔁 已在 monitored-sources #28 ✅ 待确认；记录不落地。NIE 备忘：A&R 3（misalignment 框架 = AI 治理定义权争夺一手证据，伦理失败→治理话语再定义，与 ethics-washing 概念互证） |
+| timdettmers.com（09-25） | 🔁 已在 monitored-sources #24 ✅ 待确认；记录不落地（个人研究博客，中置信需人工确认；「学术研究生态化」命题第一手表达） |
+| OpenAlex（09-27） | 🔁 已在 monitored-sources #29 ✅ 活跃；记录不落地。NIE 备忘：Ostrom 3（学术公地开放 API 基础设施，2.5 亿+ 记录免费无速率限制，与 Zenodo/Unpaywall/Crossref 构成开放学术栈，sn-search-academic 核心数据源） |
+| Zenodo（09-27） | 🔁 已在 monitored-sources #30 ✅ 活跃；记录不落地。NIE 备忘：Ostrom 2（CERN 托管开放科研仓储 = 国际科学共同体产权入口，CERN 模式 AI 治理提案托管源） |
+| tokio.rs（09-27） | 🔁 已在 monitored-sources #31 ✅ 活跃；记录不落地。NIE 备忘：Williamson 2 / North 1（核心团队稳定演进 vs Git BDFL 单点仲裁的治理对照样本） |
+| Information Systems Research (INFORMS)（09-28） | 🔁 已在 monitored-sources #32 ✅ 待确认；记录不落地。NIE 备忘：Lerner-Tirole 学派 AI 时代续接（Song-Agarwal-Wen 2026 发表地） |
+| AI and Ethics (Springer)（09-28） | 🔁 已在 monitored-sources #33 ✅ 待确认；记录不落地。NIE 备忘：capabilities approach 规范论证范式（非制度实证期刊，跨范式对话观察点） |
+| Theory, Culture & Society (SAGE)（09-28） | 🔁 已在 monitored-sources #34 ✅ 待确认；记录不落地。NIE 备忘：数字公地意识形态层（Stalder 2026 与 #177 制度层构成"意识形态 + 制度"双重诊断） |
+| 2026-09-23 / 09-26 队列 | ⏭️ "无新来源发现"（09-26 devdotfast.com / DGF-Bench 两个候选均不满足高置信自动追加标准，队列自身判定不追加） |
+
+---
+
+### 值得追踪的制度信号（本次队列附带，非独立数据源）
+
+1. **OpenAI misalignment framework vs OSI OSAI 声明对峙**（09-24）——两条并行制度文本（厂商定义权 vs 社区定义权）是否相互承认或彻底分裂 = "AI 治理定义权"命题关键观测点；30 天窗口（截至 10-16）内看 Meta Llama 4 / Mistral / DeepSeek 是否回应 OSAI。
+2. **Git 3.0 治理机制变化**（09-27）——BDFL 单点仲裁（Linus 20 年）vs 维护者委员会 / LLM code policy 正式化 = Williamson L2 路径依赖 vs North 临界点在开源治理的第一次大规模实证；Git Contributors' Summit 2026 已讨论 Rust 强制迁移 / SHA-256 转换 / LLM code policy 三议题。
+3. **CERN 模式 AI 治理提案官方进展**（09-27）——UN Global Digital Compact / IISPAI / Global Dialogue on AI Governance 共同指向"AI 模型产权归国际科学共同体"；追踪 2026 Q4 官方文件出台。
+4. **vLLM 治理文档正式化**（09-28）——"Committer 提名 + No pure-agent PR"规则（2026-03-12）= Lerner-Tirole 命题从隐含传统到显式规则的第一次制度化书写；追踪更多项目是否跟进（治理文档化 = AI 时代开源治理制度化事件），作 #176 对照样本。
+5. **中国本土 LLM provider 退役政策冲击**（09-29 线索 7）——#178 样本仅覆盖 OpenAI/Anthropic/Google（82% 事后迁移 + 94% 硬编码），DeepSeek/Kimi/通义/豆包 = "大分流 2.0"命题在依赖治理维度的独立样本。
+6. **Swissi AI Journal 观察**（09-23 线索 3）——新 AI 期刊（ISSN 3043-1921，CC BY 4.0 含 DOI），单篇不足判断；观察 3-5 篇后续输出再评估是否加入 subscribe-feed（P2 备案）。
