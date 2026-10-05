@@ -1,0 +1,59 @@
+# Project Pulse v2 — Dogwood Policy Institutional Registry
+# agent harness 治理语言 —— Kuerbis & Ghosh 论文（North #186）制度的第一次产品化实现
+# 2026-07-27 建仓 / 2026-08-31 local-engine 建仓 / Apache-2.0
+# 制度定位：agent 行为治理边界规则（allow/deny 时间感知策略）从论文进入可执行代码，
+#           是「agent harness 治理」从制度经济学分析对象到产业标准的落地节点。
+#
+# 注意：正确的 Pages 首页是 https://dogwood-policy.github.io/dogwood/
+#      （队列最初给的 dogwood-policy.github.io 根路径返回 404，已核验修正）
+#
+# NIE 分析轴：Coase / Williamson / North / Ostrom / A&R
+
+institution:
+  name: "Dogwood Policy"
+  org: "dogwood-policy"
+  repo: "dogwood"
+  repo_local_engine: "dogwood-local-engine"
+  pages: "https://dogwood-policy.github.io/dogwood/"
+  legal_form: "GitHub org（AWS 生态开源治理语言；贡献者含 AWS 相关工程）"
+  governed: "agent harness 治理语言 —— allow/deny 时间感知策略（PDT 路径依赖 / 时序控制）"
+  key_event: "2026-09 发布 —— Kuerbis & Ghosh 描述的 agent harness 治理制度的第一次产品化实现"
+
+nie_axes:
+  coase:
+    score: 3
+    signal: "agent 治理语言分两层（规范参考实现 dogwood + 授权引擎 dogwood-local-engine）= 基础设施分层；开源规范 vs 引擎实现分离是企业边界/许可边界的治理性重画"
+  williamson:
+    score: 4
+    signal: "allow/deny 时间感知策略 = 交易成本治理机制产品化 —— agent 行为契约执行层；委托-代理（harness 与 agent）的治理机制从论文制度（#565 Kuerbis & Ghosh）落地为可审计的决策引擎"
+  north:
+    score: 4
+    signal: "制度变迁事件：治理制度从 SSRN/TPRC 论文 → 公开编码库 → AWS 官方配套基础设施；agent harness 治理语言的『产品化』是开源治理制度生命周期的新节点"
+  ostrom:
+    score: 3
+    signal: "agent 行为边界规则 = 数字公地治理规则的编码化——harness 治理如何定义 agent 进入公地的权限/边界，公共池塘资源（公共代码/公共 API）的准入规则产品化"
+  ar:
+    score: 3
+    signal: "开放治理语言（Apache-2.0 参考实现）vs AWS 生态配套引擎 = 包容性（治理规则公开可审）与汲取性（规则实现绑定平台云服务）之间态样本"
+
+data_sources:
+  github_repo_main:
+    source: "https://api.github.com/repos/dogwood-policy/dogwood"
+    frequency: daily
+    category: lifecycle
+    description: "Dogwood 规范参考解析器/解释器（Apache-2.0；423★，2026-07-27 建仓）——spec 与治理文本的第一手"
+    watch_level: high
+    status: active
+  github_repo_local_engine:
+    source: "https://api.github.com/repos/dogwood-policy/dogwood-local-engine"
+    frequency: daily
+    category: governance
+    description: "授权引擎实现（Apache-2.0；24★，2026-08-31 建仓）——治理机制的实际执行代码，驱动实现层信号"
+    watch_level: high
+    status: active
+  pages:
+    source: "https://dogwood-policy.github.io/dogwood/"
+    frequency: daily
+    category: governance
+    description: "Dogwood policy 语言规范页（正文路径带 /dogwood/ 子路径；根路径 404 已核验）——产品公告与规范正文一手"
+    status: active

@@ -1,0 +1,49 @@
+# Project Pulse v2 — Aleph Alpha Institutional Registry
+# EU 主权 AI 公司（德国）——「权重开源 vs 训练专有」边界正式制度化的第一手样本
+# Kolibri 78B Apache-2.0 权重 + 专有训练管线 (2026-09/10 发布)
+# 制度定位：大分流 2.0 的 EU 对照路径——权重层深度嵌入全球开源生态（Apache-2.0
+#           开放权重）vs 中国行政动员式路径（AtomGit 封闭托管 / 信通院行政标准）。
+#           EU 用「开放权重 + 主权云伙伴」实现主权；中国用「封闭托管 + 行政标准」。
+#
+# NIE 分析轴：Coase / Williamson / North / Ostrom / A&R
+
+institution:
+  name: "Aleph Alpha"
+  domain: "aleph-alpha.com"
+  country: "德国（EU 主权 AI 代表性公司）"
+  legal_form: "私有公司（德国 AI 初创，主权 AI 路线）"
+  key_event: "Kolibri 78B 发布：Apache-2.0 开放权重 + 专有训练管线（2026-09/10）——『权重开源 vs 训练开源』边界被正式制度化"
+  governance: "权重层开放（Apache-2.0）＋ 训练/基础设施层保留（专有管线 + 主权云伙伴）"
+
+nie_axes:
+  coase:
+    score: 4
+    signal: "企业边界重画：开放权重的边界划在『模型权重』，训练管线/数据集保留专有——Coase 命题的 AI 时代新边界（发布权开放、训练权保留，与 Mojo 半开源同族异型）"
+  williamson:
+    score: 2
+    signal: "主权 AI 的混合治理：国家主权基金/主权云伙伴 × 公司自主运营 = 市场-科层之间的新型混合治理结构（EU 主权 AI 基础设施公共化尝试）"
+  north:
+    score: 4
+    signal: "制度变迁节点：EU 主权 AI 从政策话语到公司化产品（Kolibri 发布）+ 治理结构变化信号（2026-10 Reto Spoerri 离职新闻）——EU AI Act 之后的产业制度演化一手来源"
+  ostrom:
+    score: 2
+    signal: "权重进入公共池塘（Apache-2.0 可自由再分发）vs 训练数据保留专有 = 公地边界规则由公司单方定义"
+  ar:
+    score: 3
+    signal: "包容性半程：开放权重 = 包容（欧洲产业可用开源权重自建）；但训练管线封闭 + 主权云绑定 = 汲取性风险（国家资本主义 AI 样本）——与 A&R 包容/汲取框架直接对读"
+
+data_sources:
+  news_index:
+    source: "https://aleph-alpha.com/news/"
+    frequency: daily
+    category: governance
+    description: "官方新闻索引页（人事/主权/融资/治理公告）——HTML 抓取（无 RSS），UA 需带浏览器头"
+    watch_level: high
+    status: active
+  blog_index:
+    source: "https://aleph-alpha.com/blog/"
+    frequency: daily
+    category: governance
+    description: "官方博客索引页（技术/模型公告，如 kolibri-has-landed-a-sovereign-open-weight-model）——HTML 抓取"
+    watch_level: high
+    status: active

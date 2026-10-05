@@ -843,3 +843,134 @@ OSAA 和 Tokenomics Foundation 虽未独立建管线，但以下信号值得通�
 4. **vLLM 治理文档正式化**（09-28）——"Committer 提名 + No pure-agent PR"规则（2026-03-12）= Lerner-Tirole 命题从隐含传统到显式规则的第一次制度化书写；追踪更多项目是否跟进（治理文档化 = AI 时代开源治理制度化事件），作 #176 对照样本。
 5. **中国本土 LLM provider 退役政策冲击**（09-29 线索 7）——#178 样本仅覆盖 OpenAI/Anthropic/Google（82% 事后迁移 + 94% 硬编码），DeepSeek/Kimi/通义/豆包 = "大分流 2.0"命题在依赖治理维度的独立样本。
 6. **Swissi AI Journal 观察**（09-23 线索 3）——新 AI 期刊（ISSN 3043-1921，CC BY 4.0 含 DOI），单篇不足判断；观察 3-5 篇后续输出再评估是否加入 subscribe-feed（P2 备案）。
+
+---
+
+## 2026-09-30 ~ 2026-10-06 批次评估（队列 7 文件：09-30 / 10-01 / 10-02 / 10-03 / 10-04 / 10-05 / 10-06）
+
+### P0 落地（独立模块，见 git log c604039 之后）
+
+| 来源 | 模块 | 数据源 | 说明 |
+|------|------|--------|------|
+| Dogwood Policy（10-05） | `dogwood/` | GitHub API（2 repos）+ Pages | agent harness 治理语言 —— Kuerbis & Ghosh 论文制度的第一次产品化实现（423★，Apache-2.0） |
+| Aleph Alpha（10-04） | `aleph-alpha/` | /news/ + /blog/ 索引页 HTML | EU 主权 AI —— 「权重开源 vs 训练专有」边界正式制度化（Kolibri 78B Apache-2.0） |
+
+### P1（观察期）
+
+## 2026-10-06 — OpenSource Watch（opensourcewatch.beehiiv.com）
+- 评级：P1
+- 来源类型：开源新闻媒体（beehiiv newsletter）
+- NIE 典型性分析：North 3（荷兰「自研 Linux」= 国家级开源嵌入的第一个可观察样本——主权软件制度化路径：深度嵌入全球开源生态 vs 行政动员式脱离，大分流2.0 直接检验）/ Coase 2（国家-生态边界）/ Ostrom 2（全球公地嵌入 vs 脱离）/ A&R 2（包容 vs 汲取路径对照）
+- 数据源状态：⚠️ 无 RSS（/feed /rss.xml /feed.xml /feed/ 均 404）；无 UA 时 403、带浏览器 UA 200（2026-10-06 实测）；需 HTML 抓取；小型 newsletter（中置信需人工确认）
+- 建议触发条件：① 出现稳定 RSS/API，或 HTML 抓取连续 1-2 月稳定 → 升级 P0；② 适兕确认纳入监测后转标准监测
+
+## 2026-10-06 — hntrbrk.com
+- 评级：P1
+- 来源类型：独立新闻站（AI agent 治理事件报道）
+- NIE 典型性分析：North 2（Meta Muse AI agent doxxing = 治理事件驱动制度议程）/ A&R 2（平台问责缺陷——doxxing 揭示「闭源治理承诺 vs 实际能力」）/ Williamson 1-2（agent 行为治理机制缺口）
+- 数据源状态：✅ 首页 200 + /feed RSS 200（2026-10-06 实测）——RSS 可自动化
+- 建议触发条件：持续输出 AI agent 治理事件报道 1-2 个月（站点稳定性验证）→ 升级 P0（RSS 订阅管线）
+
+## 2026-10-06 — parameter.io
+- 评级：P1
+- 来源类型：AI 安全独立媒体（行业离职潮 + 治理结构分析）
+- NIE 典型性分析：North 2（AI 治理结构变化报道源——Anthropic/OpenAI 安全团队离职稳定覆盖 = 治理结构变迁信号）/ A&R 1-2（AI 治理封闭化倾向记录）
+- 数据源状态：⚠️ Cloudflare 403（带 UA 仍 403，2026-10-06 实测）——需 blocked-page-recovery 或浏览器抓取；队列自评中置信，观察 1-2 周
+- 建议触发条件：① RSS/feed 可获取 → 评估升级；② 1-2 周观察确认持续输出后转标准监测
+
+## 2026-10-06 — OpenAPPA（openapp.com）
+- 评级：P1
+- 来源类型：开源产品（Launch HN，agent 治理护栏）
+- NIE 典型性分析：Williamson 2（确定性开源护栏 = 授权层治理机制实证，与 AGATE「授权层治理」命题相关）/ North 1-2（新产品制度化）/ Coase 1
+- 数据源状态：✅ 首页 200（2026-10-06 实测）；GitHub 仓库可经 API 自动化
+- 建议触发条件：产品演化 1-2 个月（stars/releases 增长 + 治理机制设计更新）→ 评估升级
+
+### P2（记录备案）
+
+## 2026-10-06 — eoinhiggins.substack.com
+- 评级：P2
+- 来源类型：独立博客（Substack，AI 治理公共话语）
+- NIE 典型性分析：North 1-2（「There Are No Rogue AI Agents」= OpenAI/HF 事件的关键反证，制度分析话语样本）/ A&R 1——单篇事件，个人博客（中置信需人工确认）
+- 数据源状态：✅ Substack 默认 feed 可获取，但为话语样本非制度事件源
+- 建议触发条件：形成 AI 治理制度分析系列（≥3 篇）时评估升级
+
+## 2026-10-06 — calnewport.com
+- 评级：P2
+- 来源类型：独立博客（Cal Newport，AI 治理政策话语）
+- NIE 典型性分析：North 1（「It's Time to Investigate the AI Labs」= 调查/制度化呼吁，HN 584 pts）/ A&R 1-2——规范呼吁为主，非制度实证
+- 数据源状态：✅ 可访问，有 RSS；但内容为政策话语
+- 建议触发条件：产出针对开源/AI 治理制度本身的系列分析时评估
+
+## 2026-10-06 — ssp.sh（Sam Saffron）
+- 评级：P2
+- 来源类型：个人博客（AI 代码与意图）
+- NIE 典型性分析：Coase 1-2（AI 代码与「意图」分离 = 知识边界命题）/ North 0——单篇随笔
+- 数据源状态：✅ 可访问
+- 建议触发条件：形成 AI 代码治理制度系列时评估
+
+## 2026-10-06 — jorgegarciaherrero.com
+- 评级：P2
+- 来源类型：学术报告（单篇 PDF，AI agent 隐私分析）
+- NIE 典型性分析：Coase 1 / A&R 1（AI agent 隐私治理的独立学术样本）——单篇论文事件，非持续来源；走论文监控管线而非监测源
+- 数据源状态：❌ 单文件 PDF，无持续 feed
+- 建议触发条件：作者形成系列研究（arXiv 多篇）时转论文管线收录
+
+## 2026-10-06 — blog.greenpants.net
+- 评级：P2
+- 来源类型：独立博客（AI agent 问责机制哲学分析）
+- NIE 典型性分析：A&R 1-2（agent 恶意行为问责 = 「行动的定义权」命题相关）/ North 0——单篇哲学分析
+- 数据源状态：✅ 可访问
+- 建议触发条件：形成问责制度系列时评估
+
+## 2026-10-06 — tej.as
+- 评级：P2
+- 来源类型：独立技术博客（Kolibri 189 页技术报告解读）
+- NIE 典型性分析：North 1（对 aleph-alpha 事件的深度评论）——评论性样本，制度事件本体已由 P0 模块 aleph-alpha 覆盖
+- 数据源状态：✅ 可访问
+- 建议触发条件：作者对 EU 主权 AI 形成持续跟踪系列时评估
+
+## 2026-10-06 — ftl-os.org
+- 评级：P2
+- 来源类型：开源 OS 项目（Rust-based userspace OS，Linux 二进制兼容）
+- NIE 典型性分析：Coase 1-2（OS 治理层新边界）/ Ostrom 1——早期项目（HN 100 pts），中置信
+- 数据源状态：✅ GitHub 可自动化；但项目早期治理结构未定型
+- 建议触发条件：stars 增长 + 治理结构（maintainer 模式）成型后评估升级
+
+## 2026-10-06 — dwarfstar.sh（ds4）
+- 评级：P2
+- 来源类型：开源产品发布（Redis 创始人本地 LLM 工具，HN 321 pts）
+- NIE 典型性分析：Coase 1（Redis 生态边界扩展到本地推理）/ Williamson 0-1——产品事件非制度事件
+- 数据源状态：✅ 可访问
+- 建议触发条件：形成「Redis 生态 × LLM 本地推理」制度演化线时按事件收录
+
+## 2026-10-06 — TMCnet（tmcnet.com/usubmit）
+- 评级：P2
+- 来源类型：PR Newswire 转发聚合渠道
+- NIE 典型性分析：0-1 轴（通稿聚合渠道，非制度内容源）——功能性 fallback：LF 系（Zephyr/x402/Akrites）通稿在 Cloudflare/PRN 不可直接访问时的次级稳定渠道
+- 数据源状态：✅ 可访问；页面列表式结构可抓
+- 建议触发条件：不设升级条件；作为渠道备选记录，LF 通稿主渠道恢复后弃用
+
+## 2026-10-06 — blockonomi.com
+- 评级：P2
+- 来源类型：AI 独立媒体（低置信）
+- NIE 典型性分析：待人工审核（可能偏加密货币内容，是否属开源制度分析范畴未定）
+- 数据源状态：⚠️ 需人工审核确认
+- 建议触发条件：适兕人工审核确认内容归属后，再决定是否进入观察期
+
+### 排除来源（2026-09-30 ~ 2026-10-06）
+
+| 来源 | 原因 |
+|------|------|
+| Cloudflare Blog（10-02） | 🔁 已在 monitored-sources #37 ✅ 待确认（上游 cron 已追加 commit 0e7fce8）；记录不落地。NIE 备忘：Coase 2 / North 2（Clef = Apache 2.0 模型 + RL 微调平台俱乐部入口——「开源是俱乐部品非公共品」命题的「分层开放」新范式） |
+| x402 Foundation（10-02） | 🔁 已在 monitored-sources #38 ✅ 待确认（commit 0e7fce8）；记录不落地。NIE 备忘：Coase 3（agent-to-agent 支付协议 = AI 经济基础设施制度化，真开源 vs 伪开源的选择正在开启——LF 治理框架下第一块砖） |
+| Magnitude（10-03） | 🔁 已在 monitored-sources #37 ✅ 待确认（上游日报 cf90f8b7d880 追加）；记录不落地。NIE 备忘：Coase 2 / North 1（开源 AI 生态从「模型层」下沉到「agent 推理引擎层」——4 个月 1700+ stars） |
+| Zephyr Project（10-03） | 🔁 已在 monitored-sources #38 ✅ 待确认（上游日报 cf90f8b7d880 追加）；记录不落地。NIE 备忘：North 3（TI/Infineon 2026-10 升 Platinum = 芯片厂商治理参与正式化；10 周年开发者峰会 2026-10-07 Prague） |
+
+### 值得追踪的制度信号（本次队列附带，非独立数据源）
+
+1. **agent 治理「四层制度基础设施」证据链闭合**（09-30）——#151 贡献政策 + #172 定义权治理 + #179 责任归属 + #180 审计治理四层完整；#186 Kuerbis & Ghosh 后 5 天内 #188~#191 连续发布 = 「agent 治理从 AI 安全迁移到制度经济学」的完整学科迁移证据链（TPRC/SSRN 载体）。
+2. **Kuerbis & Ghosh 论文制度 → 产品化的第一次落地**（10-05）——Dogwood Policy（本批 P0）把论文描述的 harness 治理制度编码为 Apache-2.0 语言 + 授权引擎；追踪非 AWS 生态第三方集成与独立安全审计是否出现。
+3. **「国家级开源嵌入」制度路径实证**（10-01/10-04 合并）——荷兰自研 Linux（深度嵌入全球生态实现主权）vs 中国行政动员式路径（AtomGit/MirrorZ/信通院）；Aleph Alpha Kolibri 是 EU 对照样本（开放权重嵌入 vs 训练封闭）。大分流2.0 命题的第三条/第四条国家路径开始有实证。
+4. **AI 治理封闭化倾向**（10-06）——五角大楼 Claude 停用 + Anthropic 与宗教学者 NDA 对话 + Private AI Taxonomies + 「生态级治理」论文共同指向 AI 治理决策从公共讨论迁移到封闭空间；分类权 = 定义权的先手形式（开源四层制度基础设施第 14 层扩展方向）。
+5. **「合规审计制度供给 < 制度需求」第八份样本候选**（10-06）——Kumar（#187）揭示合规工具的产权结构本身是治理机制关键变量；中西合规基础设施产权结构分化（西方自发秩序→验证侧开源 vs 中国行政动员→信通院标准）对照研究待出现。
+6. **OSI OSAI 声明 30 天验证窗口**（延续 09-21 观察，截至 2026-10-16）——Meta Llama 4 / Mistral / DeepSeek 30 天内是否回应 OSAI 分类；不回应则 OSI 声明成「制度剧场」样本。
