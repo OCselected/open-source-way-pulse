@@ -1,0 +1,60 @@
+# Project Pulse v2 — Strands Labs（AWS agent 开源战略）Institutional Registry
+# 2026-10 队列评估（10-08 / 10-10 两日信号）：AWS agent 生态开源战略的一手官方渠道
+# 制度定位：「AWS 品牌下的开源」vs「开源」的企业边界检验样本 —— Decider 2B 决策模型 +
+#           Harness SDK 开源组件（Apache-2.0）在 github.com/strands-agents 托管，但治理
+#           主体是 AWS（Strands Labs）。核心观察命题：非 AWS 员工的第三方维护者能否在
+#           Strands Labs 项目中做出实质决策 —— Coase 企业边界在 agent 生态的再定界。
+# 大分流 2.0 判断轴：真开源（第三方实质决策权）vs 品牌开源（名义开源、治理绑定厂商）。
+#
+# NIE 分析轴：Coase / Williamson / North / Ostrom / A&R
+
+institution:
+  name: "Strands Labs（AWS agent 开源战略）"
+  domain: "strandsagents.com"
+  org: "strands-agents"          # GitHub org（2026-10-13 核验存在，id 209155962）
+  github_alt: "StrandsLabs"      # 备用 org（id 185930508）
+  legal_form: "AWS 旗下实验室（LF Platinum 会员）；开源组件 Apache-2.0"
+  governed: "agent 决策模型层 —— Strands Decider 2B + Strands Harness SDK（box 运行时）"
+  key_events:
+    - "2026-10: Strands Decider 2B / Harness SDK 开源组件发布（queue 10-08/10-10 信号）"
+    - "2026-10: x402 Foundation 加入（agent 支付协议）+ LF Platinum 会员——agent 生态四层（身份/支付/决策/编排）覆盖"
+
+nie_axes:
+  coase:
+    score: 4
+    signal: "AWS 品牌下开源 vs 真开源的企业边界——组件开源（Apache-2.0）但治理绑定厂商；第三方维护者实质决策权 = Coase 企业边界在 agent 生态的再定界，与 Dogwood（AWS 生态）互为镜像"
+  williamson:
+    score: 3
+    signal: "AWS 主导开发 + LF Platinum 席位的混合治理——市场（独立维护者）与科层（AWS 战略控制）之间的治理结构实态"
+  north:
+    score: 3
+    signal: "agent 时代开源基础设施制度化——决策模型层（Strands）与结算层（x402）/硬件层（OpenTPU）同步成形，agent 四层制度基础设施的独立演进域"
+  ostrom:
+    score: 2
+    signal: "开源 toolkit 公地属性存在（Harness SDK 可被 Pi/OpenClaw/Hermes/Codex 等消费），但公地边界由 AWS 单方划定——边界清晰原则的单边化"
+  ar:
+    score: 3
+    signal: "包容性检验：第三方维护者能否实质决策决定 Strands 落入『真开源（公地）』还是『品牌开源（汲取性俱乐部）』——A&R 判别样本"
+
+data_sources:
+  blog:
+    source: "https://strandsagents.com/blog/"
+    frequency: daily
+    category: governance
+    description: "官方博客索引（静态 HTML，2026-10-13 验证 200 / 150KB）——Decider/Harness 发布公告与战略叙事一手"
+    watch_level: high
+    status: active
+  changelog:
+    source: "https://strandsagents.com/changelog/"
+    frequency: daily
+    category: lifecycle
+    description: "产品 changelog（静态 HTML，验证 200 / 1.2MB）——开源组件演进节奏与版本信号"
+    watch_level: normal
+    status: active
+  github_org:
+    source: "https://api.github.com/orgs/strands-agents/repos"
+    frequency: daily
+    category: lifecycle
+    description: "GitHub org 仓库列表（harness-sdk / samples，Apache-2.0）——第三方维护者/PR 活跃度的数据基座"
+    watch_level: high
+    status: active

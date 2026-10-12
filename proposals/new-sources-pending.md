@@ -974,3 +974,71 @@ OSAA 和 Tokenomics Foundation 虽未独立建管线，但以下信号值得通�
 4. **AI 治理封闭化倾向**（10-06）——五角大楼 Claude 停用 + Anthropic 与宗教学者 NDA 对话 + Private AI Taxonomies + 「生态级治理」论文共同指向 AI 治理决策从公共讨论迁移到封闭空间；分类权 = 定义权的先手形式（开源四层制度基础设施第 14 层扩展方向）。
 5. **「合规审计制度供给 < 制度需求」第八份样本候选**（10-06）——Kumar（#187）揭示合规工具的产权结构本身是治理机制关键变量；中西合规基础设施产权结构分化（西方自发秩序→验证侧开源 vs 中国行政动员→信通院标准）对照研究待出现。
 6. **OSI OSAI 声明 30 天验证窗口**（延续 09-21 观察，截至 2026-10-16）——Meta Llama 4 / Mistral / DeepSeek 30 天内是否回应 OSAI 分类；不回应则 OSI 声明成「制度剧场」样本。
+
+---
+
+## 新来源评估 — 2026-10-07 ~ 2026-10-13 队列（P1/P2）
+
+### P1（观察期）
+
+## 2026-10-13 — FeSens/openTPU
+- 评级：P1
+- 来源类型：个人开源硬件项目（GitHub）
+- NIE 典型性分析：Coase 3（开源硬件 IP 边界缺口——RTL patent vs license 制度真空；「AI 设计 AI 加速器」完整工具链 RTL+ISA+simulator+compiler 共享 = 企业/产权边界新形态）/ Ostrom 2（共享可验证工具链公地）——2 轴典型；与 Vals AI（agent 辅助科研）形成镜像
+- 数据源状态：✅ GitHub API 可自动化（Apache-2.0，650★，2026-09-24 建仓，2026-10-12 仍活跃推送）
+- 建议触发条件：治理成形（maintainer 模式/贡献者规则明确）或 stars 显著增长时评估升级；若触发开源硬件「制度真空补位」讨论则直接收录事件
+
+## 2026-10-13 — akrites.org
+- 评级：P1
+- 来源类型：LF 新项目（AI 时代 CVSS/CVE 上游协作）
+- NIE 典型性分析：Coase 3（新制度化容器——「AI 攻击者 vs 传统维护者」博弈的制度容器）/ North 3（LF 新项目成立 = 制度变迁事件，2026-10-07 OSS Europe Prague 前后发布）——2 轴典型；安全领域与 OpenSSF 模块部分重叠
+- 数据源状态：✅ 可访问（2026-10-13 验证 200）；落地页内容稀疏（3KB），项目刚发布
+- 建议触发条件：1-2 个月观察期——项目章程/治理结构公开、或出现实质安全协作事件（如 CVE 上游协作规则落地）时评估升级；若 OpenSSF 覆盖加深可并入该模块而非独立模块
+
+## 2026-10-13 — chronicles.popvax.com
+- 评级：P1
+- 来源类型：独立研究博客（生物制药开源公地实验）
+- NIE 典型性分析：Ostrom 3（生物制药开源公地——PopVax 承诺 Phase I 后开源设计+不主张 IP = 公共池塘资源治理在生命科学的第一次严肃实践）/ Coase 2（「不主张 IP」的产权设计新形态）——2 轴典型
+- 数据源状态：✅ 可访问（验证 200 / 89KB）；研究博客更新频率低（事件驱动型）
+- 建议触发条件：Phase I 完成或开源设计正式发布（实质公地事件）时评估升级；如形成系列记录则按系列源收录
+
+## 2026-10-13 — The Stack（Runtime column）
+- 评级：P1
+- 来源类型：开源商业分析栏（科技媒体）
+- NIE 典型性分析：North 3（LF Europe 治理权命题的制度记录——Thierry Carrez 直接引语「欧洲不战略投资开源生态治理，生态将被美中企业主导」= 治理权地理分布一手证据）/ A&R 2（欧洲技术主权 vs 开源 = 包容性/汲取性信号）——2 轴典型
+- 数据源状态：✅ 可访问（验证 200 / 156KB）
+- 建议触发条件：与 diginomica（monitored #42 待确认）主题重叠——若 diginomica 确认活跃则 The Stack 作补充源；出现「治理权地理分布」系列报道时评估升级
+
+### P2（记录备案）
+
+## 2026-10-13 — jross.me
+- 评级：P2
+- 来源类型：个人反思博客
+- NIE 典型性分析：A&R 2（「Open Source as We Know It Is Dead」——AI 冲击开源社会契约命题，HN 102 pts，2026-10-05）/ North 1——单篇反思，非制度事件源
+- 数据源状态：✅ 可访问（验证 200 / 31KB）
+- 建议触发条件：作者形成开源公共性系列分析（多篇）时评估升级；命题本体已由 monitored-sources 中 Codeberg/Sourcehut（AI 拒绝派平台）与 GitHub「PR closed by default」趋势覆盖
+
+### 排除来源（2026-10-07 ~ 2026-10-13）
+
+| 来源 | 原因 |
+|------|------|
+| diff.wikimedia.org（10-07） | 🔁 已在 monitored-sources #39 ✅ 待确认（Wikimedia OpenAI rogue agents 事件一手源）；记录不落地 |
+| itsfoss.com/news（10-07） | 🔁 已在 monitored-sources #40 ✅ 待确认（DigitalOcean credits 关停 + Omacom $3M 报道源）；记录不落地 |
+| vals.ai（10-07） | 🔁 已在 monitored-sources #41 ✅ 待确认（agent 辅助科研可复核开源样本）；记录不落地 |
+| omarchy.org（10-07） | 🔁 已 P0 落地（2026-08-25 omarchy 模块，Omacom Foundation $3M 事件由该模块数据源覆盖）；记录不落地 |
+| opengrid.org（10-08/10-11/10-13 三日重复） | 🔁 已在 monitored-sources #45 ✅ 待确认（LF 物理基础设施开源第一入口）；连续三日强信号 = 待人工确认优先级高 |
+| diginomica（10-09） | 🔁 已在 monitored-sources #42 ✅ 待确认（LF Europe 治理权断层主要分析源，commit 4800d72）；记录不落地 |
+| x402.org（10-10） | 🔁 已在 monitored-sources #38 ✅ 待确认（x402 Foundation，2026-10-01 ED 任命）；记录不落地 |
+| linuxstans.com（10-11/10-12/10-13 三日重复） | 🔁 已在 monitored-sources #43 ✅ 待确认（11-of-23 单人维护数据库）；连续三日强信号 = 待人工确认优先级高 |
+| tokeneconomics.com（10-12/10-13 两日重复） | 🔁 已在 monitored-sources #44 ✅ 待确认 + proposals/pulse-v2-tokenomics.md 已有整合提案（Q4 2026 复评）；记录不落地 |
+| SSRN per_id=10624758（10-11，Kumar 作者页） | 🔁 已评估同类（2026-08-19 SSRN P2：「arXiv 已有覆盖策略」）；Kumar 论文已由论文监控管线 #187 收录；记录不落地 |
+
+### 值得追踪的制度信号（本次队列附带，非独立数据源）
+
+1. **「钱随灾难来」命题的最锋利证据**（10-11/12/13）——Heartbleed 后 LF $5.4M 兜底 vs xz 后门事件 20 个月零新增资金；linuxstans.com 提供第一手数据（xz 2025 年 Lasse Collin 一人 97% 提交）。可检验命题：Sovereign Tech Agency / Alpha-Omega 是否在 2026-11 或 2027-01 前对 xz「零回应」做出解释——「开源是俱乐部品」命题的最新观察窗口。
+2. **IBM-HashiCorp CE 归档模式**（10-13）——Boundary CE 2026-10-08 归档（归档前最后一次 commit「Suppress CVE-2026-41989」= 主动忽略 CVE 而非修复）；观察 3 个月内 Consul/Vault/Terraform CE 是否出现第二例——单次事件 → 系统性模式的判别窗口。产权置换的教科书样本。
+3. **LF 跨关键基础设施治理枢纽显性化**（10-08/10-11/10-13）——AWS Platinum + OpenGrid（电网）+ OSERA（金融）+ OpenChain（汽车）+ OpenSSF（安全）五垂直领域同期制度化；「开源公共基础设施」边界从软件代码公地扩展到物理/行业基础设施。「生态是结果不是手段」命题在物理层的观察窗口。
+4. **agent 支付授权层制度真空**（10-10）——x402 定义「agent 怎么结算」（HTTP 402 + 支付凭证）但未定义「agent 支付该不该发生」（授权层）；XRPL 60 万笔/天结算全靠钱包签名 = 「有钱=有权」。竞争规范（Google AP2 Mandates / Mastercard Agent Pay / OpenAI+Stripe ACP）如何定义授权是 agent 治理从结算向授权扩展的观察窗口。
+5. **开源社会契约崩塌的公开表达**（10-10）——jross.me（HN 102 pts）+ tldraw/Ghostty/Jazzband/OpenJDK/Ladybird/Godot/COSMIC/Codeberg/Sindre Sorhus 集体转向封禁外部 PR；观察 GitHub「PR closed by default」项目数增长曲线。
+6. **CSCW 2026 workshop 学术制度化**（10-12）——Mako Hill + Howison + Champion + Crowston 合笔的 AI slop 议程：观察是否产出独立实证论文；Yike Huang 博士论文（10.17615/9da1-2v23）跟踪三地（中国暂行办法/美国 EO 14110/欧盟 AI Act）enforcement gap 测量。
+7. **OSERA vs 中国 SCA 真空对照**（10-08）——西方银行联盟自组织安全公地（Premier 成员制）vs 中国 Black Duck 退出后的信通院行政标准补位——「合规审计制度供给」命题的西方需求侧自组织样本，与 Kumar #187 产权结构分析形成证据链。

@@ -1,0 +1,62 @@
+# Project Pulse v2 — FINOS OSERA（金融开源安全）Institutional Registry
+# 2026-10-08 队列信号：LF 系 FINOS 银行开源安全项目（OSERA = Open Source
+#   Engineering Readiness & Assurance，7 家银行 Premier 成员）
+# 制度定位：金融机构从「开源消费者」→「开源维护者」的制度变迁样本；
+#           金融开源安全公地的组织化（Ostrom 八原则在金融场景的具体化）。
+# 与 DigitalOcean 关停 Open Source Credits（10-05，供应商退出）形成对照：
+#   一边是资助供给收缩，一边是需求侧银行联盟自组织治理。
+# 与 OpenGrid（电网）/ OpenChain（汽车）/ OpenSSF（安全）同日制度化 =
+#   LF 跨关键基础设施治理枢纽的显性化。
+#
+# NIE 分析轴：Coase / Williamson / North / Ostrom / A&R
+
+institution:
+  name: "FINOS OSERA（金融开源安全项目）"
+  domain: "finos.org"
+  prospectus: "https://www.finos.org/OSERA_Prospectus"
+  parent: "FINOS（Fintech Open Source Foundation，LF 旗下金融开源基金会）"
+  legal_form: "LF 基金会项目（银行联盟 Premier 成员制）"
+  governed: "金融机构开源安全工程能力评估——银行从开源消费者到维护者的能力建设/治理框架"
+  key_events:
+    - "2026-10: OSERA 项目公开（prospectus 发布）；7 家银行 Premier 成员（OSFF 2026 系列）"
+    - "2026-10-07: OSS Europe Prague 前后 LF 跨域制度化同日发生（OpenGrid/OSERA/OpenChain/OpenSSF）"
+
+nie_axes:
+  coase:
+    score: 3
+    signal: "银行联盟开源安全项目边界——金融机构首次在安全公地中自组织边界（Premier 成员制），与纯厂商安全服务（Black Duck 类 SCA）形成制度替代对照"
+  williamson:
+    score: 4
+    signal: "7 家银行 Premier 成员 = 混合治理实证——市场（商业安全厂商）与科层（单行内控）之间新增基金会式混合治理层，降低银行间安全标准的交易成本"
+  north:
+    score: 4
+    signal: "制度变迁：金融机构从开源消费者→维护者的角色跃迁；LF 跨关键基础设施治理枢纽显性化（金融 OSERA + 电网 OpenGrid + 汽车 OpenChain 同日制度化）"
+  ostrom:
+    score: 4
+    signal: "金融开源安全公地的组织化——银行共享安全能力建设 = 公共池塘资源治理（共享安全标准/共享能力评估），Ostrom 八原则在金融场景的具体化"
+  ar:
+    score: 3
+    signal: "银行联盟自组织（包容性信号，需求侧共同治理）vs 商业安全厂商退出后的制度真空——与 Black Duck 退出中国（2026-08）对照，西方需求侧自组织 vs 中国行政标准补位"
+
+data_sources:
+  prospectus:
+    source: "https://www.finos.org/OSERA_Prospectus"
+    frequency: weekly
+    category: governance
+    description: "OSERA Prospectus（静态 HTML，2026-10-13 验证 200 / 51KB）——项目范围、成员、里程碑一手"
+    watch_level: high
+    status: active
+  finos_news:
+    source: "https://www.finos.org/news"
+    frequency: daily
+    category: lifecycle
+    description: "FINOS 新闻索引（2026-10-13 验证 200）——OSERA 成员变更、OSFF 事件、治理公告"
+    watch_level: high
+    status: active
+  finos_blog:
+    source: "https://www.finos.org/blog"
+    frequency: daily
+    category: governance
+    description: "FINOS 社区博客（验证 200）——金融开源治理叙事与项目深度内容"
+    watch_level: normal
+    status: active
