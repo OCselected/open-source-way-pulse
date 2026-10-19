@@ -1,0 +1,101 @@
+# Project Pulse v2 — K8s Election Verifier（可复算治理数据）Institutional Registry
+# 2026-10-20 队列评估 P0：Kubernetes steering 选举目录（ballots.csv / voters.yaml /
+# election.yaml / results.md）+ Elekto 计数算法源码
+#
+# 制度定位：「可复算性」作为治理判据（transparency 从形容词变成可检验量）。
+#   K8s steering 选举是当今开源界少数「外部可独立重算」的治理机制：
+#     - 原始选票公开（ballots.csv，每票完整排名）
+#     - 算法公开（elekto/core/__init__.py: schulze_d / schulze_p / schulze_rank）
+#     - 官方结果公开（results.md）
+#   三者齐备 → 第三方可复算并逐位比对。对照：OSPO 年度报告不可复算（n=90 抽样、
+#   无原始数据）、基金会理事会投票不可复算（只公布结论）、advisory 计数不可复算
+#   （见 advisory-grader 模块）——「哪些治理决定接受外部重算」本身是制度选择。
+#
+# 关键语义（防误读）：Elekto 中**排名数字越大 = 偏好越高**（源码注释
+#   "Higher rank numbers receive higher preference"）；'No opinion' 整票跳过。
+#   按常见「1=首选」直觉反向解读会算出不同排序 —— 本模块常态守住这一点。
+#
+# 2026 年实测（2026-10-20 复算）：308 张选票、6 名候选人，
+#   Schulze 复算顺序与 results.md 完整序列一致（full_match=True），
+#   turnout 19.91%（1,547 合格选民 / 308 票）。
+#
+# NIE 分析轴：Coase / Williamson / North / Ostrom / A&R
+
+institution:
+  name: "Kubernetes Steering Committee 选举（Elekto 计数）"
+  org: "kubernetes"
+  repo: "community"
+  path: "elections/steering/YYYY/"
+  tooling_repo: "elekto-dev/elekto"      # 原 elekto-io，已迁移
+  legal_form: "CNCF 托管项目的社区选举（章程 + 开源计数工具）"
+  governed: "贡献者 → 治理席位的转换规则，及其结果的可外部复算性"
+  key_events:
+    - "2026 steering 选举：3 席（2 年任期），308/1547 投票（19.91%）"
+    - "2026 复算验证：ballots.csv + Elekto schulze 实现 → 与 results.md 完整一致"
+    - "Elekto org 迁移：elekto-io/elekto → elekto-dev/elekto（引用旧 org 的链接会 301）"
+
+nie_axes:
+  coase:
+    score: 2
+    signal: "可复算性由任务边界（谁保存原始数据、谁运行计数）划分：项目自持选票比基金会集中托管更可验证 —— 治理数据的生产边界是制度设计变量"
+  williamson:
+    score: 3
+    signal: "选举制度是混合治理的经典机制：章程规定（科层）+ 候选人竞争（市场）+ 志愿者的选票生产能力；Elekto 把规则编码为可执行程序 = 治理机制的可读文本化"
+  north:
+    score: 2
+    signal: "ballots/election.yaml 逐年留存构成制度变迁面板：席位、合格选民数、投票率、候选人结构可做跨年比较（2022-2026 均有目录）"
+  ostrom:
+    score: 3
+    signal: "治理规则、原始偏好数据与算法全部公开 = 边界清晰 + 监督成本低 + 冲突解决程序可验证，是 Ostrom 原则在选举场景的实证样本"
+  ar:
+    score: 3
+    signal: "『贡献者 → 治理权』的转换是否可审计决定包容性：可复算意味着低可见度贡献者能验证自己没被计数规则惩罚；不可复算的治理（理事会投票）则无法检验"
+
+data_sources:
+  election_index:
+    source: "https://api.github.com/repos/kubernetes/community/contents/elections/steering/YYYY"
+    frequency: "yearly (选举周期) / daily 目录探测"
+    category: "governance"
+    description: "选举年目录清单（ballots.csv / results.md / election.yaml / voters.yaml / candidate-*.md）"
+    watch_level: high
+    status: active
+  ballots_csv:
+    source: "https://raw.githubusercontent.com/kubernetes/community/main/elections/steering/YYYY/ballots.csv"
+    frequency: daily
+    category: "dataset"
+    description: "原始选票（每行一票，列为候选人，值为排名）——外部可完整重算；sha256 指纹记录以便第三人核对同一份数据"
+    watch_level: high
+    status: active
+  results_md:
+    source: "https://raw.githubusercontent.com/kubernetes/community/main/elections/steering/YYYY/results.md"
+    frequency: daily
+    category: "governance"
+    description: "官方结果（席位/合格选民/投票率/排序）——复算比对的唯一权威文本"
+    watch_level: high
+    status: active
+  election_yaml:
+    source: "https://raw.githubusercontent.com/kubernetes/community/main/elections/steering/YYYY/election.yaml"
+    frequency: daily
+    category: "governance"
+    description: "选举配置（Elekto 输入：候选人、席位、时间窗口）——治理规则的可执行文本"
+    watch_level: normal
+    status: active
+  voters_yaml:
+    source: "https://raw.githubusercontent.com/kubernetes/community/main/elections/steering/YYYY/voters.yaml"
+    frequency: daily
+    category: "governance"
+    description: "合格选民清单（资格规则的落地形态）——候选池与投票权的边界"
+    watch_level: normal
+    status: active
+  elekto_schulze_source:
+    source: "https://raw.githubusercontent.com/elekto-dev/elekto/main/elekto/core/__init__.py"
+    frequency: daily
+    category: "governance"
+    description: "计数算法源码（schulze_d/p/rank）——复算的前提；注释明示 higher rank = higher preference，'No opinion' 跳过"
+    watch_level: high
+    status: active
+
+tracking_clues:
+  - "「可复算性记分卡」横向普查：10 个高可见度开源治理机制（原始数据/算法/官方结果/外部复现四列）"
+  - "跨年对比：2022-2026 steering ballots 的投票率、候选人数量、偏好集中度演化"
+  - "贡献度-治理权断层：把选票资格规则（voters.yaml）与贡献数据对照，检验『贡献=资格』的实际阈值"

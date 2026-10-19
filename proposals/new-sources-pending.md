@@ -1042,3 +1042,107 @@ OSAA 和 Tokenomics Foundation 虽未独立建管线，但以下信号值得通�
 5. **开源社会契约崩塌的公开表达**（10-10）——jross.me（HN 102 pts）+ tldraw/Ghostty/Jazzband/OpenJDK/Ladybird/Godot/COSMIC/Codeberg/Sindre Sorhus 集体转向封禁外部 PR；观察 GitHub「PR closed by default」项目数增长曲线。
 6. **CSCW 2026 workshop 学术制度化**（10-12）——Mako Hill + Howison + Champion + Crowston 合笔的 AI slop 议程：观察是否产出独立实证论文；Yike Huang 博士论文（10.17615/9da1-2v23）跟踪三地（中国暂行办法/美国 EO 14110/欧盟 AI Act）enforcement gap 测量。
 7. **OSERA vs 中国 SCA 真空对照**（10-08）——西方银行联盟自组织安全公地（Premier 成员制）vs 中国 Black Duck 退出后的信通院行政标准补位——「合规审计制度供给」命题的西方需求侧自组织样本，与 Kumar #187 产权结构分析形成证据链。
+
+---
+
+## 新来源评估 — 2026-10-14 ~ 2026-10-20 队列（P1/P2）
+
+> 队列文件 5 份（10-15 / 10-16 / 10-18 / 10-19 / 10-20），提取候选来源 18 个（去重后 15 个）。
+> P0 落地 2 个（advisory-grader / k8s-election），P1 3 个，P2 6 个，排除 7 个（含 URL 已失效 1 个）。
+> 所有 URL 均于 2026-10-20 04:30-04:40 实测。
+
+### P0 落地（独立模块，见 git log）
+
+| 来源 | 模块 | 数据源 | 实测结论 |
+|------|------|--------|----------|
+| GitHub Advisory Database 策展 / NVD 运营变更（10-20） | `advisory-grader/` | 数据集 git-tree/contents 计数 + 抽样逐条 GHSA + NIST 政策原文缓存 | CC-BY-4.0 可全量重算；2026-10 当月 github-reviewed 目录 **650 条**（contents API 实测）；抽样 10 条 CVE 别名率 100% |
+| Kubernetes steering 选举目录 + Elekto 源码（10-20） | `k8s-election/` | ballots.csv / results.md / election.yaml / voters.yaml / schulze 源码 | **复算成功**：308 票、6 人，Schulze 复算顺序与 results.md 完整一致（full_match=True） |
+
+### P1（观察期）
+
+## 2026-10-16 — buildfoundation.dev（BUILD Foundation）
+- 评级：P1
+- 来源类型：Linux Foundation 新基金会（Bazel 生态治理层）
+- NIE 典型性分析：Coase 3（Google 内部工具 → 全球公地的产权与治理边界重画；首批 6 家企业同日入会 = 企业边界的外部性内化）/ North 3（2026-10-14 LF 宣布成立 = 制度变迁事件）/ A&R 2（谁出钱、谁进 TSC 决定包容性）——3 轴典型，但**数据源只有一半可用**：`buildfoundation.dev` 实测 200 但仅 3.8KB JS 注册页，抓不到 governance/章程文本；LF 新闻稿正文可抓（93KB）
+- 数据源状态：⚠️ 官网为 JS 注册页（无章程文本）；LF 新闻稿 ✅ 可自动化；GitHub org 尚未确认
+- 建议触发条件：官方站点发布章程/TSC 名单/会议纪要（可解析 HTML）→ 立即升级 P0；若 3 个月内仍无治理文本，则转为「治理文本缺位」样本归入 jdf/BUILD 事件记录
+
+## 2026-10-19 — LKML（lore.kernel.org）
+- 评级：P1
+- 来源类型：邮件列表归档（内核治理决策原始出处）
+- NIE 典型性分析：Williamson 3（维护者仲裁 = 混合治理的冲突解决机制；Assisted-by 弃用声明只在此有一手纪要）/ North 3（规则生命周期缩短的可观察记录：trailer 规则从引入到弃用）/ A&R 2（谁的声音被记录、谁被省略）——3 轴典型；但**已有本地 `repos/inboxes/lkml` + `lkml-epoch19-archive`**，属于既有覆盖而非新来源
+- 数据源状态：✅ lore.kernel.org 实测 200；已有 inbox 归档链路
+- 建议触发条件：把「lore.kernel.org 全文检索 API」纳入既有 kernel 模块（而非新建模块）时评估；或维护者峰会纪要公开后按事件收录
+
+## 2026-10-19 — Peter Eisentraut 博客
+- 评级：P1
+- 来源类型：维护者一手博客（PostgreSQL 核心 committer）
+- NIE 典型性分析：Williamson 3（「有效质量门槛在特性写完之后被抬高」= 交易成本的现场测量）/ Ostrom 2（维护者注意力作为稀缺公共池塘资源）/ A&R 2（贡献者与维护者的成本不对称）——3 轴典型性成立，但为**个人博客，低频、无固定栏目结构**
+- 数据源状态：✅ 实测 `https://peter.eisentraut.org/` 200 / 34KB；⚠️ `/blog/` 与 `/blog` 均 404（队列给的路径不准确，正确入口是站点首页的 posts 列表）
+- 建议触发条件：出现 3 篇以上同主题（维护者成本/质量门槛/评审负担）系列，或作者把内容整理成体系性文本 → 升级 P0
+
+### P2（记录备案）
+
+## 2026-10-15 — Linux Foundation Research（报告 + Zenodo 开放数据）
+- 评级：P2（**已在 monitored-sources #40 ✅ 待确认**）
+- 来源类型：研究机构（年度面板研究）
+- NIE 典型性分析：Ostrom 3（唯一带 DOI + Zenodo 原始数据的开源治理面板）/ North 3（年度序列可做纵向制度比较）/ A&R 2——典型性高，但来源已在池内，不重复落地
+- 数据源状态：✅ 已验证可自动化的**可复算入口**：Zenodo API `https://zenodo.org/api/records/23084382`（2026 State of OSPOs 数据集，2026-10-06 发布，含 Frequencies.pdf + Full Survey Reference N.xlsx）；Europe 数据集 `23083813`（Frequencies N366.pdf + N366.xlsx）；报告 PDF `linuxfoundation.org/hubfs/Research Reports/LFResearch_OSPOSurvey26_Report_nonCMS.pdf`（3.16MB, application/pdf）；DOI `10.70828/UCLW3741`
+- 建议触发条件：若要做「LF Research 纵向面板」独立模块，数据源已就绪（Zenodo API 稳定可编程），只需决定是否与 #40 的新闻源角色分离
+
+## 2026-10-15 — Adviescollege ICT-toetsing（荷兰 ICT 评估委员会）
+- 评级：P2（队列 URL 已失效，正确域名已核实）
+- 来源类型：独立政府评估机构（技术+主权评估）
+- NIE 典型性分析：A&R 3（「开源作为主权工具」的具体制度证据——独立评估机构出具 M365 主权评估）/ North 2（荷兰政府 M365 事件的制度源头）/ Ostrom 1——单一议题机构，事件驱动、非连续流
+- 数据源状态：⚠️ 队列给的 `ict-toetsing.nl` **DNS 无 A 记录（NXDOMAIN）**；`icttoetsing.nl` 返回 WordPress 500；**正确域名是 `https://www.adviescollegeicttoetsing.nl/`**（实测 200 / 245KB）。⚠️ `/documenten` 列表页为 Next.js 客户端渲染（HTML 内无文档链接），但 `/sitemap.xml` → `sitemap/1.xml` 可解析（含 `/documenten/YYYY/MM/DD/<slug>` 路径）；单篇文档页 ✅ 可抓（例：`/documenten/2026/6/29/advies-microsoft-365`，含 PDF 下载与摘要正文）
+- 建议触发条件：若荷兰/欧盟主权采购进入常态监测，可用 sitemap 做发现层升级 P0；单次事件按事件收录即可
+
+## 2026-10-16 — tmcnet.com
+- 评级：P2（P1 降级——已收录过，且实测被封）
+- 来源类型：PR Newswire 转发聚合渠道
+- NIE 典型性分析：0-1 轴（通稿聚合，非制度内容源）
+- 数据源状态：❌ 实测 403（5479 bytes 拦截页），需 UA 伪装或代理；2026-10-06 已记录为 P2 渠道备选
+- 建议触发条件：不设升级条件（与 10-06 结论一致，作废队列推荐）
+
+## 2026-10-18 — LWN.net
+- 评级：P2（**已在 monitored-sources #39 ✅ 待确认**）
+- 来源类型：技术新闻/深度分析
+- NIE 典型性分析：Williamson 2（维护者动向与下游打包成本的长期一手信源）/ North 2（Go/Chromium 等生态的制度变化记录）/ Ostrom 1
+- 数据源状态：✅ 实测 200 / 30KB（首页）；⚠️ 深度文章有订阅墙，需 `/Articles/` 摘要层
+- 建议触发条件：已在池内，无需重复落地
+
+## 2026-10-19 — figshare（ASE 2026 复制包托管）
+- 评级：P2（学术数据托管平台，非独立来源）
+- 来源类型：开放数据平台
+- NIE 典型性分析：Ostrom 3（复制包公开 = 学术公地的可复算性基础设施）/ Coase 2（数据产权 CC 授权层）/ North 1——平台本身不产制度信号，信号在论文侧
+- 数据源状态：⚠️ **HTML 页面被 AWS WAF 拦截**（实测连续 3 次 202 + 1995 bytes 挑战页）；但 **API 完全可用**：`https://api.figshare.com/v2/articles/31861390` 实测 200 / 3KB，返回 title / DOI `10.6084/m9.figshare.31861390.v1` / 文件清单（`replication_package.zip`）/ published_date
+- 建议触发条件：作为论文监控管线的**附件核实通道**（API-only）合入，不建独立模块
+
+## 2026-10-20 — opencourant.org
+- 评级：P2（事件源，非连续流）
+- 来源类型：项目一手公告（OpenRadioss 停止分发后的社区重建）
+- NIE 典型性分析：Coase 4（AGPLv3 保证代码可继续使用，但**仓库在无归档情况下被删除**——产权保护范围与交付流水线范围的经典错配）/ Ostrom 3（社区以 fork 恢复公地，保留完整 commit history 与署名）/ North 3（Siemens 2026-10-01 停止 OpenRadioss + RESF 10-19 接纳为**首个孵化项目**）
+- 数据源状态：✅ `https://opencourant.org/news/` 实测 200 / 4.3KB；✅ RESF 公告 `rockylinux.org/news/opencourant` 实测 200 / 100KB（正文完整，含毕业条件四项：治理模型、跨组织活跃提交者、自控基础设施上的可重复发布、代码来源可追踪）
+- 建议触发条件：项目 6 个月内进入 graduation 表决，或形成季度报告 → 按事件升级；RESF incubation 规则可作为「真开源 vs 伪开源」判据写入制度判据库
+
+### 排除来源（2026-10-14 ~ 2026-10-20）
+
+| 来源 | 原因 |
+|------|------|
+| Linux Foundation Research（10-15 / 10-18 两次出现） | 🔁 已在 monitored-sources #40 ✅ 待确认；记录不落地，但已核出可自动化的 Zenodo 数据入口（见上 P2 条） |
+| LWN.net（10-18） | 🔁 已在 monitored-sources #39 ✅ 待确认；记录不落地 |
+| GitHub Blog · Advisory Database（10-20） | 🔁 已在 monitored-sources #4「GitHub Blog」覆盖；但其**策展运维一手自陈**已作为 advisory-grader 模块的 primary 数据源落地（比新闻源角色更具体） |
+| NIST NVD 运营变更公告（10-20） | 🆕 政府政策原文：非「来源」而是**强制前置证据**，已作为 advisory-grader 的 policy 数据源落地 |
+| tmcnet.com（10-16） | ⏬ P1→P2 降级：2026-10-06 已评估为「通稿聚合渠道，非制度内容源」；本次实测 403 被封 —— 两次结论一致，作废 |
+| github/advisory-database（10-20） | ✅ 已作为 advisory-grader 数据集落地（不是「待评估来源」） |
+| Elekto 选举引擎源码（10-20） | ✅ 已作为 k8s-election 算法源码落地（不是「待评估来源」） |
+| 2026-10-17 队列 | ⏭️ 当日无队列文件（上游未产出），非「无新来源发现」 |
+
+### 值得追踪的制度信号（本次队列附带，非独立数据源）
+
+1. **「可复算性」作为治理判据的可操作化**（10-20，本轮最大收获）——K8s steering 选举实测**完整复算成功**（308 票 → 与官方 results.md 六人序列逐位一致），而同期 OSPO 报告（n=90 抽样）、基金会理事会投票、advisory 计数都不可复算。这条对照第一次有了自己的脚本和缓存：`k8s-election/verify_election` 可对任意年度重跑。下一步是把它做成 10 个机制的横向记分卡（原始数据 / 算法 / 官方结果 / 外部复现 四列）。
+2. **Elekto 语义陷阱已固化进代码**（10-20）——源码注释 "Higher rank numbers receive higher preference"、'No opinion' 整票跳过。按直觉「1=首选」会把 elmiko 算成最后一名。任何转述 K8s/LF 选举数字的分析，必须先读 `elekto/core/__init__.py`，否则重复误读。
+3. **「承诺收缩」与「能力不足」的区分**（10-20）——NVD 2026-04-15 起只对 KEV/联邦软件做富化、其余标 lowest priority、2024 年起积压转入 not scheduled；GHSA 同期自陈不能持续达成发布目标。两者方向相反：一个是主动减少服务承诺，一个是被动吞吐不足。**「漏洞披露在变慢」这句话在两种情形下制度含义完全不同**，advisory-grader 已把 NIST 原文缓存为强制前置来源。
+4. **公共富化退场后的接盘方**（10-20 线索）——CVSS 与产品枚举若长期缺位，CISA Vulnrichment / OSV / 商业情报源谁补位？这与大分流 2.0 的「合规审计制度真空」是同一类问题：**公共基础设施退场后由谁接盘**。
+5. **RESF 孵化条件的判据价值**（10-20）——跨组织活跃提交者、自控基础设施上的可重复发布、代码来源可追踪、治理模型成型，四条正好把「伪开源 vs 真开源」的治理层判据写成可勾选清单。可作为制度判据库的一等条目（比抽象定义好用）。
+6. **Linux Foundation 治理扩张的两条路线**（10-14 ~ 10-16）——BUILD Foundation（Bazel 生态，6 家企业同日入会）与 OpenGrid/OSERA/OpenChain 同期制度化：LF 在把「开源公共基础设施」从代码公地扩展到物理与行业基础设施。**但 BUILD 的章程至今不可抓**（官网只有 JS 注册页），这本身就是「治理文本公开度」的一个可记录缺口。

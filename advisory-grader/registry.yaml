@@ -1,0 +1,85 @@
+# Project Pulse v2 — Advisory Grader（漏洞披露的度量基础设施）Institutional Registry
+# 2026-10-20 队列评估 P0：GHSA 策展运维自陈 + NVD 政策收缩 + CC-BY-4.0 可复算数据集
+#
+# 制度定位：「度量权」（the power to measure）在漏洞披露领域的两个承担者
+#   - 平台侧：GitHub Advisory Database 策展团队（GHSA），自陈吞吐不足但质量维持
+#   - 国家侧：NIST NVD，2026-04-15 起把非 KEV/非联邦软件的富化降为 lowest priority，
+#     2024 年起积压整体转入 not scheduled —— **服务承诺的主动收缩，而非能力衰减**
+# 判据意义：把「漏洞披露变慢」区分为「能力跟不上」与「承诺收缩」两种制度事实。
+#   任何「NVD 变慢 / advisory 激增」的判断，必须先读本模块的 primary/nist 缓存原文。
+#
+# 可复算性：github/advisory-database 为 CC-BY-4.0 全量公开，可独立重算 2017-2026 月度序列；
+#   这与 OSPO 年度报告（不可复算）、基金会理事会投票（不可复算）形成「透明」的可检验对照。
+#
+# NIE 分析轴：Coase / Williamson / North / Ostrom / A&R
+
+institution:
+  name: "GitHub Advisory Database（GHSA）策展机制 + NIST NVD 公共富化服务的收缩"
+  org: "github"
+  repo: "advisory-database"
+  legal_form: "平台托管的开放数据集（CC-BY-4.0）+ 美国政府机构（NIST/NVD）"
+  governed: "漏洞披露的计数、复核、富化与时序 —— 开源供应链治理的计量底座"
+  key_events:
+    - "2026-04-15: NIST 调整 NVD 运营，仅对 KEV/联邦软件/EO14028 关键软件做富化，其余标 lowest priority"
+    - "2026-04 中旬起: GitHub Advisory Database 策展团队自陈不能持续达成发布目标"
+    - "2026-05: GHSA 单月审核 1,560 条（自陈）；2026-03~05 每月 >6,000 次决策；CVE 分配率维持 91-94%"
+    - "MSR 2026 (Segal 等): 2022-06 之后 GRA 补丁→审核中位 2.04 天 vs NVD 27.69 天（独立第三方基线）"
+
+nie_axes:
+  coase:
+    score: 3
+    signal: "「度量」作为独立生产环节被划界——平台自建策展团队与复算数据集（GHSA/reviewed, CC-BY-4.0），国家实验室保留 CVE 编号与富化职能；度量职能在企业边界与国家实验室边界之间重新分配"
+  williamson:
+    score: 3
+    signal: "平台-国家混合治理：CVE 编号（国家/准公共）→ GHSA 审核（平台科层）→ 下游消费（市场）；同一漏洞在不同治理层走不同时间常数（2.04 天 vs 27.69 天）= 混合治理结构可测量化的罕见样本"
+  north:
+    score: 4
+    signal: "制度变迁断点：NVD 2026-04-15 政策把「积压」从待处理转为 not scheduled，是服务承诺的制度性收缩；与 GHSA 自陈吞吐不足同期发生 = 公共度量基础设施退场的可验证时点"
+  ostrom:
+    score: 3
+    signal: "CVE/GHSA 记录是公共池塘资源（非竞争、可共享，但需持续投入生产与复核）；NVD 收缩即公共投入不足→资源存量转移给商业情报源与 OSV，边界与投入规则未被任何单一主体定义"
+  ar:
+    score: 4
+    signal: "富化优先级分层（KEV/联邦软件优先，其余最低）= 会员制式公共品的典型形态；谁被优先服务由政策名单而非需求决定 —— 包容性/汲取性的直接可观察信号"
+
+data_sources:
+  advisory_database_repo:
+    source: "https://api.github.com/repos/github/advisory-database"
+    frequency: daily
+    category: "dataset"
+    description: "CC-BY-4.0 开放数据集仓库元信息（branch HEAD 即数据更新指针）——可全量重算月度时序的度量基础数据"
+    watch_level: high
+    status: active
+  advisory_index_monthly:
+    source: "https://api.github.com/repos/github/advisory-database/contents/advisories/github-reviewed/YYYY/MM"
+    frequency: daily
+    category: "dataset"
+    description: "当月 github-reviewed advisory 目录计数（发现层）——吞吐量的日粒度代理指标"
+    watch_level: high
+    status: active
+  advisory_sample:
+    source: "https://raw.githubusercontent.com/github/advisory-database/main/advisories/github-reviewed/YYYY/MM/<GHSA>/<GHSA>.json"
+    frequency: daily
+    category: "dataset"
+    description: "抽样逐条 GHSA 记录（published / severity / aliases）——结构校验与可复算性演示（抽样，非全量）"
+    watch_level: normal
+    status: active
+  github_blog_ops:
+    source: "https://github.blog/security/supply-chain-security/inside-the-advisory-database-and-what-happens-when-vulnerability-volume-breaks-records/"
+    frequency: daily
+    category: "governance"
+    description: "策展团队一手运维自陈：「承诺 vs 达成」的第一手证据（比第三方论文更具体）"
+    watch_level: high
+    status: active
+  nist_nvd_policy:
+    source: "https://www.nist.gov/news-events/news/2026/04/nist-updates-nvd-operations-address-record-cve-growth"
+    frequency: daily
+    category: "policy"
+    description: "NVD 运营变更公告原文——**强制前置来源**：任何 NVD/advisory 相关分析必须先读此文件"
+    watch_level: high
+    status: active
+
+tracking_clues:
+  - "独立复算实验：用 advisory-database 全量重构 2017-2026 月度序列，检验 SSRN 论文「1,306/月」「4.5x」与「84% 维护者发布」是否可复现"
+  - "NVD 富化收缩的下游接盘：CISA Vulnrichment / OSV / 商业情报源谁补上 CVSS 与产品枚举的空缺"
+  - "可复算性记分卡：对 10 个高可见度开源治理机制横向比较（原始数据/算法/官方结果/外部复现）"
