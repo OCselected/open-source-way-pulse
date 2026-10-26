@@ -1,0 +1,104 @@
+# Project Pulse v2 — OSS Scanner（关键基础设施审计配额的分配机制）Institutional Registry
+# 2026-10-21~27 队列评估 P0：red.anthropic.com/oss-scanner 政策文本 + anthropics/oss-scanner 入册档案
+#
+# 制度定位：「谁配得到免费深度审计」的分配机制。
+#   一个非基金会的单一厂商（Anthropic）以自有模型对「关键」开源项目提供免费深度扫描，
+#   名额的准入判据写在一套可实时复核的 PR 流程里（projects/<name>/project.yaml），
+#   拒绝清单（608 条 closed-unmerged）因此构成「什么算关键基础设施」的判词集。
+#   → 度量/审计能力从「基金会多方协商」迁移到「单一厂商自定判据 + 自助入册」，
+#     这是 Ostrom 边界规则由谁书写的罕见可观测样本。
+#
+# 关键制度事实（2026-10-27 实测，均可复算）：
+#   - 政策文本：`https://red.anthropic.com/oss-scanner/`（18KB，静态可抓，含完整 FAQ）
+#   - 入册档案：`projects/` 目录 **184** 个（GitHub contents API 实测）
+#   - PR 流量：open 322 / closed 810（其中 merged 202、closed-unmerged 608）
+#     → 通过率 ≈ 202/(202+608) ≈ **24.9%**（队列转述「约 25%」复算成立）
+#   - 政策自陈：「By October 2026, we had reviewed over 6,000 such reports」
+#     → 注意：队列转述的「29,000 候选」在本页**不存在**；只有 6,000 已人工复核这一数字。
+#       任何引用「29,000」的表述必须先找到原始出处，否则不得写入分析。
+#   - 披露规则的三段式（本模块最值得追踪的制度设计）：
+#       ① 未验证的模型报告：**不设任何形式的 90 天协调披露期**，也不公开；
+#       ② 经人工验证的报告：回到既有 CVD 政策，**从「被通知已人工验证」起算 90 天**；
+#       ③ 未来可能对高危报告设披露期，但承诺「充分预告 + 允许退出」。
+#     = 验证责任在接收方（维护者），而披露时钟却随验证状态起停 —— 时间成本的分配本身是制度变量。
+#
+# 对照价值：
+#   - advisory-grader 模块 = 公共度量基础设施（NVD/GHSA）的**收缩**；
+#     本模块 = 私有审计能力的**扩张**且附带准入判据。两者共同构成「度量权转移」的两个方向。
+#   - 与 athena（厂商联盟 clearinghouse）、OpenSSF（基金会多方）构成三条不同的关键基础设施
+#     安全供给路径：单一厂商自助入册 / 厂商联盟 / 基金会。
+#
+# NIE 分析轴：Coase / Williamson / North / Ostrom / A&R
+
+institution:
+  name: "Anthropic OSS Scanner（关键开源项目的免费深度扫描 + PR 自助入册）"
+  org: "anthropics"
+  repo: "oss-scanner"
+  legal_form: "公司自营服务（Apache-2.0 入册档案仓库 + 专有扫描管线 + 服务条款）"
+  governed: "「关键基础设施」的判定权、深度审计能力的分配权、以及漏洞披露时钟的起算点"
+  key_events:
+    - "2026-10-08: anthropics/oss-scanner 建仓（GitHub API created_at）"
+    - "2026-10 政策文本自陈：累计人工复核超过 6,000 条扫描报告"
+    - "2026-10-26: 仓库最后推送（pushed_at），入册项目 184 个"
+    - "PR 流量（2026-10-27 实测）：open 322 / merged 202 / closed-unmerged 608"
+
+nie_axes:
+  coase:
+    score: 3
+    signal: "「审计」作为独立生产环节被划到企业边界之内：模型、算力、复核人力全由单一厂商持有，产出以邮件形式交付而非公开数据集。与 GHSA/NVD 的「公共数据集 + 公开计数」形成产权形态的极端对照 —— 同一治理功能，一个以 CC-BY-4.0 全量公开，一个以私有管线运行"
+  williamson:
+    score: 3
+    signal: "混合治理的层级倒置：治理规则由单方设定（服务条款 + 准入判据），但规则的**执行入口**是公开 PR 流程（谁都能提交 project.yaml），拒绝也留痕。这是「科层定价 + 市场式准入」的非常规组合，可与基金会多方治理、Athena 联盟 clearinghouse 三方对照"
+  north:
+    score: 3
+    signal: "披露制度的时间参数被重新设定：未验证报告不设 90 天窗口、验证后从「通知」起算 —— 协调披露（coordinated disclosure）这一三十年级别的惯例第一次被按「报告可信度分层」拆开。这是 AI 生成漏洞报告规模化后，披露制度被迫分化的一次可观测断点"
+  ostrom:
+    score: 3
+    signal: "准入边界规则（谁算关键基础设施）由单一行动者书写并单方修订（FAQ 明言「may adjust the acceptance criteria over time」）；公地（关键开源项目）的安全收益依赖这一外部行动者的持续投入，而投入的优先序不可协商 —— 公地治理的外部化样本"
+  ar:
+    score: 3
+    signal: "分层服务：入册项目得到免费深度扫描 + 可选择的「未验证快速通道」，非入册项目只走通用 CVD。谁被优先服务由判据（exposure / dependents / OpenSSF criticality score / stars）决定，而非由需求或付费决定 —— 与 NVD 的 KEV 优先名单同一机制家族"
+
+data_sources:
+  policy_page:
+    source: "https://red.anthropic.com/oss-scanner/"
+    frequency: daily
+    category: "policy"
+    description: "政策文本全文（资格判据 / 报告内容 / 披露规则三段式 / 退出机制 / 署名方式）——**强制前置来源**：任何引用披露期或准入判据的分析必须先读此文件，注意其中没有「29,000 候选」这一数字"
+    watch_level: high
+    status: active
+  projects_roster:
+    source: "https://api.github.com/repos/anthropics/oss-scanner/contents/projects"
+    frequency: daily
+    category: "governance"
+    description: "入册项目目录（2026-10-27 实测 184 个）——「什么算关键基础设施」的**通过样本**；目录项即判据落地的形态"
+    watch_level: high
+    status: active
+  project_yaml:
+    source: "https://raw.githubusercontent.com/anthropics/oss-scanner/main/projects/<name>/project.yaml"
+    frequency: daily
+    category: "governance"
+    description: "单项目入册配置（repo / primary_contact / dockerfile / threat_model / optional disabled）——披露通道与联系人的实际绑定形态；抽样读取，非全量"
+    watch_level: normal
+    status: active
+  pr_flow:
+    source: "https://api.github.com/search/issues?q=repo:anthropics/oss-scanner+type:pr+state:<open|closed>"
+    frequency: daily
+    category: "dataset"
+    description: "入册申请流量三分解（open / merged / closed-unmerged）——通过率可计算（2026-10-27: 202/810 ≈ 24.9%）；拒绝清单构成判词集"
+    watch_level: high
+    status: active
+  repo_meta:
+    source: "https://api.github.com/repos/anthropics/oss-scanner"
+    frequency: daily
+    category: "dataset"
+    description: "仓库元信息（stars / forks / pushed_at / created_at）——入册机制的外部关注度与活跃度代理指标"
+    watch_level: normal
+    status: active
+
+tracking_clues:
+  - "披露时钟分层是否扩散：其他扫描方（Google OSS VRP / Amazon Inspector / Socket / Athena）是否跟进「未验证不设窗口」的做法"
+  - "拒绝判词可否成文：抽样 closed-unmerged PR 的关闭理由，能否整理成一份「关键基础设施判据的实际边界」清单"
+  - "与公共侧收缩的对照：NVD 收缩富化（advisory-grader 模块）同期，私有免费审计扩张 —— 同一治理功能的供给方迁移是否加速"
+  - "184 个入册项目的生态分布：若某单一生态系统（如 npm/crates）占比过高，则「关键」的判据实为该生态的使用密度"
+  - "「29,000 候选」这一数字的出处核查：上游队列出现、政策页不存在。若无法定位来源，任何引用均应作废"

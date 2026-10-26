@@ -1,0 +1,108 @@
+# Project Pulse v2 — OSV 记录配额（谁在往公共漏洞库里写）Institutional Registry
+# 2026-10-21~27 队列评估 P0：api.osv.dev + GCS 全量归档（八生态 all.zip, 单个 npm 219 MB）
+#
+# 制度定位：**漏洞库的构成 = 一张「谁在往公地写记录」的地图。**
+#   OSV 的 database_specific.malicious-packages-origins 字段把每条恶意记录的写入方
+#   归属到具体 scanner/来源 —— 这是比 GitHub Advisory Database（reporter 不公开）
+#   更可归属的公共记录设计。「要求公共记录带上写入者字段」是可立即实施的制度设计动作，
+#   成本远低于「要求论文公开数据」，而它决定了公共记录**能否被问责**。
+#
+# 2026-10-27 实测（本模块首次运行，样本可独立重算）：
+#   - GCS 对象计数（非抽样，权威基数）：
+#       npm/MAL-*     合计 **204,750**   （2025 段 191,417 / 2026 段 13,333）
+#       npm/all.zip   219,180,381 bytes，last-modified 2026-10-26T19:03:32Z
+#   - origin 归属（**按 published 月份分层随机抽样**，2026 段 n=11,997，seed 20261027）：
+#       2026-01 amazon 36% / ghsa 32% / ossf 26% / reversing 6%
+#       2026-03 amazon 43% / ghsa 24% / reversing 22% / ossf 7%
+#       2026-05 amazon 59% / ghsa 21% / google-oss-security 11% / ossf 6%
+#       2026-07 amazon 55% / reversing 22% / ghsa 22% / ossf 2%
+#       2026-08 amazon 72% / ghsa 26% / reversing 1% / ossf 1%
+#       2026-10 amazon 59% / ghsa 38% / ossf 2%
+#   → 队列转述的「amazon-inspector 59.2%」在 2026 年**月份层面成立且偏低**（7/8 月 55-72%），
+#     但年内波动 36%→72% 说明「一家独大」是逐月形成而非恒定结构；
+#     **reversing-labs 是一个队列未记录的独立写入方**（3 月 22%、7 月 22%、8 月骤降至 1%），
+#     它的进出比静态占比更能说明「检测能力上线」的批次性。
+#
+# **方法学教训（写进代码注释，防止重犯）**：
+#   OSV 的 MAL ID **不是时间序**。amazon-inspector 的记录在 ID 空间成块聚集
+#   （npm/MAL-2025-60000..180000 连续三段 100% 归属它）。任何「取前 N 条连续 ID」
+#   的抽样都会得到假占比 —— 本次第一版脚本就因此算出「ghsa 42.5% / reversing 42.2%」
+#   这一与实际相反的结果。凡对该数据集做统计，必须按 published 月份分层随机抽样。
+#   「漏洞库里的记录变多」在两种情形下制度含义相反 —— ①检测能力上线（扫描铺开）
+#   ②真实安全状况恶化。osv 的 origin 字段是区分二者的唯一公共手段；
+#   fixed 字段覆盖率（队列称 2017 75.3% → 2026 98.8%）说明记录质量只向前改善，
+#   而 CRA / EO 14028 的合规义务查的恰恰是历史记录 —— 监管要求基于追溯、
+#   记录质量只面向未来，这是一个可独立展开的命题。
+#
+# NIE 分析轴：Coase / Williamson / North / Ostrom / A&R
+
+institution:
+  name: "OSV（Open Source Vulnerability）归档 + 恶意包来源归属字段"
+  org: "google/ossf"
+  legal_form: "开放数据归档（GCS 公共桶）+ 开源 schema（database_specific.malicious-packages-origins）"
+  governed: "公共漏洞记录的生产、归属、追溯与质量改善速度"
+  key_events:
+    - "2026-10-26: npm/all.zip 最后更新（GCS last-modified）"
+    - "2026-10-27 实测: npm/MAL-* 对象 204,750 条；2025 段 191,417、2026 段 13,333"
+    - "2026-10-27 实测: 按月份分层抽样（2026 段 n=11,997）—— amazon-inspector 份额 36%(1月) → 72%(8月) → 59%(10月)，reversing-labs 3/7 月各约 22%、8 月骤降至 1%"
+
+nie_axes:
+  coase:
+    score: 3
+    signal: "「检测」作为生产环节被外包给商业扫描器（Amazon Inspector）、平台管线（GHSA malware）、独立研究方（Reversing Labs）与 OSSF 自有分析；公共记录的所有权归 OSV schema，生产劳动归各方 —— 记录生产的产权与劳动的分离"
+  williamson:
+    score: 3
+    signal: "公共记录是多方写入的共享基础设施，但没有写入方准入标准、没有配额、也没有质量仲裁：四个来源各自定义「恶意」，聚合层只做格式归一。极端轻治理的公共品供给样本（对照 NVD 的强富化 + 名单优先）"
+  north:
+    score: 3
+    signal: "写入方结构一年内从「一家独大」变为「四家并列」（2025 段数据）—— 检测能力上线的制度痕迹。fixed 字段覆盖率单调改善（2017 75.3% → 2026 98.8%）而监管义务（CRA/EO 14028）面向历史记录：制度需求与数据供给方向相反"
+  ostrom:
+    score: 4
+    signal: "OSV 归档是典型的公共池塘资源（非竞争、可共享、需持续生产与复核）；origin 字段让「谁投入了、投入了多少」首次可计量 —— 公地投入的可归属化，正是 Ostrom 监督原则（monitoring）的技术前提。同时暴露其缺席：没有任何机制约束写入方的最低质量标准"
+  ar:
+    score: 3
+    signal: "归属字段本身是包容性设计（写入方可被追责、可被审计），但归属的实现依赖写入方是否愿意在 schema 里留名：GHSA 的漏洞 reporter 不公开、OSV 的恶意包 origin 公开 —— 同一生态里两套透明度标准并存，本身就是包容性分层"
+
+data_sources:
+  osv_gcs_object_count:
+    source: "https://storage.googleapis.com/storage/v1/b/osv-vulnerabilities/o?prefix=npm/MAL-"
+    frequency: daily
+    category: "dataset"
+    description: "GCS 对象清单 API（先分页计数，不下载）——恶意记录基数的权威数字；比抽样统计更可靠，且不需要拉 219 MB 全量 zip"
+    watch_level: high
+    status: active
+  osv_gcs_sample_origin:
+    source: "https://storage.googleapis.com/storage/v1/b/osv-vulnerabilities/o/<path>?alt=media"
+    frequency: weekly
+    category: "dataset"
+    description: "逐条取 malicious-packages-origins（写入方归属）——本模块的核心证据；抽样取 200 条随机 + 一个年份段连续，脚本内置"
+    watch_level: high
+    status: active
+  osv_full_archive:
+    source: "https://osv-vulnerabilities.storage.googleapis.com/npm/all.zip"
+    frequency: monthly
+    category: "dataset"
+    description: "npm 全量归档（2026-10-26 实测 219,180,381 bytes，last-modified 可追踪）——全量复算入口；日常不下载，仅在需要重算完整时序时拉取"
+    watch_level: normal
+    status: active
+  osv_api:
+    source: "https://api.osv.dev/v1/vulns/<ID>"
+    frequency: daily
+    category: "dataset"
+    description: "单条记录查询（含 origins）——注意：并非所有 ID 都存在（OSV-2021-1 返回 404），历史记录以 GCS 归档为准"
+    watch_level: normal
+    status: active
+  github_advisory_page:
+    source: "https://github.com/advisories?query=type%3Areviewed"
+    frequency: daily
+    category: "dataset"
+    description: "GitHub 平台口径的已审核 advisory 计数（2026-10-23 读数为 37,219）——与论文面板、GHSA reviewed 目录计数的第三方对照小数点"
+    watch_level: normal
+    status: active
+
+tracking_clues:
+  - "写入方份额的季度序列：amazon-inspector / ghsa-malware / reversing-labs / ossf-package-analysis 四家的相对份额如何移动（2025 段 vs 2026 段已可见收缩）"
+  - "2025 年恶意记录从 1.3 万跳到 19.3 万（14.7 倍）究竟是哪家/哪个产品铺开的扫描：查 2025 段按月段的 origin 分布变化"
+  - "fixed 字段覆盖率的时序复算（2017 75.3% → 2026 98.8%）：与 CRA / EO 14028 的追溯义务并置，检验「监管基于追溯、记录只向前改善」命题"
+  - "「要求公共记录带写入者字段」作为政策建议：以 OSV（可归属）vs GHSA（reporter 不公开）为现成对照，写成可执行的制度设计条款"
+  - "非 npm 生态的 origin 结构（Go/Maven/Packagist 恶意记录分别只有 18/2/1 条）——公地记录的生态不均衡是否在收窄"

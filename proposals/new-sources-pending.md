@@ -1146,3 +1146,107 @@ OSAA 和 Tokenomics Foundation 虽未独立建管线，但以下信号值得通�
 4. **公共富化退场后的接盘方**（10-20 线索）——CVSS 与产品枚举若长期缺位，CISA Vulnrichment / OSV / 商业情报源谁补位？这与大分流 2.0 的「合规审计制度真空」是同一类问题：**公共基础设施退场后由谁接盘**。
 5. **RESF 孵化条件的判据价值**（10-20）——跨组织活跃提交者、自控基础设施上的可重复发布、代码来源可追踪、治理模型成型，四条正好把「伪开源 vs 真开源」的治理层判据写成可勾选清单。可作为制度判据库的一等条目（比抽象定义好用）。
 6. **Linux Foundation 治理扩张的两条路线**（10-14 ~ 10-16）——BUILD Foundation（Bazel 生态，6 家企业同日入会）与 OpenGrid/OSERA/OpenChain 同期制度化：LF 在把「开源公共基础设施」从代码公地扩展到物理与行业基础设施。**但 BUILD 的章程至今不可抓**（官网只有 JS 注册页），这本身就是「治理文本公开度」的一个可记录缺口。
+
+---
+
+## 新来源评估 — 2026-10-21 ~ 2026-10-27 队列（P0 ×2 / P1 ×4 / P2 ×5）
+
+> 队列文件 7 份（10-21 / 10-22 / 10-23 / 10-24 / 10-25 / 10-26 / 10-27），提取候选来源 15 个（去重后 12 个）。
+> **P0 落地 2 个（`oss-scanner/` / `osv-origins/`）**，P1 4 个，P2 5 个，排除 6 个（已入池或已落地）。
+> 所有 URL 于 2026-10-27 04:30-04:50 实测，脚本各跑通一次。
+
+### 排除来源（2026-10-21 ~ 2026-10-27）
+
+| 来源 | 原因 |
+|------|------|
+| pytorch.org/blog（10-25） | 🔁 已在 monitored-sources #41 ✅ 活跃；记录不落地。**实测修正**：`/blog/feed.xml` 404，`/rss.xml` 返回 200 但内容是 jsDelivr 403 页，正确 feed 是页面声明的 `https://pytorch.org/feed/`（实为 Cloudflare Client Challenge，需浏览器）。**可用抓取路径只有 `/blog/` 首页 HTML 解析**（实测 26 个 post 链接 + 标题齐全） |
+| lists.pytorch.org/g/tac（10-25） | 🔁 已在 #42 ✅ 活跃，但**实测 TCP 443 连接超时**（两个 DNS 记录 45.79.81.153 / 173.255.221.194 均 timeout，HTTP 亦不可达）——本机网络路径不可达，该来源当前只能靠他人转述，应降级为「引用转述源」而非一手抓取源 |
+| api.osv.dev + GCS 归档（10-25） | ✅ 已作为 P0 `osv-origins/` 模块落地（见下），同时保留 `advisory-grader/` 的 GHSA/NVD 视角 |
+| github.com/advisories 页面（10-25） | ✅ 已并作 `osv-origins/` 的平台口径对照数据源 |
+| github.blog security 栏目（10-25）+ nist.gov（10-25） | 🔁 已在 #4 GitHub Blog 覆盖，NIST 政策原文已作为 `advisory-grader/` 强制前置来源缓存；记录不落地 |
+| 2026-10-22 队列 | ⏭️ 「无新来源发现」（当日四篇论文均来自既有渠道；其复制包 rl-method-tracker 属线索不属来源） |
+
+### P1（观察期）
+
+## 2026-10-21 — Purdue Duality Lab（James C. Davis 组 · 复制包仓库）
+- 评级：P1（**不落地**：数据本体 gated，仅部分可复核）
+- 来源类型：研究实验室 GitHub 组织（48 个公开仓库，方法学复制包产地）
+- NIE 典型性分析：Coase 2-3（复制包 MIT + codebook 完整 = 「度量工具」作为公共品的产权形态；与 advisory-grader 的公共度量基础设施互为对照）/ Ostrom 3（codebook 是学术公地的基础设施：一套分类标准可被任意第三方换一批仓库重跑）/ A&R 2（**关键缺口**：全部样本来自 GitHub 生态，AtomGit / Gitee / OpenAtom / ModelScope 零样本——「尺子存在但量不到本土」的确证）/ North 2（EMSE 2026 论文的验证证据编码 = 「度量契约」从缺位走向成文的观察面）。3 轴典型。
+- 数据源状态：✅ 组织 API 200（48 repos）；✅ `EMSE-perf-pr-study` 仓库可读（MIT，2.7 MB，created 2026-05-18，pushed 2026-09-29，**0 star**）；✅ 代码与方法全公开（`mining/src/collect_pull_requests.py` 48KB、`classification_labels/*.csv` 三份 1 MB 级标签、`catalog/updated_optimization_catalog.csv`、`reproduce_paper.py`、`validate_artifact.py`）；❌ **数据本体在 HF `rcalvome/EMSE-perf-pr-study`，`gated: auto`，resolve parquet 返回 401**；⚠️ `.gitmodules` 里 `report` 指向 Overleaf、`data` 指向 `hf.co:datasets/`，clone 无凭据不完整。
+- 建议触发条件：① 数据集解除 gated（或拿到访问令牌）→ 升级 P0（可做「同一 codebook × 本土仓库」的对照实验，这是目前所有本土缺口里方法上最无争议的一个）；② 该组发表新的「复制包 + 完整 codebook」论文且数据公开 → 评估 P0。**在此之前不建模块**：没有数据本体，抓来的只有目录结构和标签 CSV。
+
+## 2026-10-23 — Research Policy（Elsevier）· 专辑 "Science, Technology and Innovation in Today's China"
+- 评级：P1（**数据源走 Crossref，不走 ScienceDirect**）
+- 来源类型：期刊（创新研究顶刊，ISSN 0048-7333）
+- NIE 典型性分析：North 3（该专辑是「中国制度环境下创新如何运作」的学术制度化场所，与「大分流 2.0」L2 层同构）/ A&R 3（制度包容性 vs 汲取性在创新领域的实证基地）/ Coase 2（开放权重 = 企业边界的制度性重新划定，Li 2026 该专辑）。3 轴典型。
+- 数据源状态：❌ ScienceDirect 全站 403（实测 1.2 MB 拦截页）；✅ **Crossref Journals API 200**：`https://api.crossref.org/journals/0048-7333/works?sort=published&order=desc&select=DOI,title,published`（实测 total-results 5,274，最新条目已排到 2027-01）。✅ 单篇 DOI 元数据可查（Li 2026 复制包 Zenodo 23529024 已在池内 #58）。
+- 建议触发条件：① 用 Crossref 建「专辑见刊清单」抓取（按 container-title + 关键词过滤），验证 1 个月内可稳定产出专辑条目 → 升级 P0（与 #58 现有的「期刊整体」角色分离：一个抓源头、一个抓专辑）；② 该专辑出现第二篇「开放权重 / 开源制度」论文 → 立即按事件收录。当前 #58 已覆盖期刊层级，暂不重复建模块。
+
+## 2026-10-23 — USRSE（US Research Software Engineering）· Zenodo community `usrse26`
+- 评级：P1
+- 来源类型：学术共同体会议存档（Zenodo community，102 条记录）
+- NIE 典型性分析：Ostrom 3（科研软件工程师共同体的会议成果以 CC-BY-4.0 全量存档 = 学术公地的完整投入记录；「维护者劳动定价」问题的最早发声群体）/ North 2（RSE 作为职业类别的制度化进程，逐年可比较）/ Williamson 2（科研软件的生产治理：谁能被计入作者、维护劳动如何被承认）。3 轴偏 2。
+- 数据源状态：✅ **Zenodo REST API 完全可用**：`https://zenodo.org/api/communities/usrse26/records?size=N&sort=mostrecent` 与 `https://zenodo.org/api/records?q=communities:usrse26`（实测 hits=102，含 title / publication_date / resource_type / description）。⚠️ **浏览器侧不可用**：`https://zenodo.org/communities/usrse26/records` 返回 914 字节的 "Verifying… Checking your browser" 反爬页（带浏览器 UA 也一样）→ 只能走 API。✅ 母站 `us-rse.org/feed.xml` 200（100 条 item），可作上游新闻层。
+- 建议触发条件：① 观察下一年度（usrse27）community 是否同样全量开放 → 若成立，则「会议材料全量 CC-BY 存档」成为 RSE 共同体的稳定制度习惯，升级 P0 建 API 抓取；② 出现 ≥3 篇直接讨论「维护者劳动定价 / AI 对 RSE 的影响」的会议材料 → 按主题事件收录。
+
+## 2026-10-24 — CHI（ACM CHI Conference）+ 国防科技大学 · 王怀民组
+- 评级：P1（合并为一条：内容源 + 作者线）
+- 来源类型：会议系列（CHI 2026 官网 + ACM DL）+ 研究团队（Huaimin Wang / Tao Wang 等）
+- NIE 典型性分析：North 3（issue entropy → convergence entropy → 含 agent 维度的动态熵：一年半把一套信息论指标做成子领域通用工具，是「度量标准形成」的完整序列）/ Ostrom 2（fork / issue / 维护者劳动作为公共池塘资源的量化对象）/ A&R 2（谁能被度量、谁被常数化——「常数即缺失」判据的源头）。3 轴偏 2。
+- 数据源状态：✅ `https://chi2026.acm.org/` 200（101 KB）；✅ `https://programs.sigchi.org/chi/2026` 200；✅ Crossref 单篇 DOI 可查（实测 `10.1145/3772318.3791405` 返回完整 container-title「Proceedings of the 2026 CHI Conference…」+ PDF link）；❌ **ACM DL 全站 403**（`dl.acm.org/doi/proceedings/10.1145/3772318` 返回 5.6 KB 拦截页）；❌ Crossref 的 `license` 字段为空（不能据 API 判断是否 CC BY）→ **全文仍只能靠作者主页 `files/` 通道**（10-24 队列给出的方法论，已在这一轮再次验证有效）。⚠️ Crossref `is-referenced-by-count=0`，说明该 DOI 尚未进入引用网络，不能当作影响力证据。
+- 建议触发条件：① 王怀民组下一篇「熵指标 + 完整采集脚本」的复制包（当前 convergence_entropy 列是算好的，不含原始 fork/commit 采集）→ 升级 P0（那时可以做「指标能不能移植到本土平台」的前置检验）；② CHI/CSCW 出现以「AI 贡献治理」为主题的分论坛或 ≥3 篇论文 → 建主题模块。**当前不入 P0**：会议本体非数据流，全文通道依赖作者主页，无法自动化。
+
+### P2（记录备案）
+
+## 2026-10-26 — ppc.land（Luis Rijo，读者资助、无赞助内容）
+- 评级：P2（队列建议「中高置信，加入监控」，本引擎降级）
+- 来源类型：独立技术分析站
+- NIE 典型性分析：North 2（r/opensource 禁令的执法标准与时间线记录 = 平台治理规则变迁的实况）/ Ostrom 2（版主作为公地守门人的规则书写）/ A&R 1-2（AI 生成项目算不算「项目」= 贡献定义权）。≤2 轴。
+- 数据源状态：❌ **curl 直取被 Cloudflare 403**（队列自陈，已复核）；只能经 web_extract 或浏览器 → 无法纳入自动管线。站点本身审慎（主动区分「净得分为零」与「社区共识」）值得引用，但不适合日抓。
+- 建议触发条件：出现 RSS 或 Cloudflare 放行 → 升级 P1；单篇可按事件手动引用。
+
+## 2026-10-26 — LWN.net（Maintainers Summit 纪要）
+- 评级：P2（**已在 monitored-sources #39 ✅ 待确认**）
+- 来源类型：技术社区一手会议纪要
+- NIE 典型性分析：Williamson 3（Assisted-by 存废的现场立场分裂 = 混合治理冲突解决机制的唯一公开纪要）/ North 3（规则生命周期：#206「规则生命周期缩短」命题最完整档案）。典型性足够，但**来源已在池内**。
+- 数据源状态：✅ 200（首页 30 KB）；⚠️ 深度文章有订阅墙，需 `/Articles/` 摘要层。
+- 建议触发条件：无需升级——**但本轮补一条判据**：LWN 纪要自陈「完全是本人解读，非官方通报」，而 `docs.kernel.org` 与仓库 master 状态不一致（10-26 线索 1）已确认为真。引用内核 AI 政策时，**必须先比对仓库 master 而非文档站**，再以 LWN 作佐证。
+
+## 2026-10-26 — papers.ssrn.com 的 Organizations & Markets / Economics of Innovation eJournal
+- 评级：P2（队列建议「降级为参考入口」，本引擎同意）
+- 来源类型：策展 eJournal（非同行评审）
+- NIE 典型性分析：North 1 / A&R 1——覆盖面过大（21,102 / 28,892 篇），选题由编辑策展而非问题驱动。
+- 数据源状态：❌ 正文 PDF 普遍 403（SSRN 已对非登录访问关闭 Delivery.cfm，10-26 线索 4）；OpenAlex 误标 `oa_status=green` 而 `pdf_url=null`。
+- 建议触发条件：仅作检索入口保留；若 SSRN 恢复开放下载 → 重新评估。**并将其误标问题记作方法学判据：引用 OA 状态前必须实测 PDF 是否 200。**
+
+## 2026-10-24 — 作者个人站 PDF 通道（zhangxunhui.github.io 等）
+- 评级：P2（不是内容源，是**取得全文的方法论**）
+- 来源类型：获取通道
+- NIE 典型性分析：不适用（0 轴）——但它是本轮所有「非摘要级审查」能否进行的前提。
+- 数据源状态：✅ 本次验证有效（ACM DL 403 / Semantic Scholar 无 OA / Wiley 全站 Cloudflare → 作者主页 `files/` 是唯一通路）。
+- 建议触发条件：不设升级条件。**已固化为判据**：遇 ACM / Wiley / Elsevier 付费墙，先查作者主页 `files/` 与机构仓库，再考虑放弃；放弃时必须在日报前置声明「仅摘要级审查」。
+
+## 2026-10-21 — OpenSSF（LF Research 报告支持方身份）
+- 评级：P2（**已在 monitored-sources #9 ✅ 活跃**）
+- NIE 典型性分析：Williamson 2（贡献政策与审阅责任的表态 = 基金会治理输出）/ North 1。
+- 数据源状态：✅ openssf.org 活跃在池内（RSS + Scorecard API + Charter + GitHub 事件）。
+- 建议触发条件：队列建议「人工核审后转活跃」——**本引擎直接确认**：OpenSSF 早在池内且状态已是「活跃」，无需审核流程，10-21 队列这一条属重复发现。
+
+---
+
+### P0 落地说明（2026-10-21 ~ 2026-10-27）
+
+| 来源 | 模块 | 数据源 | 实测结论 |
+|------|------|--------|----------|
+| Anthropic OSS Scanner（政策页 + 入册档案，10-27） | `oss-scanner/` | `red.anthropic.com/oss-scanner/` 政策全文 + `projects/` 目录 + PR 三分解 + repo 元信息 | ✅ 政策页 200 / 18,471 bytes 静态可抓；入册 **184** 项目；PR open 323 / merged 202 / closed-unmerged 608 → 通过率 **24.9%**；脚本 6.9 s 跑通。**注意：队列转述的「29,000 候选」在政策页不存在**，页面只说「By October 2026, we had reviewed over 6,000 such reports」 |
+| OSV 归档 + 恶意包来源归属（10-25） | `osv-origins/` | GCS 对象计数 + 逐条 `malicious-packages-origins` 分层抽样 + npm/all.zip HEAD + GitHub advisories 页面 | ✅ npm/MAL-* **204,750** 条；按发表月分层抽样（2026 段 n=11,997）得到 amazon-inspector 36%(1月) → 72%(8月) → 59%(10月) 的完整月度序列；脚本 1 min 40 s 跑通。**方法学陷阱已固化进代码注释**（MAL ID 非时间序，连续前缀抽样会得到相反结论） |
+
+### 值得追踪的制度信号（本次队列附带，非独立数据源）
+
+1. **「度量权」转移的双向运动**（10-25 + 10-27，本轮最大收获）——公共侧收缩：NVD 只对 KEV/联邦软件富化、其余 lowest priority（advisory-grader）；私有侧扩张：Anthropic 对「关键」项目提供免费深度扫描并自定准入判据（oss-scanner，入册通过率 24.9%）。**同一治理功能，公共服务退场、公司服务进场，而准入清单在两边都由名单而非需求决定。** 这是「度量权转移」第一次有了两侧各自的脚本与缓存。
+2. **披露时钟按报告可信度分层**（10-27）——OSS Scanner 的规则：未验证的模型报告**不设任何 90 天窗口**、也不公开；人工验证后**从「被通知已验证」起算 90 天**。协调披露三十年级别的统一时钟第一次被拆开。观察点：Google OSS VRP / Socket / Athena 是否跟进同一做法。
+3. **`Assisted-by` 十个月生命周期已成完整档案**（10-26）——2025-12-23 引入 → 2026-07-01 简化 → 07-02 联通两页 → 07 提案被否 → 08-02 补流程 → 10-13 删除，四次修订、一次否决。可作 #206「规则生命周期缩短」命题的独立文章主材。**配套判据**：`docs.kernel.org` 与仓库 master 状态不一致（站点仍显示含 Assisted-by 的旧内容），任何只读文档站的分析会得出相反结论。
+4. **公共记录的可归属性差异**（10-25 + 本轮实测）——OSV 的 `malicious-packages-origins` 把每条恶意记录归属到写入方（amazon-inspector / ghsa-malware / reversing-labs / ossf-package-analysis / google-oss-security），GHSA 的 reporter 不公开。「要求公共记录带写入者字段」是比「要求论文公开数据」便宜得多的制度设计动作，且 OSV 已证明可行。
+5. **本土对照研究的三个现成装置**（10-21 / 10-22 / 10-23）——Purdue 的性能 PR codebook（59 手法 / 9 类别 / 4 证据类型，但数据 gated）、rl-method-tracker 的 RL 方法吸纳 codebook、Li 2026 的开放权重普查口径（README 全写明）。**三者都是「换一批仓库即可执行」，缺的只是本土仓库样本**；Li 2026 的采集经 hf-mirror + Gitee 镜像未写入限制章节，是「采集基础设施依赖」的新样本，任何用镜像采 HF 数据的中文研究共享这一未陈述偏差。
+6. **SSRN 全面关闭非登录下载 + OpenAlex 误标 `oa_status=green`**（10-26）——两条一起构成方法学判据：引用 OA 状态前必须实测 PDF 是否 200。凡 SSRN 来源的论文只能做摘要级审查，此限制应在日报前置声明而非每次重复发现。
+7. **「常数即缺失」判据可复用**（10-24）——做任何子样本回归前，先打印每个自变量在各组内的 min/中位数/max；跨两个数量级就是警报（ohmyzsh 融合熵恒 <0.01 的实例）。配合四级判据链 `存在性 < 完整性 < 可复算性 < 稳健性`：可复算只保证「能重算你的数字」，不保证「数字支撑你的话」。
