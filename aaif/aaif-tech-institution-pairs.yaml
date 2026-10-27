@@ -1,0 +1,72 @@
+# Project Pulse — AAIF 技术思考 × 制度思考 对照表
+#
+# 2026-10-27 适兕决定：AAIF 段必须同时给出「技术思考」与「制度思考」两条线，
+# 而不是只描述项目现象。技术层回答「在做什么」，制度层回答「凭什么这样安排、
+# 谁承担后果、边界在哪」。
+#
+# 用法：cron job「Project Pulse — kernel inbox signals」的 AAIF 段落读取本表，
+# 对每个技术分野逐条输出两列对照；有当日数据时落到具体项目，无数据时只写框架。
+#
+# 字段：
+#   layer          技术分野（与 landscape Watchlist 五类对齐，便于交叉核对）
+#   tech           技术思考：这一类在解决什么工程问题
+#   institution    制度思考：这一类的安排会改变谁的权利与成本
+#   probe          本期要追问的具体问题（必须可被公开信息检验，不做泛泛议论）
+#   watch          对应的注册表项目 name（可为多个，用逗号分隔）
+
+pairs:
+
+  - layer: "协议与接口（Protocols & Interfaces）"
+    tech: "让 agent 能与外部工具、其他 agent、支付与身份系统互通——统一消息格式、能力发现、调用语义。核心工程难题是跨实现的一致性：同一个协议在 N 个 SDK、M 个 runtime 上行为必须一致。"
+    institution: "协议是「陌生人之间的契约」。谁写 spec、谁拥有解释权，就把「剩余控制权」握在手里。协议越被广泛实现，改写成本越高，早期定义者的位置越难被撼动——这是标准的路径依赖，与技术优劣无关。"
+    probe: "MCP spec 由谁主导起草与合入？A2A 捐给 LF 之后，TC 席位里 Google 占几席、其他成员占几席？Open Responses 只有 1 个 org、1 个主要提交者，它凭什么叫「跨 provider 标准」？"
+    watch: "mcp,a2a,open-responses"
+
+  - layer: "连接与控制平面（Gateway & Control Plane）"
+    tech: "在 agent 与模型/工具之间加一层，做路由、鉴权、限流、审计。工程上把「谁来管流量」从应用里抽出来，变成可独立部署的基础设施。"
+    institution: "控制平面就是治理平面。谁部署 gateway，谁就看得见全部调用记录、能决定谁可以调什么。这一层从「技术组件」变成「事实上的准入审批者」——它不需要立法，只需要被默认安装。"
+    probe: "agentgateway 近 90 天 top1 贡献者占比（一人主导？）；Agent Router 只有 2298 星却有 382 open issues，是早期问题密度还是维护不足？这两者的企业归属是否与 AAIF Platinum 会员重叠？"
+    watch: "agentgateway,agent-router"
+
+  - layer: "标准与格式（Standard / Format）"
+    tech: "用一纸约定（AGENTS.md 之类）让不同厂商的 agent 遵循同一套指令与能力描述。实现成本接近零——一个 markdown 文件即可。"
+    institution: "成本接近零的标准，扩散最快，也最容易被单一厂商的实际行为定义。格式本身没有约束力，约束力来自「事实上的默认」；谁的产品先被广泛使用，谁的实现就变成标准。许可证在这里是关键：无许可证的「开放格式」在法律上并未授予任何权利。"
+    probe: "anthropics/skills 18 万星但仓库无 LICENSE——它的「开放」靠什么保证？AGENTS.md 数月无 push，是规范已冻结还是维护失能？冻结的规范是否等于把解释权让给了最先实现的一方？"
+    watch: "agent-skills,agents-md"
+
+  - layer: "运行时与训练环境（Runtime / Env）"
+    tech: "运行时决定 agent 能执行什么动作；训练环境决定 agent 学到什么行为。工程上要把「能力」与「约束」同时装进去。"
+    institution: "运行时的默认行为就是制度的默认值——沙箱边界、权限模型、日志留存，这些不是配置项，是权利分配。捐给基金会的运行时（goose 由 Block 捐出）意味着原公司放弃了单方面改规则的权力，但没有放弃影响力：核心维护者往往还是原班人马。"
+    probe: "goose 迁到 aaif-goose org 后，Block 员工在 commit 中的占比是否下降？OpenEnv 文档托管在 HuggingFace、代码在独立 org，这种「文档与代码分离」由谁承担长期责任？"
+    watch: "goose,openenv"
+
+  - layer: "沙箱与隔离（Sandbox）"
+    tech: "给 agent 一个受限执行环境，防止它越权操作宿主系统。工程核心是隔离强度与性能的平衡。"
+    institution: "沙箱是把「信任」从人转移到机制上的尝试。但沙箱由谁提供、默认策略由谁设定，决定了风险的最终承担者。开源的沙箱可以被审计，这是它相对闭源的优势；但若单一贡献者占比过高，审计能力形同虚设——「可审计」的前提是有人真的去审。"
+    probe: "OpenSandbox 近 90 天 top1 贡献者占比（是否一人主导）；是否有独立的第三方安全审计记录？"
+    watch: "opensandbox"
+
+  - layer: "治理与合规（Governance / GRC Alignment）"
+    tech: "把 EU AI Act 等监管要求转译成工程可执行的检查项——风险分级、可追溯、审计日志。"
+    institution: "这是最容易被忽略的一层：当合规要求被写进技术架构，监管就从外部约束变成了内部设计参数。好处是可执行，代价是把「什么算合规」的定义权交给了写架构的人。WG 产出的每一份文档，都可能是未来事实上的行业标准。"
+    probe: "GRC Alignment WG 是否已产出可引用的规范文档？其 chair 来自哪家公司？该文档是否被引用进任何产品的合规说明？"
+    watch: ""
+
+  - layer: "会员与生态结构（Membership / Landscape）"
+    tech: "landscape 地图把生态分层：会员分级 + 技术类别 Watchlist，让人看懂「谁在这一层的什么位置」。"
+    institution: "会员名单是资源分配的公开账本。Platinum 8 家全为美国厂商、中国厂商止步 Gold，这不是技术差距的直接证据，而是**参与圈层**的证据——席位决定议题，议题决定标准，标准决定往后的成本落在谁身上。判断中立性要看 TC 席位与投票规则，不看会员数量。"
+    probe: "Platinum 名单本期是否有变动？TC/Board 是否出现非美公司或独立开发者？Watchlist 上的非会员项目是被吸纳还是被边缘化？"
+    watch: ""
+
+  - layer: "许可与法律边界（License）"
+    tech: "许可证决定代码被允许怎么用——是技术文件，但约束的是法律行为。"
+    institution: "这是「开源之为开源」的分界线。以 open standards 自我定位的基金会，其成员项目里存在无 LICENSE 仓库（anthropics/skills）、NOASSERTION 协议（MCP），说明 agentic AI 领域正在形成一种新的默认：**格式开放、实现保留**。这与 copyleft 的互惠外化是两种制度，不能混为一谈。观察到许可证变化（Apache → BSL/自定义）时，应视为制度转向的硬信号，而不是「公司策略调整」。"
+    probe: "本期是否有项目的许可证发生变化？无 LICENSE 项目是否补齐？有没有项目从宽松许可转向限制性许可？"
+    watch: ""
+
+# 判定纪律（写洞察时必须遵守）
+discipline:
+  - "技术与制度两列都要写，不许只写技术描述。缺一列视为未完成。"
+  - "制度思考只描述机制与后果，不做道德评判、不点名指责个别公司。"
+  - "probe 里的问题必须能被公开信息检验；无法检验的猜测不写。"
+  - "若当日无该项目数据，写「本期无新信号」并保留对照框架，不要瞎编。"

@@ -521,6 +521,91 @@ if [[ "$SECTION" == "all" || "$SECTION" == "L5" ]]; then
     section_l5
 fi
 
+# ---- L6: 技术思考 × 制度思考 对照 ----
+
+section_l6() {
+    echo ""
+    echo "### L6 — 技术思考 × 制度思考 对照"
+    echo ""
+    echo "> 每个技术分野都要给两条线：技术层回答「在做什么」，制度层回答「凭什么这样安排、谁承担后果」。"
+    echo ""
+
+    AAIF_DIR="$SCRIPT_DIR" DATA_DIR="$DATA_DIR" python3 - <<'PYEOF'
+import sys, os, re, glob, json, datetime
+
+path = os.path.join(os.environ['AAIF_DIR'], 'aaif-tech-institution-pairs.yaml')
+if not os.path.exists(path):
+    print("（未找到对照表 aaif-tech-institution-pairs.yaml）")
+    sys.exit(0)
+
+txt = open(path).read()
+body = txt.split('pairs:')[-1].split('\ndiscipline:')[0]
+data_dir = os.environ.get('DATA_DIR', '')
+today = datetime.date.today()
+
+# 当日各项目活跃度，用于把对照落到具体项目上。
+# 必须按文件名日期排序后取最后一个 —— 直接遍历 glob 会被旧文件覆盖，
+# 导致「今天在动」的项目显示成「81 天前」。
+proj_state = {}
+if data_dir:
+    for f in sorted(glob.glob(os.path.join(data_dir, '*-[0-9][0-9][0-9][0-9]-*.json'))):
+        try:
+            d = json.load(open(f))
+        except Exception:
+            continue
+        name = d.get('name') or os.path.basename(f).split('-20')[0]
+        pushed = d.get('pushed_at', '') or ''
+        # org 类型没有 pushed_at，用它名下 repo 的最新 push
+        if not pushed and d.get('is_org'):
+            pushed = max((r.get('pushed', '') for r in d.get('repos', [])), default='') or ''
+        try:
+            days = (today - datetime.date.fromisoformat(pushed[:10])).days
+        except Exception:
+            days = None
+        proj_state[name] = {'days': days, 'stars': d.get('stars'), 'issues': d.get('issues')}
+
+def field(block, key):
+    m = re.search(rf'^\s+{key}:\s*"?(.*?)"?\s*$', block, re.M)
+    return m.group(1).strip() if m else ''
+
+for block in re.split(r'\n  - layer:', body):
+    if not block.strip():
+        continue
+    layer = block.strip().split('\n')[0].strip().strip('"')
+    tech = field(block, 'tech')
+    inst = field(block, 'institution')
+    probe = field(block, 'probe')
+    watch = field(block, 'watch')
+
+    print(f"#### {layer}")
+    print(f"- **技术思考：** {tech}")
+    print(f"- **制度思考：** {inst}")
+    if probe:
+        print(f"- **本期追问：** {probe}")
+    if watch:
+        parts = []
+        for w in [x.strip() for x in watch.split(',') if x.strip()]:
+            st = proj_state.get(w)
+            if not st:
+                parts.append(f"{w}（无数据）")
+            elif st['days'] is None:
+                parts.append(f"{w}（取数失败）")
+            else:
+                parts.append(f"{w}（{st['days']} 天前 push）")
+        if parts:
+            print(f"- **数据落点：** {' / '.join(parts)}")
+    print()
+
+print("**判定纪律：** 两列都写才构成一条洞察；只写技术描述视为未完成。制度层只描述机制与后果，不做道德评判。")
+PYEOF
+
+    echo ""
+}
+
+if [[ "$SECTION" == "all" || "$SECTION" == "L6" ]]; then
+    section_l6
+fi
+
 echo ""
 echo "============================================"
 echo " AAIF query complete."
