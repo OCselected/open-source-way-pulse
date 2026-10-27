@@ -28,28 +28,70 @@ TODAY_DIR = f"{TODAY}"
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 PULSE_DIR = os.path.dirname(SCRIPT_DIR)
-REGISTRY = os.path.join(SCRIPT_DIR, "aaif-registry.yaml")
+REGISTRY = os.path.join(SCRIPT_DIR, "aaif-registry-v2.yaml")
+if not os.path.exists(REGISTRY):
+    REGISTRY = os.path.join(SCRIPT_DIR, "aaif-registry.yaml")
 DATA_DIR = os.path.join(PULSE_DIR, "data", "aaif")
 os.makedirs(DATA_DIR, exist_ok=True)
 
 USER_AGENT = "Hermes-Pulse/1.0"
+
+# 未认证的 GitHub API 只有 60 次/小时。项目从 4 个扩到 10 个后，
+# 每轮请求数翻倍，必然 403 rate limit —— 所有项目都会变成「无数据」。
+# 优先用 GITHUB_TOKEN / GH_TOKEN，其次退回 gh CLI 的登录 token。
+def _github_token():
+    tok = os.environ.get("GITHUB_TOKEN") or os.environ.get("GH_TOKEN")
+    if tok:
+        return tok.strip()
+    try:
+        out = subprocess.run(["gh", "auth", "token"], capture_output=True, text=True, timeout=10)
+        if out.returncode == 0 and out.stdout.strip():
+            return out.stdout.strip()
+    except Exception:
+        pass
+    return None
+
+
+TOKEN = _github_token()
+
+
+def gh_headers():
+    h = {"User-Agent": USER_AGENT}
+    if TOKEN:
+        h["Authorization"] = f"Bearer {TOKEN}"
+    return h
 TIMEOUT = 15
 
 
 # ---- Registry parser (lightweight yaml) ----
 
 def parse_registry(path):
-    """Parse aaif-registry.yaml, return list of project dicts."""
+    """Parse aaif-registry.yaml, return list of project dicts.
+
+    只收集 project_list 段下的条目。watch_surfaces 段同样是 `- name:` 开头，
+    但它描述的是 WG / landscape / 许可审计这类非仓库监视面，不能当项目抓取
+    GitHub 指标 —— 缺 category 字段，靠这个区分。
+    """
     projects = []
     current = {}
+    in_project_list = False
     with open(path) as f:
         for line in f:
             line = line.rstrip("\n")
+            # 段切换：遇到顶层 key 且非注释
+            if re.match(r'^[A-Za-z_]\w*:\s*$', line):
+                in_project_list = (line.split(':')[0] == 'project_list')
+                if current:
+                    projects.append(current)
+                    current = {}
+                continue
             m = re.match(r'^\s+-\s+name:\s+(\S+)', line)
             if m:
                 if current:
                     projects.append(current)
-                current = {"name": m.group(1)}
+                current = {"name": m.group(1)} if in_project_list else {}
+                continue
+            if not in_project_list:
                 continue
             m = re.match(r'^\s+(\w+):\s+"([^"]+)"\s*$', line)
             if m and current:
@@ -62,7 +104,7 @@ def parse_registry(path):
                 current[key] = val
         if current:
             projects.append(current)
-    return projects
+    return [p for p in projects if p.get("name") and p.get("category")]
 
 
 # ---- GitHub API ----
@@ -70,7 +112,7 @@ def parse_registry(path):
 def gh_fetch(repo_path):
     """Fetch single GitHub repo summary. Returns dict or None on error."""
     url = f"https://api.github.com/repos/{repo_path}"
-    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+    req = urllib.request.Request(url, headers=gh_headers())
     try:
         with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
             return json.loads(resp.read())
@@ -81,7 +123,7 @@ def gh_fetch(repo_path):
 def gh_fetch_commits(repo_path, per_page=5):
     """Fetch recent commits for activity signal."""
     url = f"https://api.github.com/repos/{repo_path}/commits?per_page={per_page}"
-    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+    req = urllib.request.Request(url, headers=gh_headers())
     try:
         with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
             commits = json.loads(resp.read())
@@ -97,7 +139,7 @@ def gh_fetch_org(org_name):
     try:
         req = urllib.request.Request(
             f"https://api.github.com/orgs/{org_name}",
-            headers={"User-Agent": USER_AGENT})
+            headers=gh_headers())
         with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
             data = json.loads(resp.read())
             result["public_repos"] = data.get("public_repos")
@@ -113,7 +155,7 @@ def gh_fetch_org(org_name):
 def gh_list_org_repos(org_name):
     """List public repos under an org."""
     url = f"https://api.github.com/orgs/{org_name}/repos?per_page=10"
-    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+    req = urllib.request.Request(url, headers=gh_headers())
     try:
         with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
             repos = json.loads(resp.read())
@@ -133,7 +175,7 @@ def gh_list_org_repos(org_name):
 def gh_fetch_releases(repo_path, per_page=3):
     """Fetch recent releases."""
     url = f"https://api.github.com/repos/{repo_path}/releases?per_page={per_page}"
-    req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+    req = urllib.request.Request(url, headers=gh_headers())
     try:
         with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
             rels = json.loads(resp.read())
@@ -149,7 +191,7 @@ def fetch_daily_briefing():
     """Scrape aaif.io homepage for Daily Briefing section."""
     url = "https://aaif.io/"
     try:
-        req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+        req = urllib.request.Request(url, headers=gh_headers())
         with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
             html = resp.read().decode("utf-8", errors="replace")
     except Exception as e:
@@ -170,7 +212,7 @@ def fetch_projects_page():
     """Scrape aaif.io/projects for project list."""
     url = "https://aaif.io/projects"
     try:
-        req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+        req = urllib.request.Request(url, headers=gh_headers())
         with urllib.request.urlopen(req, timeout=TIMEOUT) as resp:
             html = resp.read().decode("utf-8", errors="replace")
     except Exception as e:
@@ -228,6 +270,10 @@ def cmd_sync():
         if "/" in repo or repo.startswith("https://github.com") or repo_type == "org":
             # Convert to owner/repo or owner (for org)
             repo_path = repo.replace("https://github.com/", "", 1).strip("/")
+            # org 类型只取 owner 段：注册表里写成 "owner/repo" 时，
+            # /orgs/owner/repo 会 404（2026-10 实测，mcp 一直取不到数据）。
+            if repo_type == "org":
+                repo_path = repo_path.split("/")[0]
             print(f"\n--- Fetching {name} ({repo_path}, type={repo_type}) ---")
             data = {
                 "name": name,

@@ -1,0 +1,151 @@
+# Project Pulse — AAIF (Agentic AI Foundation) Project Registry · v2
+# AAIF is a Linux Foundation sub-foundation (aaif.io)
+#
+# 2026-10-27 重估：AAIF 项目已从 4 个增至 **10 个**（aaif.io/projects 实测），
+# 技术 landscape 正在成型（landscape.aaif.io：5 个技术类别 + 4 级会员）。
+# v2 补入 6 个缺失项目，新增 sponsor / license 字段，并新增 4 个非项目监视面。
+# v1（aaif-registry.yaml，54 行）保留不动，作为历史版本。
+#
+# Data source: GitHub REST API + aaif.io + aaif.io/tc + aaif.io/board + landscape.aaif.io
+#
+# Fields:
+#   name         - logical name (used as local data folder)
+#   repo         - GitHub "owner/repo" or URL for non-repo surfaces
+#   description  - human-readable label
+#   category     - runtime | protocol | standard | connector | format | sandbox | env | website | directory
+#   watch_level  - high | normal | low
+#   status       - active | inactive
+#   sponsor      - 捐赠/主导方（判断制度形态的关键字段，v2 新增）
+#   license      - 实测许可证（空 = 无 license，制度风险信号，v2 新增）
+
+project_list:
+  # ── 协议与格式（Protocol / Format）────────────────────────────────
+  - name: mcp
+    repo: "modelcontextprotocol/modelcontextprotocol"
+    repo_type: org
+    description: "Model Context Protocol — agent-data integration protocol"
+    category: protocol
+    watch_level: high
+    status: active
+    sponsor: "Anthropic 起创，2024-09 org 成立"
+    license: "NOASSERTION"
+
+  - name: a2a
+    repo: "a2aproject/A2A"
+    description: "Agent2Agent (A2A) — agent 间跨平台通信协议"
+    category: protocol
+    watch_level: high
+    status: active
+    sponsor: "Google 捐赠给 LF（org 简介自述）"
+    license: "Apache-2.0"
+
+  - name: open-responses
+    repo: "openresponses/openresponses"
+    description: "Open Responses — 跨 provider 的统一 LLM API 格式"
+    category: format
+    watch_level: high
+    status: active
+    sponsor: "独立 org（2025-10-24 建）"
+    license: "Apache-2.0"
+
+  # ── 运行时与环境（Runtime / Env）──────────────────────────────────
+  - name: goose
+    repo: "aaif-goose/goose"
+    description: "goose — 开源可扩展 AI agent（原 block/goose 已迁至 aaif-goose org）"
+    category: runtime
+    watch_level: high
+    status: active
+    sponsor: "Block 捐出"
+    license: "Apache-2.0"
+
+  - name: openenv
+    repo: "openenv/OpenEnv"
+    description: "OpenEnv — 训练 AI agent 的开放环境"
+    category: env
+    watch_level: normal
+    status: active
+    sponsor: "独立 org（2026-07-20 建）；文档在 HuggingFace"
+    license: "BSD-3-Clause"
+
+  # ── 标准（Standard）──────────────────────────────────────────────
+  - name: agent-skills
+    repo: "anthropics/skills"
+    description: "Agent Skills — 可复用 agent 能力的开放格式"
+    category: standard
+    watch_level: high
+    status: active
+    sponsor: "Anthropic（anthropics org 直属，未独立成 org）"
+    license: "NONE"
+
+  - name: agents-md
+    repo: "agentsmd/agents.md"
+    description: "AGENTS.md — 指导 coding agent 的开放格式"
+    category: standard
+    watch_level: normal
+    status: active
+    sponsor: "agentsmd org（2025-12-01 建）"
+    license: "MIT"
+
+  # ── 连接与网关（Connector / Gateway）─────────────────────────────
+  - name: agentgateway
+    repo: "agentgateway/agentgateway"
+    description: "agentgateway — 跨生态 agent 连接网关"
+    category: connector
+    watch_level: high
+    status: active
+    sponsor: "独立 org（2025-04-22 建）"
+    license: "Apache-2.0"
+
+  - name: agent-router
+    repo: "theagentrouter/agent-router"
+    description: "Agent Router — 基于 Envoy 的 AI 网关（模型 + MCP 工具路由）"
+    category: connector
+    watch_level: normal
+    status: active
+    sponsor: "独立 org（2026-08-07 建，最新的一个）"
+    license: "Apache-2.0"
+
+  # ── 沙箱（Sandbox）──────────────────────────────────────────────
+  - name: opensandbox
+    repo: "opensandbox-group/OpenSandbox"
+    description: "OpenSandbox — 面向 AI 应用的通用沙箱平台"
+    category: sandbox
+    watch_level: normal
+    status: active
+    sponsor: "opensandbox-group org（2026-06-04 建）"
+    license: "Apache-2.0"
+
+  # ── 生态信号（非 AAIF 托管项目）──────────────────────────────────
+  - name: mcp-directory
+    repo: "https://mcp.directory"
+    repo_type: website
+    description: "MCP.directory — 第三方 MCP server 目录（生态信号）"
+    category: directory
+    watch_level: normal
+    status: active
+
+
+# ─────────────────────────────────────────────────────────────────
+# 新增监视面（v2）—— 不是项目仓库，但决定制度走向
+# ─────────────────────────────────────────────────────────────────
+watch_surfaces:
+
+  - name: working-groups
+    url: "https://aaif.io/"
+    what: "8 个 WG: Accuracy & Reliability / Agentic Commerce / Governance Risk & Regulatory Alignment / Identity & Trust / Observability & Traceability / Security & Privacy / Workflows & Process Integration / Taxonomy & Landscape"
+    signal: "新增或关闭 WG；WG 是否产出可引用文档；chair 的公司归属"
+
+  - name: governance-structure
+    url: "https://aaif.io/tc"
+    what: "TC Chair David Soria Parra (Anthropic)；Co-Chair Caitie McCaffrey (Microsoft)；成员来自 OpenAI / Google / Cloudflare / AWS"
+    signal: "TC / Governing Board 席位变动；是否出现非美公司；独立开发者是否进入"
+
+  - name: landscape
+    url: "https://landscape.aaif.io/"
+    what: "Platinum 8 / Gold 40 / Silver 304 / Associate 9；Watchlist 5 类: Agentic Runtime / Data & Knowledge / Protocols & Interfaces / Agentic Development / Gateway & Control Plane"
+    signal: "Watchlist 条目增删；会员升降级；Huawei / Lenovo 等中国厂商动向"
+
+  - name: license-governance-audit
+    url: "各项目 repo 根目录"
+    what: "实测: anthropics/skills 无 LICENSE; modelcontextprotocol 为 NOASSERTION; agentsmd / openresponses / anthropics 缺 GOVERNANCE"
+    signal: "无 LICENSE 项目是否补齐；许可证类型变化; GOVERNANCE / CODEOWNERS 新增或删除"
