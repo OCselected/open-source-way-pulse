@@ -1,0 +1,149 @@
+# Project Pulse v2 — AI Policy Registry（项目级 AI 政策文本的横向普查）
+# Institutional Registry — 2026-10-28 ~ 11-03 队列评估 P0（第三次 P0，意义与前两次不同）
+#
+# ---
+# 制度定位
+# 这是 Project Pulse 第一个「数据对象 = 制度文本本身」的模块。
+# 前两个 P0 的数据对象是测量（oss-scanner 的入册配额、osv-origins 的记录归属），
+# 本模块的数据对象是**规则供给本体**：项目自愿写下的 AI 使用政策。
+#
+# 为什么是现在：开源社区的 AI 规则供给层在 2026 年同时出现三种形态，
+#   而三者都是「散在各仓库里的散文」，此前没有任何一份横向普查：
+#   - 基金会/平台层：GSoC 官方 guidance 自陈是 suggestions（not requirements）
+#   - 项目层：单一文件 AI_POLICY.md / AI_GUIDELINES.md，内容完全自定
+#   - 执行层：像 ghostty 那样把政策**编译成 CI**，名单本身成为可 fork 的制度资产
+# 已有文献与报道覆盖的是「声明」（有/无 AI 政策），本模块覆盖「文本」与「可机检性」。
+#
+# ---
+# NIE 分析轴（五轴中四轴典型）
+institution:
+  name: "Project-level AI usage policies (repo-committed rule texts)"
+  domain: "github.com"
+  object: "AI_POLICY.md / AI_GUIDELINES.md / .github/AI_POLICY.md 文件正文 + 其 commit 历史"
+
+nie_axes:
+  north:
+    score: 5
+    signal: "规则层从软法（基金会建议）迁移到项目自定文件，再迁移到 CI 执行 —— 一次完整的规则供给层形成过程"
+    analysis: >
+      North 意义上的制度变迁关注「规则从哪里来、由谁写、写在哪一层」。
+      2026 年之前，AI 使用的规范主要存在于会议纪要、邮件列表与导师口传；
+      2026 年起出现三种可记录形态并存：
+      (a) 基金会建议（GSoC: suggestions, not requirements）；
+      (b) 项目单文件政策（AI_POLICY.md，内容完全自定）；
+      (c) 编译执行的准入规则（ghostty: vouch-check-pr.yml + VOUCHED.td）。
+      本模块能把这三种形态放进同一张表里比较，使「规则供给层是否形成」成为可计数的判断
+      而不是印象。规则文本的 commit 历史还给出「规则生命周期」的可测长度。
+
+  ostrom:
+    score: 4
+    signal: "项目级政策是「自定规则」（collective choice）的最基层形态；但同一批维护者在同一份文件里给自己豁免"
+    analysis: >
+      Ostrom 八原则中的 collective-choice arrangements 在项目层的最小实现，
+      就是一个由受影响者参与书写、可被公开引用的规则文件。
+      本模块的核心观察点是**规则的作用域**：同一份 AI_POLICY.md 是否对
+      「外部贡献者」与「维护者」写了两套规则。
+      ghostty 的 AI_POLICY.md 明写「These rules apply only to outside contributions…
+      Maintainers are exempt」，并把豁免理由写成「they've proven themselves trustworthy
+      to apply good judgment」——这不是文本瑕疵，而是**规则的双层结构被明文写出**。
+      这类「豁免条款」是可自动抽取的字段，横向计数后可以回答：
+      规则约束的是行为，还是身份？
+
+  williamson:
+    score: 4
+    signal: "政策文本是「混合治理」的契约层；可机检条款（commit trailer）与不可机检条款（理解要求）对应不同的执行成本"
+    analysis: >
+      Williamson 的框架把治理看作契约的完备性梯度。AI 政策恰好落在梯度中段：
+      它介于「没有规则」与「平台强制机制」之间，靠的是可撤销的社区身份。
+      本模块因此同时抽取两类条款：
+      - 可机检（machine-checkable）：Assisted-by / Co-authored-by / Generated-by trailer、
+        「禁止纯 AI 生成 PR」等可被 bot 判定的规则；
+      - 不可机检（judgment-based）：「human-in-the-loop 必须理解代码」「维护者保留关闭权」。
+      两者的比值就是这份契约的**执行成本结构**：不可机检条款越多，
+      执行就越依赖维护者的自由裁量与时间，而这部分劳动没有任何岗位为之付费。
+
+  acemoglu:
+    score: 3
+    signal: "政策的普遍化会让「披露」变成准入门槛 —— 分母（谁被记入）由维护者单方决定"
+    analysis: >
+      包容性/汲取性在贡献准入层的直接体现。同一个披露规则，
+      在有余力做人工核查的项目里是 inclusive（帮助新人改进），
+      在只能靠启发式判定的项目里会滑向 execrative（用名单排除）。
+      ghostty 的 denounced 名单已把这一滑移固化为**公开、可被其他项目继承的排除记录**，
+      且理由字段完全由维护者单方书写、无申诉通道。
+      注意：这不是道德判断，是制度结构 —— 模块只记录「排除是否留痕、是否可复核、理由是否机器可读」，
+      不对排除本身的正当性下结论。
+
+# 可抽取字段（每份政策文本的核心指标）
+fields:
+  - path: "仓库内的相对路径"
+  - size_bytes
+  - stars                      # 用 star 数给文本加权：同样一句话，在 63k★ 和 0.3k★ 的项目里制度后果不同
+  - has_disclosure_clause      # 是否要求披露 AI 使用
+  - has_trailer               # 是否指定 commit trailer（Assisted-by / Co-authored-by / Generated-by）
+  - has_maintainer_exemption  # 是否明文给维护者豁免
+  - has_denounce_or_ban       # 是否含排除/禁止机制
+  - has_human_understanding   # 是否要求 human-in-the-loop 理解代码（不可机检条款）
+  - last_commit_date          # 规则最后一次被改动的时间 → 规则生命周期长度
+
+# 数据源（2026-11-03 04:30-05:20 实测）
+data_sources:
+  code_search:
+    url: "https://api.github.com/search/code?q=filename:AI_POLICY.md"
+    status: "available"
+    measured: "total_count = 1782；per_page=100 可翻页，Link rel=last 为 page=10"
+    note: >
+      目录发现层的入口。实测三个口径：
+      filename:AI_POLICY.md = 1782 / filename:.github/AI_POLICY.md = 92 /
+      filename:AI_GUIDELINES.md = 379。
+      ⚠️ 已知缺口：真实供给远大于此 —— 内核的规则写在 Documentation/process/、
+      LLVM 写在 llvm/docs/AIToolPolicy.md、node/k8s/kafka/vscode 完全没有独立政策文件。
+      因此本模块**只覆盖「把政策做成独立文件」的那一支**，这一点必须在任何引用中声明。
+  contents_api:
+    url: "https://api.github.com/repos/{owner}/{repo}/contents/{path}"
+    status: "available"
+    note: "精确探测某仓库是否有政策文件（不需要 code search 配额），用于 curated 对照组"
+  raw:
+    url: "https://raw.githubusercontent.com/{owner}/{repo}/HEAD/{path}"
+    status: "available"
+    note: "取正文。`HEAD` 自动跟随默认分支，实测对 pytorch/babel/docker/compose 均 200"
+  commits_api:
+    url: "https://api.github.com/repos/{owner}/{repo}/commits?path={path}"
+    status: "available"
+    note: "规则生命周期：最后一次改动的日期就是这条规则「活」了多久/停了多久"
+
+rate_limits:
+  code_search: "10 req/min（实测第 5 次触发 403 rate limit），本模块每次运行最多消耗 10 次"
+  core: "5000/h（已认证），正文抓取与 commit 历史各占 1-2 次"
+
+# curated 对照组（手工探测，2026-11-03）
+control_group:
+  has_standalone_policy:
+    - "pytorch/pytorch — AI_POLICY.md (1,915B) 明文『We do not accept contributions created by fully autonomous agents』，要求 AI 内容放在受控区块并附人类解释"
+    - "grafana/grafana — AI_POLICY.md (4,313B)"
+    - "babel/babel — AI_POLICY.md (1,237B) 指定 `Assisted-by: <LLM name>` 且明文禁用 Co-authored-by；同文件内藏一条 HTML 注释专给 LLM 读"
+    - "docker/compose — AI_POLICY.md (4,946B)"
+    - "BurntSushi/ripgrep — AI_POLICY.md (1,878B)"
+    - "ghostty-org/ghostty — AI_POLICY.md (2,989B) + 编译为 CI"
+  no_standalone_policy:
+    - "torvalds/linux — 政策在 Documentation/process/（且 Assisted-by 已于 2026-10-13 撤除，commit 1e035297）"
+    - "llvm/llvm-project — 政策在 llvm/docs/AIToolPolicy.md"
+    - "rust-lang/rust — 仅在 rust-analyzer 子树有 src/tools/rust-analyzer/AI_POLICY.md"
+    - "nodejs/node / kubernetes/kubernetes / apache/kafka / vercel/next.js / microsoft/vscode / go-gitea/gitea — 五种常见路径全无"
+
+# 待监控信号
+signals_to_monitor:
+  - "AI_POLICY.md 总量（1782）的季度变化 —— 规则供给层是否在扩散"
+  - "『维护者豁免』条款在抽样中的出现率（目前唯一样本 ghostty）"
+  - "可机检 trailer 的指定：Assisted-by（内核已撤）/ Co-authored-by（babel 明文禁止）的实际分布"
+  - "规则生命周期：政策文件两次修订之间的间隔中位数"
+  - "政策文本是否开始包含『本政策变更需走 X 流程』—— 规则自身的修改规则"
+
+# 优先级
+priority: "P0"
+rationale: >
+  四轴典型（North 5 / Ostrom 4 / Williamson 4 / A&R 3），数据源全自动化且已实测，
+  与现有池互补（现有模块测『行为』，本模块测『文本』；零重叠）。
+  落地方式：先做 curated 对照组的稳定性横向普查（不依赖 code search 配额），
+  再由 code search 提供规模分母。两者分开计口径，避免把 1774 个 0★ 仓库
+  和一个 63k★ 项目的政策混成同一个「趋势」。

@@ -1,0 +1,125 @@
+# Project Pulse v2 — EU Digital Rulewatch（规则所在的法层，决定规则的稳定性）
+# Institutional Registry — 2026-10-28 队列评估 P0
+#
+# ---
+# 制度定位
+# 这不是一个新项目，是三类「制度文本发布渠道」的合流观测面：
+#   ① 期刊 Early View（Regulation & Governance）—— 制度变迁的学术界先声
+#   ② 研究项目 publications（RegulAite, UvA）—— 政策过程的追踪式工作论文
+#   ③ 全球南方研究机构（CTS-FGV / CyberBRICS）—— 数字主权的第三地域样本群
+#
+# 为什么这三家要在一个模块里：它们覆盖的是同一个问题的三个尺度 ——
+#   「一条规则写在哪一层、谁改得动它」。10-28 队列提出的判断是：
+#   同一条 `irrevocably royalty-free` 措辞，从软法/采购指导（可被游说修改）
+#   搬进 CRA / AI Act 硬法（只能被诉讼修改）—— **稳定性来自层级，不来自内容**。
+#   要检验这个判断，就必须能同时读到「政策研究（谁在游说）」「标准制定（谁在写）」
+#   「立法文本（写进去了没有）」三条线。三家来源恰好各占一条。
+#
+# ---
+# NIE 分析轴
+institution:
+  name: "EU digital-regulation rule layering watch (journals + research projects + global-south institutes)"
+  domain: "onlinelibrary.wiley.com / regulaite.eu / cyberbrics.info"
+  model: "跨发布渠道的多源观察，不做单一权威排序"
+
+nie_axes:
+  north:
+    score: 5
+    signal: "同一规则从软法迁移到硬法，是可计时的制度变迁；期刊 Early View 提供 6-12 个月的先行读数"
+    analysis: >
+      North 的核心命题是「制度的稳定性取决于它被写在哪一层」。
+      Regulation & Governance 的 Early View 是这条命题的实测入口：
+      论文常在正式见刊前 6-12 个月上线，且监管治理领域的论文跟踪的正是
+      「规则从提案到生效的路径」。实测 2026-11-03 最新条目里已有一篇直接相关的
+      「How the European Union Fell Out of Love With Open‐Source Software」
+      （DOI 10.1111/rego.70217，2026-10-27）—— 这是开源制度变迁在监管治理
+      顶刊上的出现，值得单独立档。
+      CyberBRICS 则提供南向对照：数字主权在不同法域里被写成不同的东西。
+
+  williamson:
+    score: 4
+    signal: "标准化与监管的委托-控制关系是混合治理的教科书形态；执行者不是市场也不是科层，而是 SDO"
+    analysis: >
+      RegulAite 的研究对象正是这个：EU 把 AI 治理的一部分委托给私方标准组织（CEN-CENELEC、
+      ISO/IEC），于是形成「立法定目标、标准组织定方法」的混合结构。
+      其 2026 论文序列呈现清晰的递进：
+      `European standardization in flux: navigating delegation and control in AI governance`
+      （Journal of Standardization, 2026, DOI 10.59490/jos.2026.8346）
+      → `Who Leads AI Standardization? Geopolitics in a Fragmented Standards Landscape`
+      （WP 05/2026）→ `Forking paths of AI governance`（Critical Policy Studies 2026）。
+      这一串正好是「委托了什么、控制得住吗、分叉在哪里」的三段式，
+      与 Otero & Verhulst（#145）和「开放标准定义被改写」（#222）构成标准制定权的完整链条。
+
+  acemoglu:
+    score: 3
+    signal: "规则由谁参与书写决定其包容性；数字主权议程与政策议程高度重合是一级观测信号"
+    analysis: >
+      三个渠道各自带一个制度偏向，必须在使用时明说：
+      - Wiley 期刊：同行评审，但有付费墙与 Cloudflare 403（实测），能读到的与能发表的不是同一批；
+      - RegulAite：Vici 资助的单一项目，作者群高度重叠（Mügge 一人署名多数条目）；
+      - CyberBRICS：Luca Belli 主持，其研究议程与巴西/金砖政策议程高度重合（队列已自陈）。
+      包容性在这里不是「有没有南方样本」，而是「南方样本的书写者是谁」。
+      CTS-FGV 提供的是巴西视角的「数字主权」，不是中立的第三方视角 ——
+      这一点在引用时必须前置声明。
+
+  coase:
+    score: 3
+    signal: "开放权重与开源许可作为企业边界与出口管制的重划工具（CNAS 两条政策文本的对照面）"
+    analysis: >
+      10-28 / 11-03 队列带来的 CNAS 两份文本把「开放权重」从技术选择变成战略工具：
+      中美两条方向相反的政策（中国 10-16 出口管制草案 / 美国预部署测试豁免开放权重）
+      同时成立，说明开放权重既非承诺也非禁区，而是可调的战略变量。
+      这与本模块的欧洲线索构成三地对照，可与「大分流 2.0」的许可证层直接对读。
+
+# 来源清单（2026-11-03 04:30-05:40 实测）
+sources:
+  regulation_and_governance:
+    type: "学术期刊（Wiley, ISSN 1748-5991）"
+    url: "https://onlinelibrary.wiley.com/journal/17485991"
+    status: "blocked_direct_only"
+    measured: "整刊页 curl 403（5,686 B 拦截页）；Crossref 期刊 API 200（total 1,131 条）；RSS `most-recent` 200（495,763 B, 127 items）"
+    entry_point: "RSS https://onlinelibrary.wiley.com/feed/17485991/most-recent"
+    note: "正文有 Cloudflare 保护，只能做标题级监测；要读全文须走作者主页或机构库"
+  regulaite:
+    type: "研究项目出版物页（University of Amsterdam）"
+    url: "https://www.regulaite.eu/output/publications/"
+    status: "available"
+    measured: "200, 54,537 B；页面内 20 个条目各带 `Published: <date>` 与 1 个 Details 链接；含 7 个 DOI 直链"
+    note: "无 RSS / 无 wp-json（三路径均 404），只能按 HTML 结构解析；条目数固定为 20（滚动窗口）"
+  cyberbrics:
+    type: "研究机构（FGV / CTS, Luca Belli 主持）"
+    url: "https://cyberbrics.info/"
+    status: "available"
+    measured: "首页 200 (243,788 B)；WP REST API 可用；posts 总量 370，其中 category=Publications（id 12）232 条"
+    entry_point: "https://cyberbrics.info/wp-json/wp/v2/posts?categories=12"
+    note: "条目正文内含 PDF 直链（实测每条约 2 个 href），可下全文；这是三家来源里唯一能同时取元数据与全文的"
+  tum_mppe:
+    type: "工作论文系列（TUM School of Management）"
+    url: "https://www.wi.tum.de/mppe/"
+    status: "unreachable"
+    measured: "www.wi.tum.de 连接超时（4 条路径全 timeout，DNS 解析到 138.246.224.177）；wi.tum.de 无 www 时 200 但返回首页（1,360,848 B，正文里 mppe 零命中）；OpenAlex 按 ISSN 2701-3456 查得 count=0；EconStor 被 Anubis proof-of-work 拦截"
+    verdict: "P1（数据源当前不可得）—— 队列给出的『常载 EU 数字政策工作论文』判断在可访问性上不成立"
+
+# 监测口径
+watch_fields:
+  - "新条目发布日期（判断发表节奏）"
+  - "标题是否命中开源/许可/标准化/平台治理关键词（关键词集合见脚本）"
+  - "DOI 是否可解析（Crossref 查询，判断是否已进入引用网络）"
+  - "作者是否与前一轮重复（单一项目/单一作者的偏向度量）"
+
+# 待监控信号
+signals_to_monitor:
+  - "『rules 的稳定性来自层级而非内容』这一判断的文本证据：逐条比对 CRA Art 3(48) / AI Act Recital 17 / Interoperable Europe Act Art 4 的许可要件措辞"
+  - "EU 是否出现『open source』从工具变成被监管对象的转折（R&G 2026-10-27 那篇即切入点）"
+  - "RegulAite / CyberBRICS 是否出现对 CRA 的直接经验研究"
+  - "标准化权力：CEN-CENELEC 的 AI 标准交付时序是否被期刊记录为『委托失控』"
+
+# 优先级
+priority: "P0"
+rationale: >
+  三渠道全部实测可用（一家走 RSS，一家走 HTML 结构，一家走 WP REST API），
+  与现有池零重叠（池内 26 个模块无任何 European regulatory 观察面）。
+  North 5 / Williamson 4 / A&R 3 / Coase 3，四轴典型。
+  合并为一个模块而非三个：单独任一家都只是一条信息流，
+  合起来才是「规则在法层之间迁移」的可观测结构。
+  MPPE 一家降级 P1 单独记录，不并入本模块的自动化管线。

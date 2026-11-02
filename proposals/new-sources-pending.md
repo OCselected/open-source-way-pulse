@@ -1250,3 +1250,133 @@ OSAA 和 Tokenomics Foundation 虽未独立建管线，但以下信号值得通�
 5. **本土对照研究的三个现成装置**（10-21 / 10-22 / 10-23）——Purdue 的性能 PR codebook（59 手法 / 9 类别 / 4 证据类型，但数据 gated）、rl-method-tracker 的 RL 方法吸纳 codebook、Li 2026 的开放权重普查口径（README 全写明）。**三者都是「换一批仓库即可执行」，缺的只是本土仓库样本**；Li 2026 的采集经 hf-mirror + Gitee 镜像未写入限制章节，是「采集基础设施依赖」的新样本，任何用镜像采 HF 数据的中文研究共享这一未陈述偏差。
 6. **SSRN 全面关闭非登录下载 + OpenAlex 误标 `oa_status=green`**（10-26）——两条一起构成方法学判据：引用 OA 状态前必须实测 PDF 是否 200。凡 SSRN 来源的论文只能做摘要级审查，此限制应在日报前置声明而非每次重复发现。
 7. **「常数即缺失」判据可复用**（10-24）——做任何子样本回归前，先打印每个自变量在各组内的 min/中位数/max；跨两个数量级就是警报（ohmyzsh 融合熵恒 <0.01 的实例）。配合四级判据链 `存在性 < 完整性 < 可复算性 < 稳健性`：可复算只保证「能重算你的数字」，不保证「数字支撑你的话」。
+
+---
+
+## 新来源评估 — 2026-10-28 ~ 2026-11-03 队列（P0 ×3 / P1 ×4 / P2 ×6 / 排除 ×3）
+
+> 队列文件 7 份（10-28 / 10-29 / 10-30 / 10-31 / 11-01 / 11-02 / 11-03），提取候选来源 19 个（去重后 16 个）。
+> **P0 落地 3 个**（`ai-policy-registry/` / `vouch-registry/` / `eu-digital-rulewatch/`），P1 4 个，P2 6 个，排除 3 个。
+> 所有 URL 于 2026-11-03 04:30–05:10 实测，三个脚本各跑通一次（--sync / --verify / --extract 全路径）。
+
+### 排除来源（2026-10-28 ~ 2026-11-03）
+
+| 来源 | 原因 |
+|------|------|
+| Django `docs/internals/organization.txt` + `triaging-tickets.txt`（11-03） | 🔁 队列自陈「已在库内」（#234 已深审）。**本轮复核通过**：organization.txt 13,249 B，第 65-66 行「at a minimum of three, in order to spread the workload and avoid over-burdening or burning out any individual Merger」逐字成立；Releasers 一节第 127/131-132 行同款措辞也成立；triaging-tickets.txt 25,196 B，第 433-448 行四条禁止令逐字成立（不得自升 Accepted / 不得自标 Ready for checkin / 不得无共识推翻决定 / 不确定就别改）。记录不落地 |
+| CNAS《A Closing Door on Open Weights?》+《Sovereign Agents》（11-03） | ⚠️ **入池，但 URL 需更正**：`cnas.org/publications/reports/sovereign-agents` 实测 **404**；正确入口是 `cnas.org/publications/cnas-insights/cnas-insights-a-closing-door-on-open-weights-implications-for-ai-sovereignty`（200，100,145 B）。队列自己只纠正了前者、漏了后者。作为智库评论入 `eu-digital-rulewatch` 的 Coase 轴对照面，不建独立模块 |
+| argoproj/.project 名册（11-02） | 🔁 已在册 #15。**本轮复核通过并转正**：`maintainers.yaml` 5,908 B / 209 行，自陈 AUTHORITATIVE SOURCE OF TRUTH；逐 team 计数 argocd-maintainers **35** / argocd-approvers **15** / argocd-leads **2** / emeritus **20**（16 个 team）。**队列线索 2 的计数争议到此了结：日报的「emeritus 21」是错的，队列的「20」是对的** —— 已用 `count_teams.py` 结构化解析验证，非人工数行 |
+
+### P0 落地（独立模块）
+
+#### `ai-policy-registry/` — 项目级 AI 政策文本的横向普查
+
+- **为什么是 P0**：这是 Project Pulse 第一个「数据对象 = 制度文本本身」的模块。前两个 P0（oss-scanner / osv-origins）测的是**测量行为**，本模块测的是**规则供给本体**。
+- **NIE 轴**：North 5（规则供给层从基金会建议 → 项目单文件 → CI 执行的三形态并存）/ Ostrom 4（自定规则的基层形态 + 明文双层规则）/ Williamson 4（可机检 vs 判断型条款 = 契约完备性梯度）/ A&R 3（披露是否变成准入）。
+- **实测读数（2026-11-03）**：
+  - curated 对照组 15 个重量级仓库：**6 个有独立政策文件**（pytorch 105,088★ / grafana 77,640★ / ripgrep 69,653★ / ghostty 63,288★ / babel 44,058★ / docker-compose 38,578★），**9 个没有**（rust / node / k8s / kafka / next.js / vscode / gitea / **linux** / **llvm**）。
+  - ⚠️ 关键限定：「无独立文件」≠「无政策」—— 内核写在 `Documentation/process/`、LLVM 写在 `llvm/docs/AIToolPolicy.md`。**任何只按 `filename:AI_POLICY.md` 统计的分析都会把这两个最重要的样本判为『无政策』**，这是本模块写进 registry 的首要 caveat。
+  - 条款抽取：6 份文本里 `has_maintainer_exemption` 只有 ghostty 一家；`has_human_understanding` 只有 ripgrep 与 ghostty；commit trailer 只有 babel（`assisted-by`）与 docker/compose（`co-authored-by`）指定，**pytorch / grafana / ripgrep / ghostty 四家完全不指定 trailer**。
+  - 规模分母：`filename:AI_POLICY.md` total_count = **1,782**（另有 `.github/AI_POLICY.md` 92、`AI_GUIDELINES.md` 379）。
+- **坑已固化进代码注释**：code search 限速 10/min（第 5 次即 403）、不支持 `stars:` 限定（返回 total_count=0）、无 token 时 api.github.com 一律 403。
+- **数据源**：GitHub contents API + raw（HEAD 跟随默认分支）+ code search（每轮仅 1 次）
+
+#### `vouch-registry/` — 准入规则被编译成 CI
+
+- **为什么是 P0**：「收紧贡献入口」写进 CONTRIBUTING 的项目很多，**把规则编译成 CI 的极少**。ghostty 四个环节全部可 diff：规则文本（`AI_POLICY.md`）→ 执行机制（5 个 `vouch-*.yml`）→ 状态（`.github/VOUCHED.td`）→ 变更（bot PR）。
+- **NIE 轴**：Ostrom 5（自定规则 + 分级处置 + 名单可被他人继承）/ North 4（规则不动而状态天天动）/ Williamson 4（治理成本从判断转移到记账）/ A&R 4（26 条排除无申诉、无到期）。
+- **实测读数（2026-11-03）**：
+  - `VOUCHED.td` 5,897 B / 428 行 → **408 数据行 = vouch 382 + denounce 26**；
+  - 26 条 denounce 里 **18 条带理由**，其中 **13 条理由含 AI 相关词**（HITL / meatproxying / bot / slop / LLM）；
+  - **名单近 30 天 45 次提交**（2026-08-13 ~ 11-02 窗口内 100 次），而 **`AI_POLICY.md` 只改过 2 次（2026-01-22 / 02-03）** —— 规则定了就不动、状态天天在动，规则与执行已分离，这是 North 命题的干净读数；
+  - 名单 PR 抽样 10 个：**bot 合并 10/10，有评审或评论 0/10**。合并动作无人类署名，人类动作在 discussion 里 → **`merged_by` 无法回答「谁做的决定」**（与 Django 禁自合线索属同一平台层缺口）。
+- **制度判读（为何值得一个模块而非一条新闻）**：`AI_POLICY.md` 明文写「These rules apply only to outside contributions… Maintainers are exempt」，把**规则的双层结构**直接写进文本；`VOUCHED.td` 头部又明文鼓励「other projects can slurp in our list of denounced users」——**排除名单第一次被设计成可移植的制度基础设施**。26 条理由从可辩护（`Repeated meatproxying in spite of prior warning`）到不可复核（`Stupid bot cosplaying as a maintainer`、`automated vomit`）全谱俱在，而写入者=判定者=唯一记账者。**这三条加总，使一个本用于防 AI slop 的机制具备成为长期资格剥夺工具的形态。**
+
+#### `eu-digital-rulewatch/` — 规则所在的法层
+
+- **为什么是 P0，且为什么合并而非三家分立**：单看任一家都只是一条信息流；合起来才构成「规则从软法搬进硬法」的可观测结构（期刊 = 谁在游说 / 研究项目 = 委托-控制如何运作 / 南方机构 = 同一概念的另一法域形态）。
+- **NIE 轴**：North 5（软法→硬法的层级迁移，Early View 提供 6-12 个月先行读数）/ Williamson 4（监管对标准组织的委托-控制）/ A&R 3（谁能书写南方样本）/ Coase 3（开放权重作为出口管制工具）。
+- **实测读数（2026-11-03）**：
+  - **Regulation & Governance**：整刊页 curl **403**（5,686 B 拦截页），但 **RSS `/feed/17485991/most-recent` 200（497,844 B / 127 items）** —— 这是唯一可用入口；Crossref 期刊 API 200（1,131 条元数据）。127 条中关键词命中 2 条，其中 **2026-10-27「How the European Union Fell Out of Love With Open-Source Software」（DOI 10.1111/rego.70217）** 直接落在本池主题上，应单独立档。
+  - **RegulAite**：页面 200 / 54,537 B，**20 个条目各带 `Published:` 与 7 个 DOI 直链**；**无 RSS、无 wp-json、无 sitemap（三路径全 404）** → 只能按 HTML 结构解析，且列表是固定 20 条的滚动窗口。命中 5 条，含《Who Leads AI Standardization?》（WP 05/2026）。
+  - **CyberBRICS**：首页 200 / 243,788 B；WP REST API 可用，**posts 总量 370，category=Publications（id 12）232 条**；`/publications/` 是 404，正确入口是 category id。**每条正文内含 PDF 直链，是三家里唯一能同时取元数据与全文的**。命中 4 条，含 2026-10-14《Leveraging Open Source Technologies as a Techno-regulatory Strategy to Advance Digital Sovereignty》（Belli / Gaspar / Krewer）—— 这是「开源被当作技术-监管策略」的直接一手论证，与本池「开源=制度契约而非技术协作模式」的判断正面相撞，值得优先读。
+- **闭源论断**：Wiley 正文有 Cloudflare，**只能做标题级监测**，任何基于此的正文判断必须声明限制。
+
+### P1（观察期）
+
+## 2026-10-28 — Munich Papers in Political Economy (MPPE) / TUM
+- 评级：P1（**数据源当前不可得**，队列给出的可访问性判断不成立）
+- 来源类型：工作论文系列（ISSN 2701-3456）
+- NIE 典型性分析：North 3（EU 数字政策与监管治理的过程追踪）/ Williamson 3（委托-控制）/ A&R 2。制度上确实高价值。
+- 数据源状态：❌ `www.wi.tum.de` **连接超时**（`/mppe/`、`/feed/`、`/sitemap_index.xml`、`/wp-json/wp/v2/posts` 四条路径全 timeout 25s；DNS 正常解析到 138.246.224.177）；❌ `wi.tum.de`（无 www）200 但返回**学院首页**（1,360,848 B，正文中 `mppe` 零命中，是 SPA）；❌ OpenAlex 按 ISSN 2701-3456 查 **count=0**（该系列未进 OpenAlex）；❌ EconStor 全套 **Anubis proof-of-work 拦截**（「Anubis could not load its JavaScript」）。**四条通路全断。**
+- 建议触发条件：① 站点恢复直连（实测重试即可，不改脚本）→ 重评 P0；② 若 MPPE 进 RePEc/IDEAS 或 OpenAlex 收录 → 改走 API 入口升级 P0。
+
+## 2026-10-29 — Christoph Treude（SMU）+ Sebastian Baltes（Heidelberg）· 个人 arXiv 线
+- 评级：P1（**合并为一条**：两条个人线是同一合作网络，分开记会制造虚假的「多人独立发现」）
+- 来源类型：研究者个人 arXiv 作者页
+- NIE 典型性分析：North 3（「AI 辅助系统综述」的方法学制度化：κ 报告、双模型编码、单人类裁决，是「度量契约」的自我书写）/ Ostrom 2（五角色编码框架可复用于「制度承载多角色→逐格看谁接管」）/ A&R 2。
+- 数据源状态：✅ arXiv 作者页可访问；✅ 论文 arXiv:2610.34933 可下载（本批已在 #224 深审）。**个人线的好处在可跟踪预告（Future Plans 已写明四条件评审实验与事件研究设计），坏处在无稳定 feed** —— arXiv 作者页只有列表，没有「新增」信号，需自行 diff。
+- 建议触发条件：① 四条件评审实验结果发布（diff / diff+prompt / diff+短理由 / diff+全量会话记录）→ 升级 P0 并做「会话记录是否帮评审者找到缺陷」的专门档案；② 该组出现 ≥3 篇带完整复制包的论文 → 评估 P0。
+
+## 2026-11-01 — Arizona State University · Zhang 组（Lingming Zhang 线）
+- 评级：P1
+- 来源类型：研究组（SWE-bench / SEC-bench / SEC-bench Pro / CyberDual / SecPRBench 作者群）
+- NIE 典型性分析：Williamson 3（审核作为治理动作的可复测仪器）/ North 3（「评审者能力边界」从论文话题变成基准基础设施）/ A&R 2（谁能被记入基准、谁被常数化）。
+- 数据源状态：✅ `arxiv.org/a/zhang_lingming_1` 可用；✅ `CyberDual/CyberDual` 与 `snyk-labs/snyk-vulnbench` 仓库 API 均 200（**但需 token，无 token 一律 403**）；论文族在 arXiv 稳定。
+- 建议触发条件：① 该组把「误伤率（false rejection no benign PR）」做成一等指标 → 升级 P0（#232/#233 已两次自陈此项为零测量，谁先测谁立标）；② 出现第三个「开箱可复算」的基准（目前只有 VulnBench 与 CyberDual）→ 建 `agent-review-benchmarks/` 模块横向对读。
+
+## 2026-10-30 — r/ActuallyOpenSource / r/TrueOpenSource / r/OpenSourceAIAllowed（公地 fork 三样本）
+- 评级：P1（**置信度中**，队列自陈「建议人工确认后再纳入」，本引擎同意）
+- 来源类型：Reddit 社区（治理实验样本）
+- NIE 典型性分析：Ostrom 5（**公地 fork 后自定规则**的最直接活体样本：r/ActuallyOpenSource 把 r/opensource 新规逐条反转写成 7 条；r/TrueOpenSource 做的是治理结构实验——Weekly Showcase / Complaint Megathread / 置顶「This is your subreddit, not ours」/ 第 9 条把 drama 关进 megathread）/ North 3（规则收敛方向可计时：30 天内是否都开始加限制）/ A&R 2（规模 5.9K / 2.7K vs 原社区 396K = 1:0.022 的注意力切分）。
+- 数据源状态：❌ **Reddit 的 JSON 端点返回反爬页**（10-30 队列已实测）；`/about/rules` 无法以脚本取得 → **只能人工浏览**。成员数是抓取时点值，不可复算。
+- 建议触发条件：① 出现可用 API（已有第三方 reddit API 代理/凭据）→ 升级 P0 做 30 天规则收敛时间序列；② 三板块中任一个在 30 天内开始加限制 → 「收紧入口不是版主偏好而是注意力公地的结构性问题」这一判断获得关键证据，按事件收录（届时人工取一次快照即可，不需要管线）。
+
+### P2（记录备案）
+
+## 2026-10-29 — `ladybirdbrowser/ladybird` CONTRIBUTING.md
+- 评级：P2（**单文件治理样本，不建模块**）
+- 来源类型：项目治理文本
+- NIE 典型性分析：Ostrom 3（外部贡献格被主动关闭的最干净样本 —— 一行文本堵死全部替代通道）/ A&R 3。典型性够，但**一份 3,380 B 的文件不值得一条自动化管线**。
+- 数据源状态：✅ `raw.githubusercontent.com/ladybirdbrowser/ladybird/master/CONTRIBUTING.md` **200，3,380 B**（注意分支是 `master` 不是 `main`）。
+- 已固化为判据：「外部贡献格关闭」的对照样本集 = ladybird（完全禁止）+ ghostty（allow-list 门禁，已入 `vouch-registry`）+ PyTorch（`[no-ci]` 式显式跳过通道）。三份文本构成「关闭 / 门禁 / 留痕豁免」三形态，可作独立文章的骨架。
+
+## 2026-10-29 — `llvm/llvm-project` 的 `llvm/docs/AIToolPolicy.md`
+- 评级：P2（**已作为 `ai-policy-registry` 的教科书反例纳入**）
+- 来源类型：项目治理文本
+- NIE 典型性分析：North 3（内核撤除 `Assisted-by` 后 LLVM 成为该 trailer 的唯一大规模在行者）/ Williamson 2。
+- 数据源状态：✅ raw 200，**10,249 B**。⚠️ **关键坑**：LLVM 没有 `AI_POLICY.md`，政策在 `llvm/docs/`。本模块的路径探测因此会把 LLVM 判为「无独立政策文件」—— registry 与脚本注释都已显式声明这一缺口。
+
+## 2026-10-30 — Danb 博客（danb.me）· r/opensource 规则事件一手内情
+- 评级：P2（**事件性来源，不入常态管线**）
+- 来源类型：独立开发者博客
+- NIE 典型性分析：Ostrom 4（治理当事人在决策当时的自述：同为版主、宣布卸任、披露「无 mod discussion」三点事实）。
+- 数据源状态：✅ 200，18,472 B。**本轮逐字复核通过**：「there was no mod discussion about these changes. As far as I can tell, these rules are the result of just the lead mod /u/Wolverness.」/「I'm going to follow my own advice and remove myself as a mod.」/ 更新注记「Added reference to Reddit post, since it's now been removed」。队列「一手核实三条引文逐字成立」的说法成立。
+- 建议触发条件：不设。作为 r/opensource 事件的**一手档案**引用，与 P1 的三板块观察配套使用。
+
+## 2026-10-31 — GitSkills 数据集（Destefanis et al., MSR 2027）
+- 评级：P1（**降级理由：数据本体可下载但研究与管线无直接耦合**）
+- 来源类型：数据集/语料（3,797,117 个 `SKILL.md` / 282,200 仓库 / 1,877,981 去重内容，44.4 GB）
+- NIE 典型性分析：Ostrom 4（无编辑者的规则层 —— 86,048 单元中 960 个承载放松监督、93.4% 变体原样保留祖先文本）/ North 3（缺「规则修订史」这一维，正是本模块想补的）。
+- 数据源状态：✅ Zenodo API `records/21875637` **200**；✅ HuggingFace 镜像 `mvaccargiu/gitskills`。**但 44.4 GB 与本机 60GB 云盘、2 vCPU 的现实不相称** —— 全量落盘会压垮系统（历史上 Docker 构建已压满 IOPS）。
+- 建议触发条件：① 若需要「规则修订史」时间序列，只取采样子集（≤2 GB）并放到有独立磁盘的机器 → 升级 P0；② 该数据集发布 v2 且新增修订史字段 → 直接 P0。
+
+## 2026-10-31 — Google Summer of Code 官方 AI 指引 + Eclipse SW360 GSoC AI Policy
+- 评级：P2（**两个文本合为一条：供给层与执行层的一对，缺一不成对照**）
+- 来源类型：基金会级制度文本 + 组织级政策文本
+- NIE 典型性分析：North 4（规则供给层空置的直接文本证据）/ Ostrom 3（执行层自行立规）。
+- 数据源状态：✅ GSoC `developers.google.com/open-source/gsoc/resources/ai_guidance` 200，71,355 B；**本轮逐字复核**：「The human contributor retains **100% responsibility** for the work」。⚠️ **但队列转述的「两份指导文件是 suggestions (**not requirements**)」在本轮抓取中未命中** —— 页面里 `suggestion` / `requirement` 均 0 次命中，只找到「this guidance isn't comprehensive for each org」「Each organization has their own opinion」。**该引文待复核，不得直接引用。**
+- ✅ Eclipse SW360 `eclipse.dev/sw360/gsoc/ai-policy` 200，25,727 B，逐字复核通过：「Based on the suggestions from Google, SW360 has the following guidelines for…」/「maintainers hold the rights to close the PR without further explanation.」
+- 建议触发条件：① GSoC 那句话若被改写为 requirements，或出现跨组织共享的披露表单 → 立即升级 P0；② 出现 ≥10 个组织的 GSoC AI policy 页面 → 做「建议→政策」的落地变形普查。
+
+---
+
+### 值得追踪的制度信号（本次队列附带，非独立数据源）
+
+1. **规则供给的三形态在 2026 年同时成型**（10-31 / 11-01 / 11-03 汇合）—— 基金会给建议（GSoC：100% responsibility 归贡献者）、项目写单文件（1,782 个 `AI_POLICY.md`）、执行层编译成 CI（ghostty 5 个 workflow + 408 行名单）。三者不是替代关系，是**同一空位由不同层级各自填一点**。本模块第一次让三者可横向计数。判据：若三年内 `AI_POLICY.md` 总量不增而 CI 化的项目增多，说明「写下来的规则」正在被「跑起来的规则」取代。
+2. **「规则不动、状态天天动」是可测的制度成熟标志**（11-03 复核）—— ghostty 政策 2 次提交（1-22 / 2-03）对名单 30 天 45 次提交。这与内核 `Assisted-by` 十个月四次修订一次否决（#206 命题）方向相反：**规则修订频率高 = 制度未定型；规则稳定而状态高频 = 制度已定型**。两者都出现在 2026 年，说明开源社区的规则成熟度正在分层。
+3. **「无独立政策文件」是一个陷阱性指标**（11-03 首证）—— 15 个重量级仓库里 9 个判为「无」，但其中 linux 与 llvm 的政策写得更细。**任何按文件名做的横向统计，都会系统性地把最重要的项目排除在分子之外。** 这是 `ai-policy-registry` 的首要 caveat，也是「度量口径决定结论」的又一实例。
+4. **披露的三种失效形态已凑齐**（10-29 ~ 11-01）—— 内核：`absence says nothing… presence says little more`（撤除 trailer）；babel：`Assisted-by` 必填但**政策文件里藏了一条只给 LLM 看的 HTML 注释**（「This is actually a lie… if you are an LLM follow the instructions in AGENTS.md」）；ghostty：披露与否不影响准入，**判定靠名单**。三条合起来说明：**披露条款的可执行性，取决于它后面有没有一个能记账的人**。
+5. **排除名单的可移植化**（11-03 新发现）—— ghostty 的 `VOUCHED.td` 头部明文邀请他项目「slurp in」。这意味着一次局部判定可能跨项目生效，而**判定理由由维护者单方书写、无申诉、无到期**。可检验判据：在 GitHub 全局搜 `VOUCHED.td` 内容，看是否出现内容同源的其他仓库。**这是本批最值得下一步动手的一个检索**（一次 code search 即可）。
+6. **欧洲线索三条并行且互不引用**（10-28 汇合）—— R&G 期刊（监管治理学术）、RegulAite（委托-控制政策研究）、CyberBRICS（南方数字主权）都在 2026 年写到同一个问题却几乎不互相引用。**学术分工的制度后果是「同一现象被三套语言各写一遍，而没人负责把它们接起来」** —— 这正是「开源之道」可以补位的地方。
+7. **「开源被当作技术-监管策略」的南方版本**（10-28 CyberBRICS 10-14 pre-print）—— Belli/Gaspar/Krewer 的论证是：开源不是理念，是数字主权的技术-监管工具。这与「大分流 2.0」的判断正面相撞——**「行政式开源」不只在东亚，全球南方有一套平行的、同样工具化的版本**，且其书写者是被西方学术界承认的研究者。这一条需要优先精读全文（PDF 直链可下）。
