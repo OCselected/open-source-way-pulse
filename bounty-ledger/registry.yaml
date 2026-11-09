@@ -1,0 +1,181 @@
+# Project Pulse v2 — Bounty Ledger（公地对漏洞发现的定价台账）
+# Institutional Registry — 2026-11-04 ~ 11-10 队列评估 P0（第四次 P0）
+#
+# ---
+# 制度定位
+# 前三个 P0 的数据对象分别是：测量行为（oss-scanner 入册配额 / osv-origins 记录归属）、
+# 制度文本本身（ai-policy-registry 的政策语料）、规则的 CI 化（vouch-registry 名单）。
+# 本模块的数据对象是**定价**：公地用多少钱买一个缺陷的发现。
+#
+# 为什么是 curl 的 vuln.pm，而不是 OSV / GHSA / 各基金会年报：
+#   - OSV / GHSA：有 CVE、有 CWE、有 CVSS，**没有奖金字段**
+#   - 基金会年报：有总投入，**无法逐条对应到具体缺陷**
+#   - curl `docs/vuln.pm`：239 行，每行一条 CVE，字段含
+#     announce 日 / report 日 / CWE / award(USD) / area / severity / 原始报告 URL
+#     → 这是目前唯一能把「公地给发现定价」算成时间序列的台账。
+#
+# 为什么它同时是「制度退化」的最佳案例：
+#   定价机制（HackerOne 赏金）在 2026 年初被项目方单方面终止，且终止过程留下了两种形态——
+#   PR #20312（讨论存档，至今 closed / merged=false）+ 同一 commit 直推 master（BDFL 执行）。
+#   台账的 award 列冻结在 2025-12-28，此后 63 条 CVE 全部记 0。
+#   这不是「市场失效」，是**公地主动退出市场定价**。
+#
+# ---
+# NIE 分析轴（五轴全中，四轴 ≥4）
+institution:
+  name: "curl vulnerability incentive regime (bug bounty + disclosure ledger)"
+  domain: "curl/curl-www"
+  object: "docs/vuln.pm 的 award 列（逐条定价）+ docs/BUG-BOUNTY.md 的文本演化 + 执行形态（PR vs 直推）"
+
+nie_axes:
+  coase:
+    score: 5
+    signal: "赏金 = 对外部发现者的一次性产权定价；取消赏金 = 把「发现」从市场交易移回项目内部的行政处置"
+    analysis: >
+      Coase 意义上，企业边界的问题是谁来组织生产、通过价格还是通过命令。
+      漏洞发现在这套台账里被处理成一种**外部服务采购**：
+      项目方定一个价（low=505USD，medium=2540USD 一类的档位），
+      发现者按价供给，CVE 台账就是这份合同的流水。
+      2026 年这条边界被主动收缩：不是价格谈不拢，是项目方判定
+      「赏金给了人们太强的激励去恶意制造『问题』」——原文写在 BUG-BOUNTY.md 里。
+      同一份文件里给出的替代是「我们仍然重视有效的报告」，即
+      把发现从**价格机制**换回**声誉与善意的行政机制**。
+      这是「公地在什么条件下把外部性重新内部化」的极干净读数。
+
+  williamson:
+    score: 4
+    signal: "治理从「市场（赏金）+ 混合（HackerOne 平台）」退到「科层（维护者自由裁量）」；三种形态在同一台账里可数"
+    analysis: >
+      Williamson 的判别问题是：一笔交易该用市场、混合还是科层。
+      2022-2025 的 curl 用的是市场 + 混合（HackerOne 作为中介平台，承担撮合与支付）。
+      2026 年之后，全部发现都进入科层：谁值得处理、怎么处理由维护者判断，
+      没有价格、没有平台、没有回执。
+      **可测的后果在数据里**：2026 年 69 条 CVE 比 2025 年的 9 条多 7.7 倍，
+      而金额从 8,615 降到 7,100 美元，其中 6 条有奖金的报告日全部 ≤ 2025-12-28。
+      交易量暴涨、价格机制归零 —— 这正是「科层接管后成本转移到谁身上」的量化形态：
+      从项目方的钱，转成维护者的时间。
+      维护者自己在 PR #20312 里承认：「the volume of low-effort, AI-generated reports
+      has clearly shifted the cost from 'pay for real findings' to 'pay in maintainer time'」。
+
+  north:
+    score: 5
+    signal: "制度退化的两阶段文本证据：先「暂停」（2026-01-22），再「否定」（2026-03-10）"
+    analysis: >
+      North 关心规则如何变迁。curl 这条制度变迁留下了**两段可 diff 的文本**：
+      (1) 2026-01-22 `ca7ef4b817`「we stop the bug-bounty end of Jan 2026」——
+          把 BUG-BOUNTY.md 从 82 行文本删到 7 行新增，说的是「什么时候结束」；
+      (2) 2026-03-10 `ed7bf43a0`「minor rephrase to say there is no bug bounty」——
+          改写成「No curl bug bounty」并给出反赏金的制度理由（恶意制造的过度负担）。
+      第一阶段是**运营决定**（我们不买了），第二阶段是**制度声明**（这东西不该存在）。
+      七周之内，一个可撤回的商业安排变成了一条规范性判断。
+      这种「暂停 → 否定」的两阶段结构，是判断任何「临时措施」是否会固化的可复用判据。
+
+  ostrom:
+    score: 3
+    signal: "单维护者公地在面对开放边界时的自保；台账本身是公地自记账的罕见样本"
+    analysis: >
+      Ostrom 的公共池塘视角下，curl 是一个边界极开放、成本极不对称的公地：
+      任何人可提交，成本由少数维护者承担。
+      台账 vuln.pm 是这个公地**自己记账**的证据 —— 它不只是给外人看的公告，
+      也是维护者回顾「我们买过什么、贵不贵、值不值」的唯一账本。
+      值得注意的是：台账在赏金结束之后**继续维护**，且字段结构未变（award 恒为 0）。
+      这说明记账行为与激励行为已经脱钩：制度被取消了，但制度的档案还在跑。
+      「谁付维护这笔账的时间」是 Ostrom 框架里没有被回答的问题。
+
+  acemoglu:
+    score: 4
+    signal: "噪声成本从项目方转移到个体维护者；赏金取消同时改变了谁能进入「被定价」的行列"
+    analysis: >
+      包容性 / 汲取性在这里不是道德判断，是成本归属：
+      赏金存在时，低质量报告由平台的定价机制过滤（不值钱就没人报）；
+      赏金取消后，过滤装置没了，全部噪声直接落到维护者工时上。
+      2026 年低严重级占 76.8%（53/69）这一分布可以从两个方向读：
+      既可能是「AI 提高了低危缺陷的发现率」，也可能是「申报门槛降低导致的填充」——
+      **本模块不判定方向**，只提供可复算的分母。
+      另一个可测点：谁被记入台账。带原始报告 URL 的只有 149/239 行，
+      报告 id 去重后 148 个 —— 每一条 CVE 背后是否真有一个可追溯的发现者，
+      这份台账给出了第一种可数答案。
+
+# 可抽取字段
+fields:
+  - cve
+  - announce            # 公布日 YYYYMMDD
+  - report              # 报告日 YYYYMMDD（→ 可算发现→公布的滞后分布）
+  - cwe
+  - award               # 美元金额，0 有两种含义（未给奖 / 给 0），统计时必须分开报 n 与 sum
+  - area
+  - severity
+  - issue_url           # 原始报告 URL（HackerOne），可去重成「发现者供给量」
+
+# 数据源（2026-11-10 04:34 实测）
+data_sources:
+  ledger:
+    url: "https://raw.githubusercontent.com/curl/curl-www/HEAD/docs/vuln.pm"
+    status: "available"
+    measured: "200 / 48,864 B / 239 行 CVE / 0 行解析失败"
+    note: >
+      台账在 curl-www 仓库，**不在 curl/curl** —— 在 curl/curl 里找会误判为「台账已消失」。
+      每行 13 或 14 个 `|` 分隔字段（issue URL 可能缺失），
+      naive split 按长度推断含义会把 award 与 severity 错位。
+  ledger_history:
+    url: "https://api.github.com/repos/curl/curl-www/commits?path=docs/vuln.pm"
+    status: "available"
+    measured: "193 次提交（Link rel=last page=193）；近一年 26 次"
+    note: "用于判断 award 列何时被冻结、台账维护是否仍在继续"
+  policy:
+    url: "https://raw.githubusercontent.com/curl/curl/HEAD/docs/BUG-BOUNTY.md"
+    status: "available"
+    measured: "200 / 478 B（2026-03-10 之后的新文本，「No curl bug bounty」）"
+  governance_pr:
+    url: "https://api.github.com/repos/curl/curl/pulls/20312"
+    status: "available"
+    measured: "state=closed / merged=false / comments=21 / created 2026-01-14 / closed 2026-01-26"
+  governance_commit:
+    url: "https://api.github.com/repos/curl/curl/commits/ca7ef4b817"
+    status: "available"
+    measured: "2026-01-22T08:41:47Z by Daniel Stenberg / 11 files / 133 行删除 / 单亲提交（直推 master）"
+
+# 首轮实测读数（2026-11-10）
+baseline:
+  total_entries: 239
+  by_year:   # CVE 数 / 有奖金数 / 金额（USD）
+    "2022": {cve: 21, awarded: 18, usd: 31680}
+    "2023": {cve: 18, awarded: 18, usd: 22820}
+    "2024": {cve: 11, awarded: 11, usd: 13905}
+    "2025": {cve: 9,  awarded: 9,  usd: 8615}
+    "2026": {cve: 69, awarded: 6,  usd: 7100}
+  y2026_detail:
+    awarded_all_reported_before: "2025-12-28（6 条有奖金 CVE 的报告日全部 ≤ 该日）"
+    severity: {low: 53, medium: 15, high: 1, critical: 0}
+    announce_batches: "6 个批次日（1-07 / 3-11 / 4-29 / 6-24 / 9-02 / 10-14），最多一日 24 条"
+    lag_days: {n: 69, min: 2, median: 33, max: 70}
+  supply_traceability:
+    rows_with_issue_url: 149
+    distinct_report_ids: 148
+  caveat: >
+    ⚠️ 2026 年 69 条 CVE 中 62 条的 award=0。0 无法区分「未给奖」与「给 0 美元」，
+    因此「奖金归零」这一判断的准确表述是：
+    **2026 年之后录入的 CVE 没有一条带非零金额**，而不是「这些发现被明确判定为价值 0」。
+
+# 待监控信号
+signals_to_monitor:
+  - "award 列是否出现 2026 年之后的非零值 —— 若出现，说明存在新通道（赞助方而非 HackerOne）"
+  - "BUG-BOUNTY.md 是否出现第三次改写（第三阶段：把「不该存在」再改回有条件存在）"
+  - "CVE 公布批次的大小与频率：24 条/批次是否成为常态（成批审计 vs 零散发现）"
+  - "报告→公布滞后中位数（现 33 天）：若拉长，说明维护者处理能力被申报量压垮"
+  - "带原始报告 URL 的行占比（现 149/239 = 62.3%）：供给可追溯性是否下降"
+  - "对照面：其他取消赏金的项目（是否有第二个项目公开宣布『No bug bounty』并给出同类理由）"
+
+# 参照案例（不进管线，只作对照）
+counter_cases:
+  - "Linux 内核：无赏金，靠子系统信任与 CVE 编号改革 —— 同为「科层定价」，但从未有过市场阶段"
+  - "OpenSSF / Alpha-Omega：资助维护者而非定价单个缺陷 —— 「买人」而非「买发现」"
+  - "curl 2026-03-10 之后：仍保留 SECURITY.md 报告流程，即『取消的是价格，不是通道』"
+
+# 优先级
+priority: "P0"
+rationale: >
+  四轴典型（Coase 5 / North 5 / Williamson 4 / A&R 4），数据源全部可自动化（一次 raw + 四次 API），
+  与现有池零重叠：现有模块没有一个处理「价格」。
+  落地方式：vuln.pm 快照 + 台账提交史 + BUG-BOUNTY.md 两阶段文本 + PR/commit 对照，
+  四者缺一条都只能得出「赏金没了」这一句话；四条合起来才是「制度如何退化」的完整档案。

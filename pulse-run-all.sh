@@ -51,6 +51,11 @@ bash llvm/llvm-query.sh 2>&1
 bash debian/debian-query.sh 2>&1
 echo ""
 
+echo "########## PART 5: Bounty Ledger (curl vuln.pm 定价台账) ##########"
+bash bounty-ledger/source-sync.sh --sync 2>&1 | tail -3
+bash bounty-ledger/source-sync.sh --verify 2>&1
+echo ""
+
 echo "===== 采集完成 $(date '+%Y-%m-%d %H:%M %Z') ====="
 } >> "$OUT" 2>&1
 

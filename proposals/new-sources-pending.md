@@ -1380,3 +1380,105 @@ OSAA 和 Tokenomics Foundation 虽未独立建管线，但以下信号值得通�
 5. **排除名单的可移植化**（11-03 新发现）—— ghostty 的 `VOUCHED.td` 头部明文邀请他项目「slurp in」。这意味着一次局部判定可能跨项目生效，而**判定理由由维护者单方书写、无申诉、无到期**。可检验判据：在 GitHub 全局搜 `VOUCHED.td` 内容，看是否出现内容同源的其他仓库。**这是本批最值得下一步动手的一个检索**（一次 code search 即可）。
 6. **欧洲线索三条并行且互不引用**（10-28 汇合）—— R&G 期刊（监管治理学术）、RegulAite（委托-控制政策研究）、CyberBRICS（南方数字主权）都在 2026 年写到同一个问题却几乎不互相引用。**学术分工的制度后果是「同一现象被三套语言各写一遍，而没人负责把它们接起来」** —— 这正是「开源之道」可以补位的地方。
 7. **「开源被当作技术-监管策略」的南方版本**（10-28 CyberBRICS 10-14 pre-print）—— Belli/Gaspar/Krewer 的论证是：开源不是理念，是数字主权的技术-监管工具。这与「大分流 2.0」的判断正面相撞——**「行政式开源」不只在东亚，全球南方有一套平行的、同样工具化的版本**，且其书写者是被西方学术界承认的研究者。这一条需要优先精读全文（PDF 直链可下）。
+
+---
+
+## 新来源评估 — 2026-11-04 ~ 2026-11-10 队列（P0 ×1 / P1 ×1 / P2 ×6 / 排除 ×8）
+
+> 队列文件 7 份（11-04 / 11-05 / 11-06 / 11-07 / 11-08 / 11-09 / 11-10），提取候选来源 18 条（去重后 14 个独立来源）。
+> **P0 落地 1 个**（`bounty-ledger/`），P1 1 个（Sovereign Tech Agency，三次被提仍未决），P2 6 个，排除 8 个（重复或已覆盖）。
+> 所有 URL 于 2026-11-10 04:30–04:40 实测，`bounty-ledger/source-sync.sh` 的 `--sync` / `--verify` / `--status` 全路径跑通，重复执行幂等。
+
+### 排除来源（2026-11-04 ~ 2026-11-10）
+
+| 来源 | 原因 |
+|------|------|
+| curl `docs/vuln.pm` **之外**的 curl 材料：PR #20312、`ca7ef4b817`、`ed7bf43a0`（11-04） | 🔁 **不独立成源，收编为 `bounty-ledger` 的治理执行端**。三者与台账是同一制度的三面，分开记会把「一次制度退化」拆成三条新闻。**本轮复核**：PR 200 / 18,983 B（closed, merged=false, comments=21）；`ca7ef4b817` 200（11 files / 133 行删除）；`ed7bf43a0` 200（2026-03-10 rephrase）。 |
+| OpenSSF MOSAIC / `mosaicstandards.org`（11-10） | ⚠️ **站点 200 / 12,478 B 可达，但本轮仅一条新闻稿线索**，未达「≥2 篇引用 / 反复出现」判据。**未做内容核实**（仅测可达性），下一轮若论文开始引用 MOSAIC 定义再评 |
+| `Unleash/unleash` 的 `CLA.md`（11-10） | ✅ `raw.githubusercontent.com/Unleash/unleash/main/CLA.md` 200 / 4,822 B 实测可达。但「产权先行 vs 名册先行」的四样本对照（gVisor 雇主解绑 / NVKE 雇主绑定 / k8s sigs.yaml / Unleash CLA）已是**文章骨架，不是数据管线**——一份 CLA 不值得一条自动化 |
+| `flex-rsi.github.io` 排行榜（11-10） | ✅ 200 / 35,231 B。季度级抓取一次即可，无「新增」信号可 diff → 不建管线 |
+| Palo Alto Unit 42《Frontier AI Vulnerability Burst》（11-09） | ✅ 200 / 252,784 B。与 `bounty-ledger` 同一链路的第三视角（赏金取消 / 漏洞流水线 / 行业系统表述）。**作为叙事对照，不是数据源** |
+| ZEW × Agora Digital 报告 / Vals AI（11-06、11-08） | ZEW 报告队列给出的是「需另行定位」的二手引用（无 URL，本轮未定位）；Vals AI 队列自陈「仅在核验开源模型宣称时按需引用，暂不列常规监控」 → 两者均为**按需引用**，不入管线 |
+| CHAOSS Community、ecosyste.ms（11-06） | CHAOSS `https://chaoss.community/feed/` 200 / 12,164 B 可达；ecosyste.ms 主站 402（见下 P2）。两者的职能是**度量基础设施**，已被 PAAI/STA 论文反复引用，但作为「指标工厂」本身没有事件流可监测 |
+| Retraction Watch「Mass Resignations List」（11-07） | ✅ RSS `https://retractionwatch.com/feed/` 200 / 119,097 B 可达。但其价值在**类比对读**（编辑部集体辞职 vs 维护者流失 vs TSC 辞任），属文章素材。另注：队列给的入口是首页，真正的「集体辞职合集」需站内检索，RSS 只有最近 10-12 条 → 不是稳定时间序列 |
+
+### P0 落地（独立模块）
+
+#### `bounty-ledger/` — 公地对漏洞发现的定价台账
+
+- **为什么是 P0，且为什么是第四个 P0**：前三个 P0 的数据对象分别是**测量行为**（oss-scanner / osv-origins）、**制度文本本体**（ai-policy-registry）、**规则被编译成 CI**（vouch-registry）。本模块的数据对象是**价格** —— 现有 28 个模块里没有一个处理「公地给一件事定多少钱」。
+- **NIE 轴**：Coase 5（赏金=对外部发现者的一次性产权定价，取消=退出市场定价）/ North 5（暂停→否定的两阶段文本证据）/ Williamson 4（市场+混合 → 科层的治理位移）/ A&R 4（噪声成本从项目方的钱转成维护者的时间）。Ostrom 3（单维护者公地自记账）。
+- **实测读数（2026-11-10）**：
+  - 台账 239 行、0 行解析失败；带原始报告 URL 149 行，去重报告 id 148 个 → **供给可追溯性 62.3%**，这是「每条 CVE 背后有没有一个可追溯的发现者」的第一种可数答案。
+  - 年度序列：2022 年 21 条 CVE / 18 条有奖金 / US$31,680 → 2025 年 9 条 / 9 条 / US$8,615 → **2026 年 69 条 / 6 条 / US$7,100**。
+  - **这 6 条有奖金的 CVE，报告日全部 ≤ 2025-12-28**。也就是说 2026 年录入的 69 条里 62 条 award=0，没有一条是「新定价」。
+  - 2026 年严重级分布：low 53 / medium 15 / high 1 / critical 0（low 占 76.8%）；公布集中在 6 个批次日，最多一日 24 条（10-14）；报告→公布滞后中位 **33 天**、最长 70 天。
+  - **制度退化的两段文本**：`ca7ef4b817`（2026-01-22，11 files / 133 行删除）说「we stop the bug-bounty end of Jan 2026」；`ed7bf43a0`（2026-03-10）改写成「**No curl bug bounty**」并给出反赏金理由（「gives people too strong incentives to find and make up 'problems' in bad faith」）。七周之内，运营决定变成规范判断。
+  - **执行形态**：PR #20312 至今 `state=closed` / `merged=false`（21 条评论，2026-01-26 关闭），而同一 commit 由 BDFL 直推 master。**PR 是讨论存档，commit 才是执行** —— 只引 PR 会漏掉真正的决定者。维护者在评论里自陈：「There's no attempt from us to deny that」+「shifted the cost from 'pay for real findings' to 'pay in maintainer time'」。
+- **⚠️ 引用纪律（写进 registry）**：award=0 无法区分「未给奖」与「给 0 美元」。正确表述是「**2026 年之后录入的 CVE 没有一条带非零金额**」，不能说「这些发现被判定为价值 0」。
+- **坑已固化进脚本注释**：台账在 `curl/curl-www` 而非 `curl/curl`；每行 13 或 14 个 `|` 字段（issue URL 可缺失），按长度推断字段含义会把 award 与 severity 错位；`BUG-BOUNTY.md` 在 `docs/` 而非仓库根。
+- **数据源**：raw（vuln.pm 快照 + BUG-BOUNTY.md）+ GitHub commits API（台账史 193 次 / 政策史 / 两个关键 commit）+ pulls API（#20312）。
+
+### P1（观察期）
+
+## 2026-11-10 — Sovereign Tech Agency（STA，德国主权科技署）
+- 评级：**P1（队列第三次提出仍无结论，本轮补测数据源后仍不能升 P0）**
+- 来源类型：国家级公共资助机构（由 Sovereign Tech Fund 于 2024-11 改组而来）
+- NIE 典型性分析：North 4（「国家直接给开源基础设施付钱」这件事本身如何被制度化：从一次性基金变成常设机构）/ Williamson 3（资助方的委托-控制：给钱 vs 定指标）/ Ostrom 3（被资助项目的自治边界）。与现有 OSPO tracker 不重叠——它监测的是**企业内 OSPO**，STA 是**国家级资助者本身**。
+- 数据源状态（2026-11-10 实测）：
+  - ✅ `https://www.sovereign.tech/feed.rss` **200 / 81,540 B / 10 items**，最新一条 2026-11-09「Which open source does Europe rely on? A survey for the EU Sovereign Tech Fund」—— **有可用 RSS，可增量 diff**
+  - ✅ `/publications` 200 / 119,681 B；`/news` 200 / 118,166 B；`/tech` 200 / 191,189 B（110+ 受资助项目的结构化列表）
+  - ❌ `/feed.xml` 404、`/api/v1/` 404（无公开 API）
+- **为什么不升 P0**：① 只有 10 条滚动窗口，无分页、无归档 → 需要自建月度快照才能成时间序列；② 它的核心产出（方法论报告）走 PDF/外部 DOI，不在 RSS 里 —— 真正的 P0 形态应该是**论文侧的 STA 作者单位追踪**（arXiv:2611.06281 已命中），而不是机构新闻流。
+- 建议触发条件：① 若 `/publications` 出现可枚举的稳定列表（分页或 sitemap 段）→ 做「公共资助开源的产出普查」升 P0；② 若 2027 年 STA 发布年度报告且沿用同一口径 → 做纵向时间序列；③ 若 European Sovereign Tech Fund（EDIC 实施）与 STA 出现同名口径的两套数据 → 「同一政策目标、不同制度载体」的比较样本自动成立。
+
+### P2（记录备案）
+
+## 2026-11-04 — Entangle 量子软件生态普查（arXiv:2609.28349，Lara-Martín & Pérez-Castillo, UCM）
+- 评级：**P2（队列线索 5 已核实：81.7% 成立，但不足以升 P0）**
+- 来源类型：学术普查 + 开源工具（`Angel-TFG-UCLM/Entangle-Core`，MIT，**1★ / 0 fork / 2026-09-23 后未推送**）
+- NIE 典型性分析：Ostrom 4（1,500+ 仓库中 **81.7% 的 bus factor = 1** ——「成熟公地被单点维护」的最硬规模数）/ Williamson 2。
+- 数据源状态：✅ `arxiv.org/pdf/2609.28349` 200 / 2,524,352 B，4 页全文可提取；✅ 工具仓库 API 200。
+- **逐字核实结果（队列线索 5 已了结）**：原文 §V 写「On a four-level scale (1, 2, 3–4, ≥5), **81.7%** of repositories have a bus factor of 1」。**#237 的引用成立，不必降级为「二手转述未核实」。**
+- **但引用必须带上三条自述限制（原文 §V Limitations）**：① 关键词驱动发现，启发性过滤**缓解但未消除**假阳性（明举 Firefox Quantum 为例）→ 绝对计数只能读作「well-founded estimates」；② bus factor 是**基于贡献集中度的启发式代理**，不是项目健康的直接度量；③ 仅观察公开 GitHub 活动，私有仓库缺失。
+- 为什么不升 P0：工具仅 1★、作者单位单一（UCM）、论文自陈是「preliminary empirical analysis」、无纵向重复 —— **可引用，不可建管线**。
+- 建议触发条件：① Entangle 发布 v2 且有 ≥2 期快照 → bus factor 时间序列可做；② 该 bus factor 口径被其他论文复用时，可升为「度量口径」观察点。
+
+## 2026-11-06 — ecosyste.ms
+- 评级：P2（**数据源当前不可得**）
+- 来源类型：开源生产数据基础设施（论文认定的「最大开源生产数据集」）
+- NIE 典型性分析：Ostrom 4（批判基础设施本身即基础设施 —— 评估工具链依赖单一维护者且资金不足，与被评估对象共享同一脆弱结构）/ North 2。
+- 数据源状态：❌ 主站 `https://ecosyste.ms/` **402**（17 B，「Payment Required」）；❌ `https://ecosyste.ms/api/v1/hosts` **404**；✅ 但 `https://repos.ecosyste.ms/api/v1/hosts` **200 / 89,186 B**（需非浏览器 UA，带浏览器 UA 会被 402 挡）。**入口在子域，不在主域** —— 与 11-03 那批「入口判断错」的教训同型。
+- 建议触发条件：需要做「开源度量基础设施自身可持续性」专题时，用 `repos.ecosyste.ms` 子域 API 做一次性普查，不建常规管线。
+
+## 2026-11-07 — gVisor 治理档案（`governance/maintainers.yaml` + `areas.yaml` + `CODEOWNERS`）
+- 评级：**P1（队列评级 P0，本轮降级：架构价值高，但当前读数与队列描述不符）**
+- 来源类型：项目治理档案（CNCF，2026 由 Google 捐赠）
+- NIE 典型性分析：Ostrom 5（org-balanced voting + 名册为唯一真源）/ Williamson 4（`enforced_review` 开关 = 审查是「强制」还是「建议」的唯一可数差别）/ A&R 4（雇主解绑 vs 绑定）。
+- 数据源状态（2026-11-10 实测）：✅ `governance/maintainers.yaml` 200 / 6,199 B；✅ `governance/areas.yaml` 200 / 4,720 B；✅ `CODEOWNERS` 200 / 673 B（首行自陈「Generated from governance/maintainers.yaml and governance/areas.yaml」——**名册为唯一真源这一点逐字成立**）；❌ `governance/GOVERNANCE.md` **404**（治理文本不在该目录，需另行定位）。
+- **本轮实测读数（修正队列与上一轮判断）**：31 条 maintainer 记录 = **ACTIVE 15 / EMERITUS 13 / HIATUS 3**；affiliation 计数 **Google 30、Modal 1**。队列说「17 ACTIVE 全部 Google、唯一非 Google 记录 Ayush Ranjan 已 EMERITUS」—— **两条都不对**：Ayush Ranjan 现为 **ACTIVE**，affiliation=**Modal**，`past_affiliation: Google until 2026-07-04`。也就是说**第一个非捐赠方 maintainer 已经在名册中落地了**，而且是通过 `past_affiliation` 字段（可追溯的雇主变更）记录的。
+- **`areas.yaml` 实测**：26 个 area 中 `enforced_review: true` 仅 **2** 个、false **24** 个 → 「强制评审」覆盖的面积不到 8%。这个比值是「审查是制度还是建议」的直接读数。
+- 为什么不升 P0：数据只有一份名册 + 一份 area 表，没有事件流；真正的变化（雇主变更、状态迁移）需要逐日 diff 才有意义，而那正是**一次 `git log` 就能做的事**，不值得新模块。**收编进现有 `oss-scanner`/`vouch-registry` 的对照面更合理**。
+- 建议触发条件：① 出现 third-party maintainer 且 `CODEOWNERS` 里其所在 area 为 `enforced_review: true` → 「去中心化是否触及强制审查权」这一关键判据成立，届时做专题档案；② CNCF 侧发布 gVisor 的 graduation/incubation 评审材料 → 与名册对读。
+
+## 2026-11-09 — `dsx-ai-factory/nvke`（项目治理三文本）
+- 评级：P2（**已用于对照，不建管线**）
+- 来源类型：公司主导型项目治理文本
+- NIE 典型性分析：A&R 4（GOVERNANCE.md 明写 tie-break 绑员工身份 = 雇主绑定治理）/ Williamson 3（CODEOWNERS 自陈不设门禁 = 审查形同虚设）。
+- 数据源状态：✅ `GOVERNANCE.md` 200 / 2,304 B；✅ `MAINTAINERS.md` 200 / 2,752 B。
+- 用途：与 gVisor（雇主解绑 + 名册真源）、Unleash（CLA 授予 relicense 权）、k8s `sigs.yaml` 构成「同一问题四种答案」的对读集。**这是文章骨架，不是数据源。**
+
+## 2026-11-05 — Linux-Kernel Archive（Indiana University，`lkml.rescloud.iu.edu`）
+- 评级：P2（**补充源，不独立成模块**）
+- 来源类型：邮件列表归档（第三方）
+- NIE 典型性分析：Ostrom 3（治理冲突的一手证据：含 PDF 附件的律师函等 lore 不索引的正文）。
+- 数据源状态：✅ 200 / 81,622 B 可达，但需逐条检索、无新增 feed。
+- 建议触发条件：出现 lore.kernel.org 无法索引的关键证据（如本次 Synaptics 律师函全套）时，按事件取一次快照；不建管线。
+
+### 本轮制度信号（队列附带，非独立数据源）
+
+1. **「暂停 → 否定」是制度固化的通用两阶段结构**（11-04 + 11-10 交叉）—— curl 2026-01-22 说「月底起停止赏金」，2026-03-10 改成「No curl bug bounty」并给出规范性理由。七周。可复用判据：任何「临时措施」若在 2-3 个月内被重写成「本不该存在」的形式，就不是临时的。适用于所有 CLA 试点、临时准入收紧、试验性治理条款。
+2. **「定价退出」与「通道关闭」必须分开读**（11-04）—— curl 取消的是**价格**（award 列归零），保留的是**通道**（SECURITY.md 仍在，报告照收）。这与 ghostty 的 denounce 名单（关闭通道）是两个相反的退化方向：一个把发现变成无人付费的劳动，一个把贡献者变成被排除的身份。**两者都在 2026 年发生，说明公地在两种压力下的自保方式并不相同。**
+3. **用 PR 状态判断制度变更会系统性出错**（11-04）—— curl PR #20312 `closed / merged=false`，而变更确已生效（commit 直推）。凡「PR 未合并 = 变更未发生」的推断，在 BDFL 项目上一律不成立。可复用判据：**制度变更必须同时核对 PR 状态与默认分支 commit 史**。
+4. **队列的「AGENT 待确认」项里，事实性错误集中在「最新状态」上**（11-07 + 11-04）—— gVisor 名册「17 ACTIVE 全 Google」实为 15 ACTIVE 且已含 Modal；Entangle 的 81.7% 则**完全正确**。区别在于：前者是对**活文档**的一次性快照，后者是对**已定稿论文**的引用。**活文档的读数是会过期的，论文的不会。**
+5. **数据源入口的失败模式高度重复**（11-06 ecosyste.ms、11-07 gVisor）—— ecosyste.ms 主域 402 但子域 `repos.` 200；gVisor 治理文本不在 `governance/` 而在别处。这已是队列评估中第 4 次出现「入口判断错导致误判不可得/可得」，**建议上游日报在报「不可得」前先做一次同域/近似路径探测**。
