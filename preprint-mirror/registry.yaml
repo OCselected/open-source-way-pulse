@@ -1,0 +1,109 @@
+# Project Pulse v2 — Preprint Mirror（制度经济学的非评议通道）
+# Institutional Registry — 2026-11-11 ~ 11-17 队列评估 P1（数据对象 = 未评议的规则文本）
+#
+# 注意：不要与本仓库的 `mirror/` 混淆 —— 那是**软件镜像站**监测（tuna/sjtu/ustc）。
+# 本模块是**论文预印本**通道。两者共用 "mirror" 一词纯属巧合。
+#
+# ---
+# 制度定位
+# 现有学术来源全部是**已评议**出口：Research Policy（#58）、JSS、ISJ、Philosophy & Technology。
+# 它们回答「制度经济学最终被接受成什么样」。本模块回答另一半：
+# **规则形成过程中，谁在写、写在哪、多久进正式管道**。
+#
+# 为什么合并两个平台而不各建一条：
+#   Research Square 与 SSRN 在结构上是同一种东西 —— 制度经济学预印本流出通道，
+#   差别只是宿主（Springer Nature vs Elsevier）。各建一条会产生两份几乎相同的 diff 逻辑。
+#   合并成一个模块、两个 channel、一张表，才有比较价值：
+#   **同一个论点在两个通道里的存活时间**。
+#
+# ---
+# NIE 轴
+institution:
+  name: "制度经济学预印本双通道（Research Square × SSRN Economics eJournal）"
+  domain: "researchsquare.com / ssrn.com"
+  legal_form: "商业出版社附属预印本平台（Springer Nature / Elsevier）"
+  model: "作者自存 → 平台分发 → 期刊评议；无社区评议、无治理委员会"
+
+nie_axes:
+  north:
+    score: 4
+    signal: "规则文本在评议之前就已公开流通 —— 制度变迁的『提案期』第一次可观测"
+    analysis: >
+      North 关心规则如何被生产。正式期刊只出版已定型的规则论证，
+      过程中的版本、撤回、被引次数全部消失。预印本通道保留了这个中间态。
+      可测命题：**制度经济学论点的传播速度，是否快于它被评议的速度。**
+
+  williamson:
+    score: 3
+    signal: "同一份稿件在两个商业平台间的选择，是出版治理的一次显性交易成本比较"
+    analysis: >
+      两通道规则不同：Research Square 走 Springer Nature 的 transfer 机制，
+      SSRN 走 Elsevier 的 eJournal 分发（按主题编队、有编辑筛选但无同行评议）。
+      费用、可见度、被引归属规则不同 → 「治理结构决定交易成本」在学术生产里的样本。
+
+  acemoglu:
+    score: 3
+    signal: "预印本降低入口门槛，但不改变『谁被引用』的分配 —— 包容性停在入口，不在影响层"
+    analysis: >
+      入口层包容性提升（不用等 18 个月、不用付 APC），但注意力分配仍高度集中。
+      因此记录两个量、不合并成一个『更开放』结论。
+
+# 数据源（2026-11-17 04:40–04:55 实测；Crossref 路径已打通）
+data_sources:
+  research_square_homepage:
+    url: "https://www.researchsquare.com"
+    status: "available"
+    measured: "200 / 22,036 B"
+  research_square_rss:
+    url: "https://www.researchsquare.com/rss"
+    status: "not_found"
+    measured: "404"
+  research_square_api:
+    url: "https://api.researchsquare.com/v1/preprints"
+    status: "dns_not_found"
+    measured: "Could not resolve host —— 该域名无公开 API"
+  crossref_prefix_route:
+    url: "https://api.crossref.org/prefixes/10.21203/works?sort=deposited&order=desc&filter=from-deposit-date:YYYY-MM-DD"
+    status: "available"
+    measured: "200 / 74,933 B；近 7 天 deposited 4,826 条；全前缀存量 540,614 条"
+    note: >
+      **这是唯一的可自动化路径，且已实测跑通。** 坑：过滤器名是 `from-deposit-date`，
+      不是想当然的 `from-deposited-date`（后者返回 400 filter-not-available）。
+      排序键则是 `deposited` —— 过滤与排序用了两个不同的词，极易写错。
+  ssrn_ejournal:
+    url: "https://papers.ssrn.com/sol3/JELJOUR_Results.cfm?form_name=journalBrowse&journal_id=1035669"
+    status: "javascript_only"
+    measured: "列表页需 JS；不经 Crossref，SSRN 通道暂无自动化路径"
+
+# ⚠️ 为什么仍是 P1 而不是 P0 —— 本轮最重要的否定性发现
+disqualifier_for_P0: >
+  Crossref 的 `query.bibliographic` 在本通道上**假阳性极高**：
+  以 commons/governance/institutional 查近一月得 177 条，抽查前 5 条全部是
+  educational-AI / WHO withdrawal / cardiovascular risk prediction 等无关题；
+  以 open source commons transaction costs 查得 380 条，前 8 条全是
+  医学与工程（喉部支架、量子模拟、筋膜闭合、地震剪切）。原因：Research Square
+  以生物医学与工程为主体（近一月 deposited 38,339 条），经济/制度类论文占比极低。
+  **结论：一个"每天抓 5,000 条再关键词过滤"的管线，其信噪比不足以支撑一条常规作业。**
+  在找到 subject/JEL 级的精确过滤器之前，建管线只会制造噪声。
+
+# 建议触发条件（升级 P0 的唯一路径）
+promotion_trigger: >
+  ① 找到可按学科精确切分 Research Square 的字段（Crossref 侧 `subject` 或
+  Research Square 自身 browse 页的学科参数），使其返回量降到个位/日；
+  ② 或 SSRN 通道出现可机读入口（eJournal RSS / 公开 API）；
+  ③ 或 arXiv econ.GN / econ.TH 的 cross-list 覆盖率回升（11-12 已记录空窗，
+  空窗结束时 preprint 侧才有真正的制度经济学供给）。
+  三者任一成立 → 补 sync 脚本升 P0。
+
+# 待监控信号
+signals_to_monitor:
+  - "Crossref prefix 10.21203 是否出现可按 subject=经济学 过滤的能力"
+  - "同一稿件在 Research Square 与 SSRN 同时出现 → 出版治理比较样本"
+  - "预印本 → 正式期刊的平均滞留时间（需 DOI 匹配能力）"
+
+# 优先级
+priority: "P1"
+rationale: >
+  North 4 / Williamson 3 / A&R 3，三轴成立；**获取路径打通但信噪比不达标**。
+  P0 的前提是「数据源可自动化获取」且产出可用 —— 此处只满足前半。
+  数据源状态已测清并含两个易错点（filter 名、query 假阳性），下一轮只需测学科过滤器一项。

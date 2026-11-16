@@ -1,0 +1,149 @@
+# Project Pulse v2 — Release Regime（公共资金建的系统，以什么形式释出）
+# Institutional Registry — 2026-11-11 ~ 11-17 队列评估 P0（第五个 P0，数据对象 = 产权释出形式）
+#
+# ---
+# 制度定位
+# 前四个 P0 的数据对象分别是：
+#   测量行为（oss-scanner / osv-origins）、制度文本本体（ai-policy-registry）、
+#   规则被编译成 CI（vouch-registry）、价格（bounty-ledger）。
+# 本模块的数据对象是 **产权释出形式**：公共资金 → 代码 → 许可 → 公众
+# 这条链上唯一可批量计数、可逐仓复核的一环。
+#
+# 为什么不能并入现有模块：
+#   现有 28 个模块没有一个处理「公共出资」这一委托方。OSPO tracker 监测的是
+#   **企业内** OSPO；本模块监测的是**政府作为生产者**。两者的委托人、正当性来源、
+#   失败模式全不相同（前者失败于预算裁撤，后者失败于采购周期与释出形式）。
+#
+# 为什么不是「美国政府开源」花边新闻：
+#   它带一份可逐条核对的成文法依据清单（SOURCE Act 2024 / OMB M-16-21 /
+#   FAR Part 27 / FITARA）。North 意义上的制度变迁，最可测的形态就是
+#   「成文法要求 → 仓库实践」之间的落差，而这个落差在 GitHub API 里可以直接数。
+#
+# ---
+# NIE 分析轴（五轴中四轴典型）
+institution:
+  name: "IRS-Public — 美国政府开源软件官方发布组织"
+  domain: "github.com/IRS-Public"
+  legal_form: "美国政府机构（IRS）直接以 GitHub org 形式发布，无独立法人"
+  model: "成果以仓库形式释出而非以采购合同交付；产权边界由 LICENSE 文件声明"
+  scale_2026_11_17: "10 个公开仓库 / 无 fork / 无 archived / releases 总数 0"
+
+nie_axes:
+  coase:
+    score: 4
+    signal: "同一份功能，做成公开仓库而不是外包合同 —— 生产边界被重新画在机构内部"
+    analysis: >
+      Coase 的边界问题是「自己生产还是市场采购」。
+      政府 IT 的默认答案是采购（FAR Part 27 正是采购侧的产权条款），
+      IRS-Public 给出的是另一个答案：自己生产，并把产物直接放在公共平台上。
+      两者的交易成本结构完全不同 —— 采购把维护外包出去并每年重新付费，
+      自产则把维护留在机构内但换来可复用与可审计。
+      本模块不判断哪种更省，只记录这条边界的真实位置及其随时间的移动
+      （仓库数、推送活跃度、releases）。
+
+  north:
+    score: 5
+    signal: "成文法依据（SOURCE Act 2024 / OMB M-16-21 / FITARA）→ 仓库级实践，中间层完全透明可核"
+    analysis: >
+      这是本模块最强的一轴，也是它值得一条自动化管线的理由。
+      制度文本（法律、OMB 备忘录、FAR 条款）通常只以 PDF 形式存在，
+      落地与否无法批量检验。IRS-Public 把落地的**末端**放进了 API 可读的仓库元数据里：
+      «哪个仓库有可机检的许可 / 哪个没有 / 最近一次释出是什么时候»。
+      于是「成文法要求的开放，实际兑现到哪一步」第一次成为可逐仓复算的问题，
+      而不是一份合规声明。判据：**释出形式分布**（见下 metrics）。
+
+  acemoglu:
+    score: 4
+    signal: "同一发布组织内 10 个仓库给出 3 种产权状态 —— 包容性不是一个标签而是一个分布"
+    analysis: >
+      A&R 常被误用成「某组织包容/汲取」的二分。本模块的实测读数提供了更精确的形态：
+      同一个政府 org，同一份法律依据，10 个仓库里
+      1 个是 GitHub 可识别的 CC0-1.0，8 个是**有 LICENSE 文件但 GitHub 无法识别**
+      （NOASSERTION），1 个（design）根目录根本没有许可文件。
+      注意：NOASSERTION ≠ 无许可。逐字读 LICENSE 首行后确认
+      direct-file / fact-graph 用的是「美国政府作品 + CC0 1.0 全球弃权」的**改写版**文本 ——
+      产权意图是公共领域，但 GitHub 的机检器读不懂改写版。
+      这给出一个比「有无开源」更锋利的判据：**产权声明是否可被机器读取**，
+      决定了它能否被自动合规工具链消费。而在 design 这 1 个仓库上，
+      「没有许可文件」在法律上等于保留全部权利 —— 与同一 org 的其他仓库相反。
+
+  ostrom:
+    score: 3
+    signal: "纳税人出资的产物被置于何种可复用边界内；但复用者与治理者完全分离，无 collective-choice 环节"
+    analysis: >
+      从公共池塘角度看，IRS-Public 的产物是典型的「公共出资、可自由复用」资源，
+      边界由 CC0 类弃权划定，复用不需要许可、不需要署名、不需要回报。
+      但 Ostrom 的八原则在这里只满足「清晰边界」一项：
+      复用者不参与规则制定、无冲突解决场所、无对规则本身的监督机制。
+      这不是缺陷判断 —— 政府生产本来就不以社区自治为目标；
+      记录这一点是为了让「公共品」这个说法在使用时带上前提：
+      **它开放，但不自组织。** 把两者混为一谈，会把「免费拿」误读成「共同治理」。
+
+# 可复算指标（每次运行全部重算，不缓存结论）
+metrics:
+  repo_count: "orgs/IRS-Public/repos 的分页总数"
+  licensed_recognized: "GitHub license.spdx_id 为具体 SPDX 标识（如 CC0-1.0）的仓库数"
+  licensed_unrecognized: "license 存在但 spdx_id == NOASSERTION 的仓库数（有声明、不可机检）"
+  no_license_file: "license == null 的仓库数（GitHub 未检出许可文件）"
+  release_count: "全部仓库 releases 合计（当前 0 —— 无版本化释出，只有持续推送）"
+  commit_span_days: "默认分支最近 30 条提交的时间跨度（判断『活跃』还是『一次性投放』）"
+
+# 数据源（2026-11-17 04:35–04:45 实测）
+data_sources:
+  org_repos:
+    url: "https://api.github.com/orgs/IRS-Public/repos?per_page=100"
+    status: "available"
+    measured: "200，10 个仓库，0 fork，0 archived"
+  repo_meta:
+    url: "https://api.github.com/repos/IRS-Public/{repo}"
+    status: "available"
+  repo_commits:
+    url: "https://api.github.com/repos/IRS-Public/{repo}/commits?per_page=30"
+    status: "available"
+    note: "direct-file 只有 3 条提交（被 squash 过），其余 8-30 条；跨度 3–380 天"
+  repo_releases:
+    url: "https://api.github.com/repos/IRS-Public/{repo}/releases?per_page=20"
+    status: "available_but_empty"
+    measured: "全部 10 个仓库 releases 均为 0 —— 结论必须写成『无版本化释出』，不能写成『不可得』"
+  license_text:
+    url: "https://raw.githubusercontent.com/IRS-Public/{repo}/{branch}/{LICENSE|LICENSE.md|LICENSE.txt|COPYING}"
+    status: "available"
+    note: "organization 页 200 / 234,458 B；许可文本按四种常见文件名依次探测"
+
+# 实测读数（2026-11-17）
+snapshot_2026_11_17:
+  distribution:
+    licensed_recognized: 1        # aloud（CC0-1.0 标准全文）
+    licensed_unrecognized: 8      # direct-file / fact-graph / eitc-assistant / tax-withholding-estimator
+                                  #   / taxpert / form-builder / form-builder-examples / form-builder-template
+    no_license_file: 1            # design（根目录有 AGENTS.md / CONTRIBUTING.md，无 LICENSE）
+  star_rank: "direct-file 4,740★ / fact-graph 427★ / tax-withholding-estimator 86★ / 其余 ≤8★"
+  activity: "pushed_at 最新 form-builder 2026-11-10；最旧 direct-file 2026-06-11（只 3 条提交记录）"
+  caveat: >
+    direct-file 的 license 字段为 NOASSERTION，但逐字读 LICENSE 首行确认是
+    「United States government work → public domain in US + CC0 1.0 worldwide waiver」。
+    因此**不能**把它报成「未采用开放许可」。正确表述：
+    『10 个仓库中仅 1 个的许可被 GitHub 判为可识别 SPDX 标识，其余 8 个为改写版公共领域声明』。
+
+# 待监控信号
+signals_to_monitor:
+  - "design 仓库是否补上 LICENSE —— 同一 org 内唯一『法律上保留全部权利』的仓库"
+  - "NOASSERTION → CC0-1.0 的迁移：若 8 个改写版被统一为标准全文，说明合规工具链压力起作用"
+  - "是否出现首个 release —— 『投放式发布』转为『版本化释出』的分水岭"
+  - "org 是否新增仓库（当前 10 个）：新增的速度比存量更能说明释出是否成为惯例"
+  - "SOURCE Act 2024 的机构级报告是否出现与本 org 仓库清单对得上的数字"
+
+# 引用纪律（写死，防误读）
+citation_rules:
+  - "NOASSERTION ≠ 无许可；引用前必须逐字读 LICENSE 首行"
+  - "license == null 才能说『无许可文件』，且要补一句『法律上默认保留全部权利』"
+  - "releases = 0 只能说『无版本化释出』，不能说『没有发布』—— 推送本身就是释出"
+  - "星数只用于排序，不作影响力结论：direct-file 的 4,740★ 来自一次全国性政策报道，不是技术评价"
+
+# 优先级
+priority: "P0"
+rationale: >
+  四轴典型（North 5 / Coase 4 / A&R 4 / Ostrom 3）+ 数据源全部落在 GitHub 官方 API
+  （无需爬取、无需解析 HTML、无 WAF）+ 与现有 28 个模块无重叠（委托人第一次是政府）。
+  与 11-16 队列的 Linåker 等「公共部门 OSPO 六原型」正好互补：
+  那篇给类型学（应然），本模块给产出面（实然）。

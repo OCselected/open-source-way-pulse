@@ -1482,3 +1482,121 @@ OSAA 和 Tokenomics Foundation 虽未独立建管线，但以下信号值得通�
 3. **用 PR 状态判断制度变更会系统性出错**（11-04）—— curl PR #20312 `closed / merged=false`，而变更确已生效（commit 直推）。凡「PR 未合并 = 变更未发生」的推断，在 BDFL 项目上一律不成立。可复用判据：**制度变更必须同时核对 PR 状态与默认分支 commit 史**。
 4. **队列的「AGENT 待确认」项里，事实性错误集中在「最新状态」上**（11-07 + 11-04）—— gVisor 名册「17 ACTIVE 全 Google」实为 15 ACTIVE 且已含 Modal；Entangle 的 81.7% 则**完全正确**。区别在于：前者是对**活文档**的一次性快照，后者是对**已定稿论文**的引用。**活文档的读数是会过期的，论文的不会。**
 5. **数据源入口的失败模式高度重复**（11-06 ecosyste.ms、11-07 gVisor）—— ecosyste.ms 主域 402 但子域 `repos.` 200；gVisor 治理文本不在 `governance/` 而在别处。这已是队列评估中第 4 次出现「入口判断错导致误判不可得/可得」，**建议上游日报在报「不可得」前先做一次同域/近似路径探测**。
+
+---
+
+## 新来源评估 — 2026-11-11 ~ 2026-11-17 队列（P0 ×1 / P1 ×3 / P2 ×3 / 排除 ×12）
+
+> 队列文件 7 份（11-11 / 11-12 / 11-13 / 11-14 / 11-15 / 11-16 / 11-17），提取候选来源 20 条（去重后 16 个独立来源）。
+> **P0 落地 1 个**（`release-regime/`，第五个 P0，数据对象 = 产权释出形式），P1 3 个（ISJ / VulnCheck / Asahi），P2 3 个（MCP-Eco 数据集 / ANS 治理档案 / kaigritun），排除 12 个。
+> 所有 URL 于 2026-11-17 04:30–05:00 实测。`release-regime/source-sync.sh` 的 `--sync` / `--verify` / `--status` 全路径跑通。
+
+### 排除来源（2026-11-11 ~ 2026-11-17）
+
+| 来源 | 原因 |
+|------|------|
+| WOLFCon 2026 Ellen Euler 主旨（Zenodo，11-16，队列称「建议加入」高置信） | 🔁 **已在 monitored-sources #30 Zenodo 的覆盖面内**，且**队列给的 DOI 本身有问题**：`10.5281/zenodo.22214912` 直连 zenodo.org 返回 **403**（unusual traffic），Crossref 无此 DOI（404），只有 DataCite 200 可读（title = *Governing the Knowledge Commons: Why Open Library Infrastructure Matters*，publisher=Zenodo，cc-by-4.0）。判定：**内容价值极高（三风险—三回应 + 「Ungovernable dependency」判据，与 #262 精确同构），但不是新来源，是一篇待单读的文献** → 转入「线索」处理，不入源 |
+| evanxmerz.com（11-11） | ⏭️ 队列自评「中置信，单条 HN 线索，再观察一次」→ 未达 ≥2 次出现判据，本轮跳过（不排除，进观察池） |
+| Cloud Security Alliance Labs（11-12） | ⚠️ 队列自评「今日仅一条关联线索，非达 ≥2 篇引用」；`/feed/` 实测 **200 但仅 1,121 B**（近乎空 feed）。性质是**标准被第三方质证的范本**，属文章素材而非事件流 → 不入源 |
+| SDxCentral（11-12） | 🔁 已在 monitored-sources **#43 ✅ 活跃**。队列本次称「待人工确认」与登记表矛盾，以登记表为准 |
+| Parcha-ai / agentrun（11-16） | ⏭️ 队列自评「商业公司主导，治理形态待观察」。单仓、无 governance 目录、无 release → 与 gVisor / NVKE / Unleash 的既有四样本对照重复，**不另立模块** |
+| Greptile（11-16） | ⏭️ 队列自己给出了正确定性：「跟踪对象应为『它在准入链中的位置变化』，而非其博客」。**这是判据，不是数据源** → 转入 agent 准入链的观察项 |
+| jakub.jankiewicz.org（11-16） | ✅ 首页 200 / 31,700 B，但 `/feed.xml` **404**（返回的是 296KB 的 HTML 错误页，看状态码易误判）。单篇高影响（HN 713 分），无增量入口 → P2 以下，不建管线 |
+| kaigritun.com（11-17） | ✅ 首页 200 / 22,296 B 可达。**单一商业站点、无 feed、无更新信号** → 只能按季度人工回看「是否真接到单」，不建管线（见 P2） |
+| finance.yahoo.com / news.google.com 转引链、MLQ.ai（11-15 复核） | 🔁 维持 11-14/11-15 判定：纯聚合、无一手材料 |
+| LWN.net（11-15） | 🔁 已在 #39。**新增可操作细节**：部分条目约 12 天 embargo（11-14 周报「Git LLM policy」官方写明 2026-11-19 公开） |
+| Open Source Endowment（11-15） | 🔁 沿用 11-13/11-14/11-15 判定「待人工确认，无近期一手新闻」，三次被提、三次无新材料 → **本轮正式定为「暂不加入」**，除非出现带日期的公开披露 |
+| ASF / LF / GitHub / HN / arXiv 各类目（11-13 / 11-14 自陈） | 🔁 队列自陈「均在既有监控池」 |
+
+### P0 落地（独立模块）
+
+#### `release-regime/` — 公共资金建的系统，以什么形式释出
+
+- **为什么是 P0，且为什么是第五个 P0**：前四个 P0 的数据对象是 **测量行为**（oss-scanner / osv-origins）、**制度文本本体**（ai-policy-registry）、**规则被编译成 CI**（vouch-registry）、**价格**（bounty-ledger）。本模块处理的是**产权释出形式** —— 公共资金 → 代码 → 许可 → 公众这条链上唯一可逐仓计数的一环。现有 28 个模块没有一个的委托人是**政府**。
+- **NIE 轴**：North 5（成文法依据 SOURCE Act 2024 / OMB M-16-21 / FAR Part 27 / FITARA → 仓库级实践，中间层完全透明）/ Coase 4（做成公开仓库而非采购合同：生产边界重画在机构内部）/ A&R 4（同一 org 内 3 种产权状态——包容性不是一个标签而是一个分布）/ Ostrom 3（开放但不自组织：复用者不参与规则制定）。
+- **实测读数（2026-11-17）**：10 个仓库、0 fork、0 archived、**releases 合计 0**。
+  - 释出形式分布：**licensed_recognized 1**（aloud，标准 CC0-1.0 全文）/ **licensed_unrecognized 8**（direct-file / fact-graph / eitc-assistant / tax-withholding-estimator / taxpert / form-builder / form-builder-examples / form-builder-template，GitHub 判为 NOASSERTION）/ **no_license_file 1**（design，根目录有 AGENTS.md / CONTRIBUTING.md，**无任何 LICENSE**）。
+  - 逐字读 LICENSE 首行确认：direct-file 与 fact-graph 用的是「United States government work → 美国境内公共领域 + 全球 CC0 1.0 弃权」的**改写版**。**因此绝不能把它们报成「未采用开放许可」** —— 产权意图是公共领域，但 GitHub 的机检器读不懂改写版。
+  - 星数排序：direct-file 4,740★ / fact-graph 427★ / tax-withholding-estimator 86★ / 其余 ≤8★。
+  - 活动度：pushes 最新 form-builder 2026-11-10，最旧 direct-file 2026-06-11（只 3 条提交记录，说明被 squash 或投放式发布）；commits30 跨度 3–380 天。
+- **⚠️ 引用纪律（写进 registry）**：① NOASSERTION ≠ 无许可，引用前必须逐字读 LICENSE 首行；② `license == null` 才能说「无许可文件」，且要补「法律上默认保留全部权利」；③ `releases = 0` 只能说「无版本化释出」，不能说「没有发布」——持续推送本身就是释出；④ 星数只用于排序，不作影响力结论。
+- **与 11-16 队列的互补关系**：Linåker 等 JSS 的「公共部门 OSPO 六原型」给类型学（应然），本模块给产出面（实然）。两者对读才有判断力。
+- **数据源**：GitHub 官方 API 四处（`/orgs/{org}/repos` 分页、`/repos/{org}/{repo}`、`/commits`、`/releases`）+ `raw.githubusercontent.com` 四次文件名探测（LICENSE / LICENSE.md / LICENSE.txt / COPYING）。无爬取、无 HTML 解析、无 WAF。
+
+### P1（观察期）
+
+## 2026-11-17 — Information Systems Journal（Wiley，ISSN 1365-2575）
+- 评级：**P1（队列评「建议加入（高置信）」，本轮实测降为 P1：入口可用但首页被挡）**
+- 来源类型：顶级信息系统期刊（平台生态治理 / generativity–control 范式的主要发表地之一）
+- NIE 典型性分析：Williamson 4（平台守门的治理结构：平台主 vs complementors 的契约与裁量）/ A&R 3（generativity 的分配后果）/ North 3（治理形式随技术代际变迁）。与已列 #58 Research Policy 形成「创新研究 × 信息系统」双点。
+- 数据源状态（2026-11-17 实测）：
+  - ✅ **TOC RSS 可用**：`https://onlinelibrary.wiley.com/feed/13652575/most-recent` **200 / 116,315 B / 30 items**，日期跨度 2026-05-29 → 2026-11-13（约 5.5 个月滚动窗口）
+  - ✅ 同源另一写法 `.../action/showFeed?jc=13652575&type=etoc&feed=rss` 也 200（同 116,315 B，同一 feed）
+  - ❌ 期刊首页 `https://onlinelibrary.wiley.com/journal/13652575` **403 / 5,664 B**（Wiley 反爬）—— 首页不可读，但 feed 可读，**这是「入口判断错就报不可得」的又一实例**
+  - ⚠️ 每条 item 带 `dc:date` + `guid`（DOI，如 `10.1111/isj.70071`），**可做增量 diff**；但 description 只有摘要、无参考文献
+- **实测命中的关键条目（directly on-topic）**：`10.1111/isj.70060`（2026-09-08）《Freeriding and Rebellion: An Investigation of Open Source Vendor Relicensing and Member Hard Forking Events》—— **「relicense → hard fork」的制度实证，正是本刊「copyleft 是互惠外化」命题的直接对应文献**，此前未被收录。其余相关：`10.1111/isj.70068`《Governance of Hybrid Fintech Ecosystem: Generativity-Control Paradigm》（11-17 队列 #266 出处）、`10.1111/isj.70055`《Research Integrity Matters, But It Is Undermined by Generative AI》。
+- 为什么不升 P0：**期刊是「文献出口」不是「事件流」**——它不产生可追踪的制度变化，只产生可引用文本。参考 #58 Research Policy 的既有处理方式（列源、不建管线）保持一致。真正的动作是**按 feed 做每期刊物的定向扫读**，纳入论文推荐链，而不是新建同步模块。
+- 建议触发条件：① 若某个季度 ISJ 出现 ≥3 篇制度经济学 × 开源的论文 → 升 P0 建「期刊定向扫读」管线；② 若 Wiley 的 feed 开始提供参考文献（citation 扩展）→ 可做引用链追踪。
+
+## 2026-11-15 — VulnCheck（vulncheck.com/blog）
+- 评级：**P1（已在 monitored-sources #46 ✅ 待确认，本轮补齐评估记录并实测入口）**
+- 来源类型：安全情报机构博客（第三方「发现 vs 修复」面板）
+- NIE 典型性分析：Williamson 4（CVE 归属 = 谁承担修复责任；KEV 对照 = 谁定优先级 —— 平台/厂商/机构三方裁量的可测切片）/ A&R 3（发布方自报真阳性率 vs 第三方复核的落差）/ Ostrom 3（漏洞公地的监督外包给商业机构）。
+- 数据源状态（2026-11-17 实测）：
+  - ✅ `/blog` **302 → https://www.vulncheck.com/blog**（**必须跟随重定向到 www 子域**；不带 `-L` 会拿到 302/0 B，看起来像不可得）
+  - ✅ 页面 **200 / 1,023,190 B**，**204 个 `/blog/<slug>` 链接**——`/blog/anthropic-glasswing-cves`、`/blog/anthropic-glasswing-november-update`、`/blog/anthropic-glasswing-receipts`、`/blog/anthropic-ledger` 四条同系列在列，`#46` 登记的「连续七个月追踪 Glasswing」得到实证
+  - ❌ 无 RSS：`/blog/rss.xml` 404、`/feed` 404、`/rss.xml` 404、`/blog/rss` 404、`/api/blog` 404
+  - ❌ `/sitemap.xml` 200 但**内容为空**（0 B 正文）—— sitemap 存在但不可用
+- **增量方案（不建独立管线）**：以「`/blog` 页面的 slug 集合」为状态，逐次 diff 出新增 slug。204 条 slug 提取成本极低（单次正则），无需 API、无需分页。
+- 为什么不升 P0：**它是审计者，不是被审计的制度**。其价值在「校准别人自报数字」，属引用型信源。且页面 1 MB / 204 slug，diff 有噪声（列表页会重排）→ 值得一个 `--diff` 技能，不值得一个模块。
+- 建议触发条件：① 若 VulnCheck 开始发布**结构化数据**（API 或 CSV 面板）→ 升 P0；② 若 Glasswing 系列收尾并给出最终真阳性率 → 定向单读一次。
+
+## 2026-11-15 — Asahi Linux 官方博客（asahilinux.org）
+- 评级：**P1（已在 monitored-sources #47 ✅ 待确认，本轮实测 feed 并修正上游读数）**
+- 来源类型：开源项目官方博客（**唯一的项目级一手制度陈述**）
+- NIE 典型性分析：Coase 4（许可证变更 = 边界重画：从「随便用」转向「互惠」）/ A&R 4（copyleft 回潮是包容性制度对搭便车的回应）/ North 3（宣布 → 逐仓迁移的执行落差）/ Ostrom 3（维护者对搭便车的分级处置）。
+- 数据源状态（2026-11-17 实测）：
+  - ✅ `https://asahilinux.org/blog/index.xml` **200 / 23,828 B / 30 items**，最新 2026-11-07《Progress Report: Linux 7.3》，其后 2026-09-06 / 08-26 / 06-30 / 04-26 → **发布节奏约每 6–8 周一次**，适合低频轮询
+  - ❌ `/feed.xml` 404
+  - 首页 `/` 200 / 6,994 B，但**不含 feed 自动发现标签** → 必须先知道 `blog/index.xml` 这个路径
+- **本轮修正上游读数（11-15 已记录，此处固化）**：上游称「许可证 MIT→GPL 迁移」进度乐观，实测 43 个公开仓中 MIT 仍 14 个（最多）、GPL 家族仅 6 个；4 个被点名的仓在宣布日前后零迁移提交；可核迁移仅 `m1n1`，且发生在宣布前 38 天。**「建议加入」判定不变**（依据是宣布文本本身可一手复算），但**引用进度时必须用逐仓 LICENSE 提交史，不能用组织级许可证分布**（NOASSERTION/无 license 字段会稀释结论）。
+- 为什么不升 P0：**一年 6–8 篇的发布频率**，任何管线都只是在做「每两个月发现一个已知事件」。P1 低频轮询 + 定向复查（原定 2027-02 的 90 天复查）已经覆盖其全部增量。
+- 建议触发条件：① 四个被点名仓（`asahi-scripts` / `asahi-installer` / `tiny-dfr` / `asahi-nvram`）的 LICENSE 提交日期越过 2026-11-07 → 进入实质迁移期，届时按周复查；② 出现第二份带具体仓名的迁移清单。
+
+### P2（记录备案）
+
+## 2026-11-11 — MCP-Eco 数据集（huggingface.co/datasets/mcp-research-alliance/mcp-ecosystem）
+- 评级：**P2（队列定性正确：监测对象，非新闻源）**
+- 来源类型：开放数据集（学术发布，HF Datasets）
+- NIE 典型性分析：Ostrom 4（MCP 生态是第一份独立于厂商自述的计数口径：「注册 ≠ 被用」的落差是公共池塘被虚报的实证）/ North 2。
+- 数据源状态（2026-11-17 实测）：✅ HF API **200 / 5,288 B**；`lastModified 2026-11-11T16:05:23Z`、`createdAt 2026-06-18`、downloads 823、likes 1、license cc-by-4.0（**数据集本身可自由复用**）；文件树含 `README.md 21,678 B`、`schema.sql 7,416 B`、`parquet/`（19 张表 / 1,688 万条）。
+- 为什么不建管线：判据是「下一版是否给出发现/分类/匹配三项精确率」，即**它从基线升级为标准**才有跟踪价值。当前只是一次性快照 + 可引用目录。
+- 建议触发条件：① 下一版 README 出现人工抽查精确率 → 升 P1；② 出现第二份口径不同、结论可比的独立数据集 → 「防止单一度量被锚定」的对照成立，届时再评估。
+
+## 2026-11-12 — ANS 治理档案（github.com/agentnameservice/governance）
+- 评级：**P2（治理样本，非新闻源 —— 队列判断正确，此处补数据源实测）**
+- 来源类型：治理档案（「公司项目转基金会」最完整的一份可核算档案，章程通过日 2026-11-09）
+- NIE 典型性分析：Coase 5（身份锚定已有域名、不设网关人 —— 形式选择即制度选择）/ North 4（765 行 GOVERNANCE.md + RATIONALE.md「预期失败模式 → 对应条款」对照表）/ A&R 4（TSC 5 人中非 GoDaddy 2 人；`ans-reviewers` / `spec-reviewers` 名册为空）/ Ostrom 3（过渡期超额代表的合法性时限）。
+- 数据源状态（2026-11-17 实测）：
+  - ✅ `GOVERNANCE.md` **200 / 42,059 B**（比队列转述的 765 行更厚，含附录）
+  - ✅ 组织 14 个仓库，许可分布：Apache-2.0 ×3（`ans-spec` / `ans` / `ans-site`）、MIT ×7、CC-BY-4.0 ×1（`governance` 本身用文档许可）、NOASSERTION ×2（`.github` / `trust-index-spec`）、null ×2（`homebrew-ans` / `scoop-ans` 分发桶）
+  - ✅ 星数：`ans` 56★ / `ans-spec` 35★ / 其余 ≤9★
+  - ✅ 最近推送 2026-11-16（`ans-spec` / `ans-sdk-rust` / `trust-index-spec` / `ans-openshell`）→ 档案仍在增长
+- 为什么不建管线：**它是一次性的制度化瞬间，不是事件流**。三项可复核数（非 GoDaddy TSC 占比 / 名册是否仍空 / 外部 issue #43 与 #76 的首次回复时延）用 `gh api` 手工核对即可，截止日 2027-11-09 —— **届时做一次专题档案比每天 diff 更有价值**。
+- 建议触发条件：① 2027-11-09 过渡期届满时的 TSC 构成；② `ans-reviewers` / `spec-reviewers` 从空变为非空；③ 撤销条款 / 担责条款进入规范正文（「开放标准开始碰真实利益」的时刻）。
+
+## 2026-11-17 — kaigritun.com
+- 评级：**P2（「信誉刷取经济」标本）**
+- 来源类型：AI agent 商业化站点（首个把「开源合并记录」做成服务价目表的公开样本）
+- NIE 典型性分析：A&R 4（贡献 → 信誉 → 收入链条被自动化，是汲取性机制在**个人贡献层**的落地）/ Williamson 2（对「贡绩制」这一非正式制度的显性定价）。
+- 数据源状态（2026-11-17 实测）：✅ 首页 `https://kaigritun.com/` **200 / 22,296 B**；无 feed、无 API、无发布日期锚点。
+- 为什么不建管线：无增量信号可 diff（价目表变动不频繁且无时间戳）→ 管线每天只会返回相同内容。
+- 建议触发条件：① 出现可公开核实的成交/客户案例 → 从「价目表存在」升级为「交易存在」，可做一次专题；② 若同类站点出现 ≥3 家 → 「贡献信誉被金融化」成为一个可计数的市场，届时建普查管线。
+
+### 本轮制度信号（队列附带，非独立数据源）
+
+1. **「入口判断错 → 误报不可得」已是第 6 次**（11-17 VulnCheck 302→www、11-17 ISJ 首页 403 但 feed 200、11-15 Asahi 首页无 feed 标签但 `blog/index.xml` 可用）。此前的 11-06 ecosyste.ms（主域 402 / 子域 200）、11-07 gVisor（治理文本不在 `governance/`）、11-04 入口错位。**升级为固定动作：任何来源报「不可得」前，必须跑一次「跟随重定向（-L）+ 子域试 www/repos/api + 猜 feed 路径（/feed、/index.xml、/rss.xml、/blog/index.xml）」三连探测。** 本次三条线索全部靠这三连救回。
+2. **DOI 会失效，但 DataCite 不会**（11-16 WOLFCon）—— 队列给的 `10.5281/zenodo.22214912` 在 zenodo.org 直连 403、Crossref 404，只有 `api.datacite.org/dois/` 返回 200 且元数据完整（title / publisher / cc-by-4.0）。**判据：Zenodo DOI 的权威解析路径是 DataCite API，不是 zenodo.org 页面。** 此前 11-16 已记录「原 DOI 302 重定向，须用 22214912」——本轮进一步发现被推荐的那个 DOI 在网页层也不可直连。
+3. **预印本通道的信噪比必须先测再建**（11-17 Research Square）—— Crossref `prefixes/10.21203` 路径跑通（近 7 天 4,826 条 deposited，全前缀 54 万条），但关键词过滤的假阳性率接近 100%（查 commons/governance 得 177 条，抽查 5 条全为医学/教育题；查 open source commons 得 380 条，前 8 条全是喉部支架、量子模拟、地震剪切）。**「可获取」不等于「可监测」：一条每天要过滤 5,000 条、命中率 < 1% 的管线，本身就是噪声发生器。** 这是本刊第一次明确拒绝一个「技术可行但信噪比不达标」的 P0。
+4. **第五个 P0 出现的规律：每个 P0 都是一次「数据对象换层」**—— 测量行为 → 制度文本 → 规则执行 → 价格 → **产权释出形式**。五层连起来读：谁来测（oss-scanner）、规则写了什么（ai-policy-registry）、规则怎么被执行（vouch-registry）、执行值多少钱（bounty-ledger）、公共资金建的东西怎么交出来（release-regime）。**下一次换层应看向「谁来承担失败的代价」（责任分配），目前 28+1 个模块无一覆盖。**
+5. **「NOASSERTION ≠ 无许可」是一个可复用的普查陷阱**（11-17 IRS-Public）—— 8/10 仓库的许可被判 NOASSERTION，逐字读后全部是改写版的公共领域声明。任何以 GitHub `license.spdx_id` 为字段做「开源率」统计的研究，在这个 org 上会得出**方向完全相反**的结论（报成「未采用开放许可」）。**判据：机检许可字段只能用于分层，不能用于定性；定性必须回读 LICENSE 首 20 行。**
