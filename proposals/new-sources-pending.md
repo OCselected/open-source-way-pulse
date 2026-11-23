@@ -1600,3 +1600,66 @@ OSAA 和 Tokenomics Foundation 虽未独立建管线，但以下信号值得通�
 3. **预印本通道的信噪比必须先测再建**（11-17 Research Square）—— Crossref `prefixes/10.21203` 路径跑通（近 7 天 4,826 条 deposited，全前缀 54 万条），但关键词过滤的假阳性率接近 100%（查 commons/governance 得 177 条，抽查 5 条全为医学/教育题；查 open source commons 得 380 条，前 8 条全是喉部支架、量子模拟、地震剪切）。**「可获取」不等于「可监测」：一条每天要过滤 5,000 条、命中率 < 1% 的管线，本身就是噪声发生器。** 这是本刊第一次明确拒绝一个「技术可行但信噪比不达标」的 P0。
 4. **第五个 P0 出现的规律：每个 P0 都是一次「数据对象换层」**—— 测量行为 → 制度文本 → 规则执行 → 价格 → **产权释出形式**。五层连起来读：谁来测（oss-scanner）、规则写了什么（ai-policy-registry）、规则怎么被执行（vouch-registry）、执行值多少钱（bounty-ledger）、公共资金建的东西怎么交出来（release-regime）。**下一次换层应看向「谁来承担失败的代价」（责任分配），目前 28+1 个模块无一覆盖。**
 5. **「NOASSERTION ≠ 无许可」是一个可复用的普查陷阱**（11-17 IRS-Public）—— 8/10 仓库的许可被判 NOASSERTION，逐字读后全部是改写版的公共领域声明。任何以 GitHub `license.spdx_id` 为字段做「开源率」统计的研究，在这个 org 上会得出**方向完全相反**的结论（报成「未采用开放许可」）。**判据：机检许可字段只能用于分层，不能用于定性；定性必须回读 LICENSE 首 20 行。**
+
+## 新来源评估 — 2026-11-18 ~ 2026-11-24 队列（P0 ×1 / P1 ×1 / P2 ×1 / 排除 ×1 / 降级 ×1）
+
+> 队列文件 7 份（11-18 / 11-19 / 11-20 / 11-21 / 11-22 / 11-23 / 11-24），其中 11-18 与 11-23 明确「无新来源」。
+> **P0 落地 1 个**（`llvm-discourse/`，第六个 P0，数据对象 = 治理级版本化文本），P1 1 个（Corgea Research），P2 1 个（SWE-chat 数据集），排除 1 个（gitlab.osti.gov Genesis），降级 1 个（agentnameservice → 已被既有档案覆盖）。
+> 所有 URL 于 2026-11-24 04:30–04:50 实测。`llvm-discourse/source-sync.sh` 的 `--sync` / `--verify` / `--status` 全路径跑通。
+
+### 排除 / 降级来源（2026-11-18 ~ 2026-11-24）
+
+| 来源 | 原因 |
+|------|------|
+| `gitlab.osti.gov/genesis/genesis-skills`（11-24） | ⚠️ **不是「待确认」，是「暂不可得」**：上游给的是具体仓库路径，但该域为美国政府 GitLab，匿名访问需先探入口。判定依据：与本库既有的「公共资金建的东西以什么形式交出」命题（`release-regime/`，11-17 P0）**完全同层**——同一个判断不需要两个数据源；且 `release-regime/` 已是可跑的逐仓计数管线，本项是单仓事件。→ 不入源，作为 `release-regime/` 的一个**对照样本线索**（国家级任务 vs 税务计算器，同一套产权释出问题在更高层级重演） |
+| `drpress.org` / Darcy & Roy Press（`10.54097`，11-24） | ⏭️ 队列自己给的定性正确：「仅作对照存档，不建议进论文源」。实测 `prefixes/10.54097` **38,071 条**（非今日新增，是累计），与 `10.83842` 的 15,628 条四日批量投放不是同一现象——**它是存量出版方，不是噪声事件**。存档即可，不建管线 |
+| `agentnameservice`（11-19） | 🔁 **降级为「已被既有档案覆盖」，不再作为新来源**：本库 `proposals/new-sources-pending.md` 2026-11-12 已完整评估过 `github.com/agentnameservice/governance`（Coase 5 / North 4 / A&R 4 / Ostrom 3，P2，截止日 2027-11-09 做专题）。本轮补测确认**档案仍在增长但治理结构未变**：14 仓、15,628 行 GOVERNANCE.md 那套、`TSC 5 人中非 GoDaddy 2 人` 的构成未动；新增活跃仓为 `ans-sdk-go` / `ans-sdk-rust` / `agent-trust-discovery` / `ans-gateway-auth` / `ans-openshell`（均 Apache-2.0，push 至 11-23），星数仍是个位数（`ans` 60★ / `ans-spec` 37★）。**结论：SDK 面在成熟，治理面冻结**——这正是 11-12 那条「过渡期超额代表的合法性时限」判据在等的东西，维持 P2 观察，触发条件不变 |
+| LLVM Discourse / OpenSSL Foundation News（11-22，队列建议「升级为活跃」） | ✅ **前者本轮升 P0 并落地**（见下）；后者维持「已在池」，理由：OpenSSL 官网 News 的 11-23 线索（`votes/` 26 个月零投票）已由上游以线索形式记录，缺的不是入口而是**决策痕迹迁移去向**的核实，属定向单查而非管线 |
+
+### P0 落地（独立模块）
+
+#### `llvm-discourse/` — 治理级一手文本，被如何修改、何时宣布终止执法
+
+- **为什么是 P0，且为什么是第六个 P0**：前五个 P0 的数据对象依次是 **测量行为**（oss-scanner / osv-origins）、**制度文本本体**（ai-policy-registry）、**规则被编译成 CI**（vouch-registry）、**价格**（bounty-ledger）、**产权释出形式**（release-regime）。前五个都是「制度的一次性截面」；本模块第一次处理**版本化文本的时间序列** —— 同一份政策被改写、被宣布终止执法、被新增准入层。**换的层是「文本的修改权」，不是文本本身。**
+  - 与既有 `llvm/` 模块的分工：`llvm/` 取 GitHub 代码面（releases / commits / contributors），本模块取 Discourse 文本面（政策帖 / 终止判据 / 名册变更公告）。**互补不重叠。**
+- **NIE 轴**：North 5（重许可从 2014 立案到 2026-11-19 收尾，八年，中间层每一步都有可读文本）/ Ostrom 4（「终止判据」= 边界规则里最少被记录的那一类：**何时停止执法**）/ Williamson 3（`[RFC] Adding a vendor observer group to the Security Response Group` 是显式分层：观察席位无表决 vs 成员席位）/ Coase 2。
+- **实测读数（2026-11-24）**：分类 **46 Announcements**（395 主题，最近 2026-11-17 `LLVM 23.1.6 Released!`）、**20 Community**（412 主题，最近 2026-11-23 `LLVM Weekly - #673`）。单次抓取 30 主题/分类 / 32 KB + 39 KB。
+- **⚠️ 两个必须写进 registry 的陷阱（本轮实测撞到）**：
+  1. **slug 路径不可靠**：`/c/announcements/8` 返回 200 但 8 现为 **LLDB 分类**（30 主题、内容全是 `[RFC]` LLDB 帖）；`/c/announcements.rss` 404。分类 id（46 / 20）才是稳定锚。
+  2. **置顶主题会把「最新」读成「最早」**：分类 json 的 `topics[0]` 是 `About the Announcements category`（created_at = 2022-01-08）。首版 `--verify` 因此报出新est=2022-01-08，看似数据源坏了。**取最新必须按 created_at 排序并排除 pinned。**
+- **为什么不建「每天 diff 全文」的管线**：Discourse `.json` 不返回编辑历史；判定「同一政策帖被改写」须按 topic id 取 `/t/{id}.json` 比对 posts 内容，成本高且 99% 是错别字修订。**增量口径定为 topic_id 集合差异**（新增文本）+ `posts_count` 变化（文本被追加）—— 后者只作触发，不作结论。
+- **数据源**：`https://discourse.llvm.org/c/{46,20}.json`，无 RSS 依赖、无 HTML 解析、无 WAF、无 API key。
+
+### P1（观察期）
+
+## 2026-11-24 — Corgea Research（corgea.com/research）
+- 评级：**P1（队列给「待人工确认」，本轮实测可达且入口优于预期，但因「厂商博客 + 日更」定为观察期而非 P0）**
+- 来源类型：安全厂商研究博客（CVE 级技术回溯，日更）
+- NIE 典型性分析：Williamson 4（**「谁在什么时点知道」**：Corgea 的做法是把「公告措辞修订」与「公开 PoC 出现时间」对齐 —— 这是 CVE 归属与修复责任之外的第二维：**信息披露的时序本身是一种制度**）/ A&R 3（厂商自报 vs 第三方复核的落差，与 #46 VulnCheck 的三分工：OpenSSF 造标准 / VulnCheck 第三方账单 / Corgea 时序回溯）/ Ostrom 2。两轴强 + 一条清晰的分工位置，够 P1 不够 P0（**它不裁量任何制度，只记录时序**）。
+- 数据源状态（2026-11-24 实测）：
+  - ✅ `https://corgea.com/research/` **200 / 835,759 B**
+  - ✅ **RSS 可用且是全部关键**：`/research/rss.xml` **200 / 103,408 B / 343 items**；根 `/rss.xml` 也 200（395 KB，另一口径）
+  - ✅ 条目结构完整：`title` + `pubDate`（**全是 `00:00:00 GMT` 的日期占位，不能当发布时间用**）+ 指向 `/research/cve-XXXX-...` 的永久链接
+  - ✅ 实测 11-21 ~ 11-23 连续三日均有产出入（11-23 单日 6 条，覆盖 Spring Data Elasticsearch SpEL / Ghostscript `-dSAFER` 逃逸 / MONAI Label 零日 / pgjdbc SQL 注入等）
+  - ⚠️ 日更 6 条量级 → **信噪比问题与 11-17 Research Square 同型**（可获取 ≠ 可监测），故不建独立同步模块，只在「需要某个 CVE 的时序证据」时定向取
+- 为什么不升 P0：**日更 6 条、单一厂商叙事、无结构化字段（无 CVE→PoC→公告修订 的三列对齐表）**。只有当它把三条时间线做成可机读字段时，「披露时序」才成为一个可计数的对象。
+- 建议触发条件：① RSS 条目出现结构化字段（CVE / 公告首次发布日 / 措辞修订日 / PoC 公开日）→ 升 P0；② 若它与 VulnCheck / OpenSSF 出现同一 CVE 的时序口径冲突 → 做一次三方对读，届时价值在「谁的时间线被采信」。
+
+### P2（记录备案）
+
+## 2026-11-21 — SWE-chat 数据集（huggingface.co/datasets/SALT-NLP/SWE-chat）
+- 评级：**P2（队列判断正确：是数据集，不是来源；进素材库不进监测池）**
+- 来源类型：开放数据集（开发者—agent 长期对话语料）
+- NIE 典型性分析：Ostrom 3（**第一份独立于厂商自述的「agent 参与协作」计数口径**：会话/子代理/技能调用均分表可数）/ North 2。
+- 数据源状态（2026-11-24 实测）：✅ HF API **200**；`downloads 18,250`、`likes 175`、`createdAt 2026-04-24`、`lastModified 2026-10-03`、license **odc-by**（可复用，需署名）；19 张 parquet 表：`conversations` / `conversations_subagents` / `sessions` / `session_logs` / `commits` / `context_events` / `repositories` / `skill_definitions` / `skill_invocations` / `subagent_tasks` / `checkpoints` + `transcripts/*.jsonl` 逐会话原文。
+- 为什么不建管线：**一次性快照 + 静态语料**，没有增量事件。价值在「用它回答一个 NIE 问题」，例如：**agent 参与的 PR 里，人类认领/复核的比例是否随时间上升**（对应 11-21 线索 1 的「发现的认领制度」）。
+- 建议触发条件：① 出现 v2 且新增「人类复核动作」字段 → 该问题变成可复算，届时做一次专题；② 若第二篇独立论文用它得出与首篇相反的结论 → 数据集的测量效度本身成为制度问题（公共记账由谁维护）。
+
+### 本轮制度信号（队列附带，非独立数据源）
+
+1. **`10.83842` 的批量投放已停，且 Crossref 自身的计数字段是坏的**（11-24 线索 1/5 的收口）—— 实测 11-23 全天 **5,628 条**、11-24 至 04:00 **0 条**，与上游读数（11-22 10,000 / 11-23 5,627）吻合。**性质判定：一次性批量投放，不是流水线。** 但 member 页 `/members/58954` 至今返回 `counts: {current-dois: 0, backfile-dois: 0, total-dois: 0}`，而 `/members/58954/works` 返回 15,628 —— **该 member 的计数从未被后台任务刷新过**。判据：Crossref 的 member 计数是**异步汇总字段**，不是实时值；任何用 `/members/{id}` 的 counts 做「出版方规模」排序的研究，对新注册 member 会系统性报 0。类型分布也复确认：15,325 条 `type=journal`（98.1%）对 303 条 `journal-article` —— **样本 DOI 形如 `10.83842/cinemascrcul`、`10.83842/artificialintinf149`，是把刊名直接做成 DOI 后缀**，因此上游线索 2 的判断成立：`type` 与 `title` 过滤都拦不住，噪声本身就是刊名。
+2. **OpenAlex 的「近实时窗口」不是不可用，是要收费 —— 至此可以关掉这条线索**（连续多期未解，11-20 队列第 4 条）—— 实测 `filter=from_created_date:` 与 `created_date:>` 均返回 **403 `Plan upgrade required`**，明示「from_created_date 属于 daily sync，需 Member+ / Partner 计划」；而同域 `filter=publication_date:2026-11-20` **200 / count=35,366** 免费可用。**结论：不是窗口缺失，是入库日期（created）与发表日期（publication）被产品分层——免费层只有后者。** 判据：期刊侧论文监控继续用 Crossref 的 `from-created-date`（免费、近实时）做增量，OpenAlex 只用于「按发表窗口做覆盖度对照」；不要再用 OpenAlex 做入库时效探测。（另注：无 key 时全 IP 共享 $0.10/日预算，文档给了 `POST /api-keys` 的自助申请路径，需要时再申请。）
+3. **JSPLib / FJSPLib 的「公共记账能否被更正」线索，入口已经不存在（11-18 队列第 2 条）** —— 上游提到的库与站点在四个常见路径全部 404：`upf-cnrs.github.io/jobshop/`（404）、`github.com/upf-cnrs/jobshop`（404）、`github.com/upf-cnrs/jobshop-instances`（404）、`optimizizer.com/UPF/`（404）。GitHub 上同名资源只剩 `tamy0612/JSPLIB`（128★，**最后 push 2014-11-21**）、`ScheduleOpt/benchmarks`（49★）、`ScheduleOpt/jsplib`（0★）——**没有任何一个是可以登记更正记录的当前权威地址**。这个 404 本身比线索更有信息量：**当一项公共记账的托管方消失，「账可被修」就不再是可测的命题，而变成「账是否还存在于可寻址的位置」**。截止日 2027 年那次复核应改为「是否出现新的权威托管」，而不是「记录是否被更新」。
+4. **mosquitto 合并权单点化：名册侧的通道是有的，但只有 2 个活跃 committer（11-21 线索 3 的本轮实测）** —— `projects.eclipse.org/projects/iot.mosquitto/who` 可读（200 / 62 KB），页面给出 **Committers: Roger Light、Ian Craggs**，**Historical Committers: Tatsuzo Osawa、Pierre Fersing**；四人各有人页（`/CM/{rlight,icraggs,pfersing,tosawa}`）。即：**Eclipse 撤权通道确有实际增删动作**（两人已转 Historical），**不是「没有通道」，是「通道用过但当前名册只剩两人」**。GitHub 侧 `pulls?state=closed` 抽样 50 条中 17 条已合并，2026-11 的四条合并全部由 ralight 本人操作，与上游读数一致。→ **判据修正：mosquitto 的问题不是「撤权通道缺失」，而是「撤权之后没有补人」** —— 结构性风险从「不可撤」变成「无人可授」。`projects.eclipse.org/projects/iot.mosquitto/releases` 路径 404（该站已不按此 URL 组织 release review），故「release review 记录」这一项仍未取得，需另找入口。
+5. **「入口判断错就报不可得」再添三例，且这轮出现了新的失败形态：返回 200 但不是你要的东西**（11-17 那条固定动作的第 7–9 次）—— ① `/c/announcements/8` 返回 200 但 8 是 LLDB；② `www.ic3.gov/CSA/rss.xml` 返回 200 但**内容是 HTML 列表页**（`content-type: text/html`，56,675 B，与 `/CSA` 同字节数）—— 看状态码 200 会误判 feed 存在；③ `blog.barracuda.com/feed` 不带 `--compressed` 时下载 23,569 B 的 **gzip 字节流**，正则数出 0 个 `<item>`，加 `--compressed` 后正常解析出 10 条。**升级判据（写入方法）：探测 feed 必须同时核对 `content-type` 与 `Accepts-Encoding` 处理，不能只看 HTTP 200 和字节数。** IC3 的正确入口是 `/CSA` 列表页的 37 个 `CSA/YYYY/NNNNNN.pdf` 链接（HTML 正则提取，单页、无分页）；Barracuda 正确入口是 `feed` + `--compressed`（10 条，最新 2026-11-20）。
+6. **「政府软件释出点」应当按层级归档，而不是按来源计数**（11-24 Genesis vs 11-17 IRS-Public）—— 两者是同一命题的两个层级：`release-regime/` 测的是**机构内部把生产边界画进公开仓库**（税务局，10 仓 0 release，三种产权状态并存）；`gitlab.osti.gov/genesis` 是**国家级任务把 agent 技能包释出**。判据差异：前者的可数指标是「逐仓许可状态分布」，后者的可数指标应当是「释出物与委托任务的对应关系」（技能包对应哪条任务、谁验收）。**在拿到这条对应关系之前，不用第二个数据源，只用 `release-regime/` 加一个对照注脚。**
